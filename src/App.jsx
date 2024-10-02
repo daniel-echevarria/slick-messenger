@@ -1,11 +1,15 @@
 import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
 import SignInPage from "./components/signInPage/signInPage";
 import "./App.css";
+import HomePage from "./components/homePage/homePage";
 
 function App() {
-  return <SignInPage />;
+  const [signedIn, setSignedIn] = useState(false);
+  console.log(signedIn);
+
+  return (
+    <>{signedIn ? <HomePage /> : <SignInPage setSignedIn={setSignedIn} />}</>
+  );
 }
 
 export default App;
