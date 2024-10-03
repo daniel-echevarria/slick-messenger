@@ -1,15 +1,12 @@
-import { useState } from "react";
 import SignInPage from "./components/signInPage/signInPage";
 import "./App.css";
 import HomePage from "./components/homePage/homePage";
 
+localStorage.clear();
 function App() {
-  const [signedIn, setSignedIn] = useState(false);
-  console.log(signedIn);
+  const token = localStorage.getItem("token");
 
-  return (
-    <>{signedIn ? <HomePage /> : <SignInPage setSignedIn={setSignedIn} />}</>
-  );
+  return <>{token ? <HomePage /> : <SignInPage />}</>;
 }
 
 export default App;

@@ -2,16 +2,20 @@ import { useState, useEffect, useSyncExternalStore } from "react";
 import logo from "../../assets/slack-logo.svg";
 import CustomInput from "../CustomInput/CustomInput";
 import "../SignInPage/signInPage.css";
+import { redirect, useNavigate } from "react-router-dom";
 
-const SignInPage = ({ setSignedIn }) => {
+const SignInPage = () => {
+  const navigate = useNavigate();
   const [emailValue, setEmailValue] = useState("");
   const [passwordValue, setPasswordValue] = useState("");
   const [loginData, setLoginData] = useState(null);
-  const [error, setError] = useState(null);
+  const [errorMessage, setErrorMessage] = useState(null);
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   // Attempt to login the user weather with token or credentials
   useEffect(() => {
     const login = async () => {
+      if (!isSubmitted) return;
       try {
         const response = await fetch("http://localhost:3000/sign_in", {
           method: "POST",
@@ -24,15 +28,17 @@ const SignInPage = ({ setSignedIn }) => {
         if (response.ok) {
           const token = response.headers.get("Authorization");
           localStorage.setItem("token", token);
-          setSignedIn(true);
+          navigate("home");
+        } else {
+          localStorage.removeItem("token");
+          throw new Error("Invalid Credentials");
         }
       } catch (error) {
-        console.log(error);
-        setError("Invalid Credentials");
+        setErrorMessage(error.message);
       }
     };
     login();
-  }, [loginData, setSignedIn]);
+  }, [loginData, isSubmitted]);
 
   const handleEmailChange = (e) => {
     setEmailValue(e.target.value);
@@ -49,6 +55,7 @@ const SignInPage = ({ setSignedIn }) => {
         password: passwordValue,
       },
     });
+    setIsSubmitted(true);
   };
 
   return (
@@ -58,7 +65,7 @@ const SignInPage = ({ setSignedIn }) => {
         <span>Slick</span>
       </div>
       <h1>Sign in to Slick</h1>
-      <p>{error}</p>
+      <p>{errorMessage}</p>
       <div className="login-box">
         <CustomInput
           type={"text"}
