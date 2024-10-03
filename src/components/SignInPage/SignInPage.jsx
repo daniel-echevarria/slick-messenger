@@ -21,16 +21,16 @@ const SignInPage = () => {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            Authorization: localStorage.getItem("token"),
+            Authorization: sessionStorage.getItem("token"),
           },
           body: JSON.stringify(loginData),
         });
         if (response.ok) {
           const token = response.headers.get("Authorization");
-          localStorage.setItem("token", token);
-          navigate("home");
+          sessionStorage.setItem("token", token);
+          navigate("/");
         } else {
-          localStorage.removeItem("token");
+          sessionStorage.removeItem("token");
           throw new Error("Invalid Credentials");
         }
       } catch (error) {

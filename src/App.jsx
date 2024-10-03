@@ -1,12 +1,12 @@
-import SignInPage from "./components/signInPage/signInPage";
 import "./App.css";
 import HomePage from "./components/homePage/homePage";
+import { Navigate, useNavigate } from "react-router-dom";
 
-localStorage.clear();
+sessionStorage.clear();
 function App() {
-  const token = localStorage.getItem("token");
+  const token = sessionStorage.getItem("token");
 
-  return <>{token ? <HomePage /> : <SignInPage />}</>;
+  return <>{token ? <HomePage /> : <Navigate to="/signin" />}</>;
 }
 
 export default App;
