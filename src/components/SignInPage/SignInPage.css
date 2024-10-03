@@ -19,3 +19,12 @@
   justify-content: center;
   gap: 20px;
 }
+
+.signup-offer {
+  position: absolute;
+  right: 40px;
+  top: 40px;
+  display: flex;
+  flex-direction: column;
+  font-size: small;
+}

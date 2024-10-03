@@ -1,6 +1,6 @@
 import "./App.css";
 import HomePage from "./components/homePage/homePage";
-import { Navigate, useNavigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
 sessionStorage.clear();
 function App() {

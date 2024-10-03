@@ -1,8 +1,8 @@
 input,
 button {
-  width: 350px;
+  width: 400px;
   padding: 10px;
-  border-radius: 10px;
+  border-radius: 12px;
   font-size: large;
 }
 

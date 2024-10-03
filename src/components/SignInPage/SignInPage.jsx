@@ -1,8 +1,8 @@
-import { useState, useEffect, useSyncExternalStore } from "react";
+import { useState, useEffect } from "react";
 import logo from "../../assets/slack-logo.svg";
 import CustomInput from "../CustomInput/CustomInput";
 import "../SignInPage/signInPage.css";
-import { redirect, useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 const SignInPage = () => {
   const navigate = useNavigate();
@@ -38,7 +38,7 @@ const SignInPage = () => {
       }
     };
     login();
-  }, [loginData, isSubmitted]);
+  }, [loginData, isSubmitted, navigate]);
 
   const handleEmailChange = (e) => {
     setEmailValue(e.target.value);
@@ -80,6 +80,10 @@ const SignInPage = () => {
           handleChange={handlePasswordChange}
         />
         <button onClick={handleSignIn}>Sign In</button>
+      </div>
+      <div className="signup-offer">
+        <span>New to Slick?</span>
+        <Link to="/signup">Create an account</Link>
       </div>
     </main>
   );
