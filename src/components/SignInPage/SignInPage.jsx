@@ -6,9 +6,10 @@ import "../SignInPage/signInPage.css";
 const SignInPage = ({ setSignedIn }) => {
   const [emailValue, setEmailValue] = useState("");
   const [passwordValue, setPasswordValue] = useState("");
-  const [data, setData] = useState(null);
+  const [loginData, setLoginData] = useState(null);
   const [error, setError] = useState(null);
 
+  // Attempt to login the user weather with token or credentials
   useEffect(() => {
     const login = async () => {
       try {
@@ -16,18 +17,22 @@ const SignInPage = ({ setSignedIn }) => {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
+            Authorization: localStorage.getItem("token"),
           },
-          body: JSON.stringify(data),
+          body: JSON.stringify(loginData),
         });
-        const result = await response.json();
-        result.status.code === 200 && setSignedIn(true);
+        if (response.ok) {
+          const token = response.headers.get("Authorization");
+          localStorage.setItem("token", token);
+          setSignedIn(true);
+        }
       } catch (error) {
         console.log(error);
         setError("Invalid Credentials");
       }
     };
     login();
-  }, [data]);
+  }, [loginData, setSignedIn]);
 
   const handleEmailChange = (e) => {
     setEmailValue(e.target.value);
@@ -38,7 +43,7 @@ const SignInPage = ({ setSignedIn }) => {
   };
 
   const handleSignIn = () => {
-    setData({
+    setLoginData({
       user: {
         email: emailValue,
         password: passwordValue,
