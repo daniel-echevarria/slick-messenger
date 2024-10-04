@@ -68,7 +68,7 @@ const SignInPage = () => {
       <p>{errorMessage}</p>
       <div className="login-box">
         <CustomInput
-          type={"text"}
+          type={"email"}
           placeholder={"name@work-email.com"}
           value={emailValue}
           handleChange={handleEmailChange}
