@@ -6,7 +6,8 @@ const SignUp = () => {
   const [emailValue, setEmailValue] = useState("");
   const [passwordValue, setPasswordValue] = useState("");
   const [passConfirmationValue, setPassConfirmationValue] = useState("");
-  const [errorMessage, setErrorMessage] = useState(null);
+  const [message, setMessage] = useState(null);
+  const [isError, setIsError] = useState(true);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [signUpData, setSignUpData] = useState(null);
 
@@ -21,7 +22,8 @@ const SignUp = () => {
         body: JSON.stringify(signUpData),
       });
       const result = await response.json();
-      console.log(result);
+      if (result.status.code === 200) setIsError(false);
+      setMessage(result.status.message);
     };
     createUser();
   }, [signUpData, isSubmitted]);
@@ -40,6 +42,11 @@ const SignUp = () => {
 
   const handleSubmitted = (e) => {
     e.preventDefault();
+    setMessage("");
+    if (passwordValue !== passConfirmationValue) {
+      setMessage("Passwords don't match");
+      return;
+    }
     setSignUpData({
       user: {
         email: emailValue,
@@ -60,8 +67,13 @@ const SignUp = () => {
         <p>
           We suggest using the <strong> email address you use at work </strong>
         </p>
-        <p>{errorMessage}</p>
         <form action="" onSubmit={handleSubmitted}>
+          <p
+            className="form-message"
+            style={{ color: isError ? "red" : "green" }}
+          >
+            {message}
+          </p>
           <div className="login-box">
             <CustomInput
               name={"email"}

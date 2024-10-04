@@ -47,7 +47,7 @@ button {
 }
 
 button:hover {
-  border-color: #646cff;
+  filter: brightness(120%);
 }
 
 button:focus,
