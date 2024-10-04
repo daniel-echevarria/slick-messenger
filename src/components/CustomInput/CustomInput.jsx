@@ -8,6 +8,7 @@ const CustomInput = ({
   handleChange,
   placeholder,
   required,
+  min,
 }) => {
   return (
     <>
@@ -20,6 +21,7 @@ const CustomInput = ({
           onChange={handleChange}
           placeholder={placeholder}
           required={required}
+          minLength={min}
         />
       </label>
     </>
