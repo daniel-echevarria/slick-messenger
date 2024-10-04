@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import logo from "../../assets/slack-logo.svg";
 import CustomInput from "../CustomInput/CustomInput";
+import { useNavigate } from "react-router-dom";
 
 const SignUp = () => {
+  const navigate = useNavigate();
   const [emailValue, setEmailValue] = useState("");
   const [passwordValue, setPasswordValue] = useState("");
   const [passConfirmationValue, setPassConfirmationValue] = useState("");
@@ -22,11 +24,14 @@ const SignUp = () => {
         body: JSON.stringify(signUpData),
       });
       const result = await response.json();
-      if (result.status.code === 200) setIsError(false);
+      if (result.status.code === 200) {
+        navigate("/");
+        setIsError(false);
+      }
       setMessage(result.status.message);
     };
     createUser();
-  }, [signUpData, isSubmitted]);
+  }, [signUpData, isSubmitted, navigate]);
 
   const handleEmailChange = (e) => {
     setEmailValue(e.target.value);
@@ -61,46 +66,39 @@ const SignUp = () => {
       <main>
         <div className="logo-box">
           <img className="logo" src={logo} alt="slack-logo" />
-          <span>Slick</span>
+          <span>slick</span>
         </div>
         <h1>First, enter your email & password</h1>
         <p>
           We suggest using the <strong> email address you use at work </strong>
         </p>
-        <form action="" onSubmit={handleSubmitted}>
-          <p
-            className="form-message"
-            style={{ color: isError ? "red" : "green" }}
-          >
-            {message}
-          </p>
-          <div className="login-box">
-            <CustomInput
-              name={"email"}
-              type={"email"}
-              placeholder={"name@work-email.com"}
-              value={emailValue}
-              handleChange={handleEmailChange}
-              required={true}
-            />
-            <CustomInput
-              name={"password"}
-              type={"password"}
-              placeholder={"********"}
-              value={passwordValue}
-              handleChange={handlePasswordChange}
-              required={true}
-            />
-            <CustomInput
-              name={"password-confirmation"}
-              type={"password"}
-              placeholder={"********"}
-              value={passConfirmationValue}
-              handleChange={handlePassConfirmationChange}
-              required={true}
-            />
-            <button>Create Account</button>
-          </div>
+        <form action="" onSubmit={handleSubmitted} className="login-box">
+          <span style={{ color: isError ? "red" : "green" }}>{message}</span>
+          <CustomInput
+            name={"email"}
+            type={"email"}
+            placeholder={"name@work-email.com"}
+            value={emailValue}
+            handleChange={handleEmailChange}
+            required={true}
+          />
+          <CustomInput
+            name={"password"}
+            type={"password"}
+            placeholder={"********"}
+            value={passwordValue}
+            handleChange={handlePasswordChange}
+            required={true}
+          />
+          <CustomInput
+            name={"password-confirmation"}
+            type={"password"}
+            placeholder={"********"}
+            value={passConfirmationValue}
+            handleChange={handlePassConfirmationChange}
+            required={true}
+          />
+          <button>Create Account</button>
         </form>
       </main>
     </>
