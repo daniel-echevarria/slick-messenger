@@ -79,7 +79,9 @@ const SignInPage = () => {
           value={passwordValue}
           handleChange={handlePasswordChange}
         />
-        <button onClick={handleSignIn}>Sign In</button>
+        <input type="submit" onClick={handleSignIn}>
+          Sign In
+        </input>
       </div>
       <div className="signup-offer">
         <span>New to Slick?</span>

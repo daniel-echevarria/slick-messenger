@@ -5,6 +5,7 @@ import CustomInput from "../CustomInput/CustomInput";
 const SignUp = () => {
   const [emailValue, setEmailValue] = useState("");
   const [passwordValue, setPasswordValue] = useState("");
+  const [passConfirmationValue, setPassConfirmationValue] = useState("");
   const [errorMessage, setErrorMessage] = useState(null);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [signUpData, setSignUpData] = useState(null);
@@ -23,7 +24,7 @@ const SignUp = () => {
       console.log(result);
     };
     createUser();
-  }, [signUpData]);
+  }, [signUpData, isSubmitted]);
 
   const handleEmailChange = (e) => {
     setEmailValue(e.target.value);
@@ -33,7 +34,12 @@ const SignUp = () => {
     setPasswordValue(e.target.value);
   };
 
-  const handleSubmitted = () => {
+  const handlePassConfirmationChange = (e) => {
+    setPassConfirmationValue(e.target.value);
+  };
+
+  const handleSubmitted = (e) => {
+    e.preventDefault();
     setSignUpData({
       user: {
         email: emailValue,
@@ -50,26 +56,40 @@ const SignUp = () => {
           <img className="logo" src={logo} alt="slack-logo" />
           <span>Slick</span>
         </div>
-        <h1>First, enter your email</h1>
+        <h1>First, enter your email & password</h1>
         <p>
           We suggest using the <strong> email address you use at work </strong>
         </p>
         <p>{errorMessage}</p>
-        <div className="login-box">
-          <CustomInput
-            type={"email"}
-            placeholder={"name@work-email.com"}
-            value={emailValue}
-            handleChange={handleEmailChange}
-          />
-          <CustomInput
-            type={"password"}
-            placeholder={"********"}
-            value={passwordValue}
-            handleChange={handlePasswordChange}
-          />
-          <button onClick={handleSubmitted}>Continue</button>
-        </div>
+        <form action="" onSubmit={handleSubmitted}>
+          <div className="login-box">
+            <CustomInput
+              name={"email"}
+              type={"email"}
+              placeholder={"name@work-email.com"}
+              value={emailValue}
+              handleChange={handleEmailChange}
+              required={true}
+            />
+            <CustomInput
+              name={"password"}
+              type={"password"}
+              placeholder={"********"}
+              value={passwordValue}
+              handleChange={handlePasswordChange}
+              required={true}
+            />
+            <CustomInput
+              name={"password-confirmation"}
+              type={"password"}
+              placeholder={"********"}
+              value={passConfirmationValue}
+              handleChange={handlePassConfirmationChange}
+              required={true}
+            />
+            <button>Create Account</button>
+          </div>
+        </form>
       </main>
     </>
   );

@@ -1,15 +1,25 @@
 import "../CustomInput/CustomInput.css";
 
-const CustomInput = ({ type, fieldName, value, handleChange, placeholder }) => {
+const CustomInput = ({
+  label,
+  name,
+  type,
+  value,
+  handleChange,
+  placeholder,
+  required,
+}) => {
   return (
     <>
       <label>
-        {fieldName}{" "}
+        {label}
         <input
+          id={name}
           type={type}
           value={value}
           onChange={handleChange}
           placeholder={placeholder}
+          required={required}
         />
       </label>
     </>
