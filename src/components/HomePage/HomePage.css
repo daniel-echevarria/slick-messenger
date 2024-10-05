@@ -1,4 +1,38 @@
-.messenger {
-  width: 100vh;
+:root {
+  --main-color: #3c0246;
+  --secondary-color: #50115b;
+}
+
+.app {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  background-color: var(--secondary-color);
   height: 100vh;
+  width: 100vw;
+  display: grid;
+  grid-template-columns: 75px 1fr 3fr;
+  grid-template-rows: 40px 1fr;
+  grid-template-areas:
+    "header header header"
+    "nav direct conversation";
+}
+
+header {
+  background-color: var(--main-color);
+  grid-area: header;
+}
+
+nav {
+  grid-area: nav;
+  background-color: var(--main-color);
+}
+
+.direct-messages {
+  grid-area: direct;
+}
+
+.conversation {
+  background-color: white;
+  grid-area: conversation;
 }

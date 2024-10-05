@@ -2,8 +2,11 @@ import "./HomePage.css";
 
 const HomePage = () => {
   return (
-    <div className="messenger">
-      <h1>Home</h1>
+    <div className="app">
+      <header></header>
+      <nav></nav>
+      <div className="direct-messages"></div>
+      <div className="conversation"></div>
     </div>
   );
 };

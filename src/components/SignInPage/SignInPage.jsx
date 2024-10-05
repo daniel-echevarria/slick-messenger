@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
+import { useNavigate, Link } from "react-router-dom";
 import logo from "../../assets/slack-logo.svg";
 import CustomInput from "../CustomInput/CustomInput";
-import "../SignInPage/signInPage.css";
-import { useNavigate, Link } from "react-router-dom";
+import "../SignInPage/SignInPage.css";
 import SignInWithGoogle from "./SignInWithGoogle";
 
 const SignInPage = () => {
