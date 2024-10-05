@@ -28,3 +28,24 @@
   flex-direction: column;
   font-size: small;
 }
+
+.nsm7Bb-HzV7m-LgbsSe-BPrWId {
+  font-size: large;
+}
+
+.break {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+}
+
+#or {
+  background-color: white;
+  padding: 0px 20px;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid lightgray;
+  flex-grow: 1;
+}

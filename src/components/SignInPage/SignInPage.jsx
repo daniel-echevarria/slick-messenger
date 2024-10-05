@@ -66,6 +66,11 @@ const SignInPage = () => {
       </div>
       <h1>Sign in to Slick</h1>
       <SignInWithGoogle />
+      <div className="break">
+        <hr />
+        <div id="or">OR</div>
+        <hr />
+      </div>
       <form action="" onSubmit={handleSignIn} className="login-box">
         <span style={{ color: isError ? "red" : "green" }}>{message}</span>
         <CustomInput

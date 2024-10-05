@@ -10,15 +10,15 @@ const SignInWithGoogle = () => {
   const handleLoginSuccess = async (credentialResponse) => {
     const token = credentialResponse.credential;
     try {
-      const res = await fetch("http://localhost:3000/auth/google", {
+      const response = await fetch("http://localhost:3000/auth/google", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ token }),
       });
-      if (res.ok) {
-        const data = await res.json();
+      if (response.ok) {
+        const data = await response.json();
         sessionStorage.setItem("token", data.jwt);
         navigate("/");
       }
