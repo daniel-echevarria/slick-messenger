@@ -2,8 +2,9 @@ input,
 button {
   width: 400px;
   padding: 10px;
-  border-radius: 12px;
+  border-radius: 5px;
   font-size: large;
+  border: 1px solid lightgray;
 }
 
 label {

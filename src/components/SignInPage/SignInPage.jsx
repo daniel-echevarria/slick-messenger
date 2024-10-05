@@ -3,6 +3,7 @@ import logo from "../../assets/slack-logo.svg";
 import CustomInput from "../CustomInput/CustomInput";
 import "../SignInPage/signInPage.css";
 import { useNavigate, Link } from "react-router-dom";
+import SignInWithGoogle from "./SignInWithGoogle";
 
 const SignInPage = () => {
   const navigate = useNavigate();
@@ -64,6 +65,12 @@ const SignInPage = () => {
         <span>slick</span>
       </div>
       <h1>Sign in to Slick</h1>
+      <SignInWithGoogle />
+      <div className="break">
+        <hr />
+        <div id="or">OR</div>
+        <hr />
+      </div>
       <form action="" onSubmit={handleSignIn} className="login-box">
         <span style={{ color: isError ? "red" : "green" }}>{message}</span>
         <CustomInput
@@ -81,7 +88,7 @@ const SignInPage = () => {
           required={true}
           min={6}
         />
-        <button>Sign In</button>
+        <button>Sign in</button>
       </form>
       <div className="signup-offer">
         <span>New to Slick?</span>
