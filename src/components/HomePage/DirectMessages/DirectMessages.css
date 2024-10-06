@@ -1,0 +1,31 @@
+.dm-header h3 {
+  color: white;
+  flex-shrink: 0;
+  padding: 0px 20px;
+}
+
+.dm-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.dm-header button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  margin: 0px 10px;
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+  filter: invert(100%);
+}
+
+.user button {
+  display: flex;
+  align-items: left;
+  color: white;
+}

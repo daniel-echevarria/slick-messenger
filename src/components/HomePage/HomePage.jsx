@@ -1,3 +1,4 @@
+import DirectMessages from "./DirectMessages/DirectMessages";
 import "./HomePage.css";
 
 const HomePage = () => {
@@ -5,7 +6,7 @@ const HomePage = () => {
     <div className="app">
       <header></header>
       <nav></nav>
-      <div className="direct-messages"></div>
+      <DirectMessages />
       <div className="conversation"></div>
     </div>
   );

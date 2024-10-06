@@ -83,6 +83,6 @@ input:focus {
   }
   button {
     color: white;
-    background-color: purple;
+    background-color: var(--secondary-color);
   }
 }
