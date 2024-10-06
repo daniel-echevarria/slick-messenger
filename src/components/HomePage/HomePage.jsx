@@ -1,12 +1,16 @@
+import { useState } from "react";
+import Conversation from "./Conversation/Conversation";
+import DirectMessages from "./DirectMessages/DirectMessages";
 import "./HomePage.css";
 
 const HomePage = () => {
+  const [recipient, setRecipient] = useState(null);
   return (
     <div className="app">
       <header></header>
       <nav></nav>
-      <div className="direct-messages"></div>
-      <div className="conversation"></div>
+      <DirectMessages />
+      <Conversation recipient={recipient} />
     </div>
   );
 };
