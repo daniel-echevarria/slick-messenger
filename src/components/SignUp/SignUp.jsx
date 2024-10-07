@@ -23,12 +23,12 @@ const SignUp = () => {
         },
         body: JSON.stringify(signUpData),
       });
-      const result = await response.json();
-      if (result.status.code === 200) {
-        navigate("/");
+      if (response.ok) {
+        const result = await response.json();
         setIsError(false);
+        setMessage(result.status.message);
+        navigate("/signin");
       }
-      setMessage(result.status.message);
     };
     createUser();
   }, [signUpData, isSubmitted, navigate]);
