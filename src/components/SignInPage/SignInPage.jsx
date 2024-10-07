@@ -12,23 +12,18 @@ const SignInPage = () => {
   const [loginData, setLoginData] = useState(null);
   const [message, setMessage] = useState(null);
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [isError, setIsError] = useState(true);
 
-  // Attempt to login the user weather with token or credentials
   useEffect(() => {
     const login = async () => {
-      if (!isSubmitted) return;
       const response = await fetch("http://localhost:3000/sign_in", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: sessionStorage.getItem("token"),
         },
         body: JSON.stringify(loginData),
       });
-      if (response.status === 200) {
-        setIsError(false);
-        const token = response.headers.get("Authorization");
+      if (response.ok) {
+        const token = response.headers.get("Authorization").split(" ")[1];
         sessionStorage.setItem("token", token);
         navigate("/");
       } else {
@@ -72,7 +67,7 @@ const SignInPage = () => {
         <hr />
       </div>
       <form action="" onSubmit={handleSignIn} className="login-box">
-        <span style={{ color: isError ? "red" : "green" }}>{message}</span>
+        <span style={{ color: "red " }}>{message}</span>
         <CustomInput
           type={"email"}
           placeholder={"name@work-email.com"}

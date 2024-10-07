@@ -25,6 +25,11 @@
 }
 
 .user button {
+<<<<<<< HEAD
+=======
+  margin: 0px 10px;
+  font-size: small;
+>>>>>>> conversation-section
   display: flex;
   align-items: left;
   color: white;
