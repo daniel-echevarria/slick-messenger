@@ -1,10 +1,8 @@
-<<<<<<< HEAD
-=======
 import { useState } from "react";
 import Conversation from "./Conversation/Conversation";
->>>>>>> conversation-section
 import DirectMessages from "./DirectMessages/DirectMessages";
 import "./HomePage.css";
+import LogOut from "./LogOut/LogOut";
 
 const HomePage = () => {
   const [recipient, setRecipient] = useState(null);
@@ -13,11 +11,8 @@ const HomePage = () => {
       <header></header>
       <nav></nav>
       <DirectMessages />
-<<<<<<< HEAD
-      <div className="conversation"></div>
-=======
       <Conversation recipient={recipient} />
->>>>>>> conversation-section
+      <LogOut />
     </div>
   );
 };

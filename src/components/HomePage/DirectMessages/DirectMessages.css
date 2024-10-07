@@ -25,12 +25,15 @@
 }
 
 .user button {
-<<<<<<< HEAD
-=======
   margin: 0px 10px;
   font-size: small;
->>>>>>> conversation-section
   display: flex;
   align-items: left;
   color: white;
+}
+
+.users-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }

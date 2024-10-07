@@ -41,9 +41,9 @@ h1 {
 }
 
 button {
-  border: 1px solid transparent;
   font-weight: 500;
   font-family: inherit;
+  border: 1px solid transparent;
   cursor: pointer;
   transition: filter 0.25s;
 }
@@ -52,7 +52,7 @@ button:hover {
   filter: brightness(120%);
 }
 
-button:focus,
+.login-box button:focus,
 button:focus-visible,
 input:focus {
   box-shadow: 0px 0px 5px 5px lightblue;
