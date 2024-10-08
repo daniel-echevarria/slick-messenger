@@ -97,7 +97,7 @@ const DirectMessages = () => {
         </div>
         <div className="users-list">{usersList}</div>
       </div>
-      <Conversation interlocutor={interlocutor} />
+      <Conversation interlocutor={interlocutor} conversation={conversation} />
     </>
   );
 };

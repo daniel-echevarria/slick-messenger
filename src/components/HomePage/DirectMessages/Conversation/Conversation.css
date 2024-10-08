@@ -1,7 +1,13 @@
 .conversation {
   display: grid;
-  grid-template-rows: 80px 1fr 100px;
+  grid-template-rows: 80px 1fr 200px;
   /* border: 2px solid blue; */
+}
+
+.conversation button {
+  background-color: inherit;
+  color: black;
+  width: fit-content;
 }
 
 .conversation button:hover {
@@ -16,7 +22,12 @@
 .interlocutor-btn {
   display: flex;
   width: fit-content;
-  background-color: inherit;
-  color: black;
   font-weight: bolder;
+}
+
+.new-msg-header {
+  display: flex;
+  font-weight: bolder;
+  font-size: large;
+  padding: 10px 20px;
 }

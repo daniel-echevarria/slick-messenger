@@ -1,4 +1,5 @@
 import "./Conversation.css";
+import SendMessages from "./SendMessages/SendMessages";
 const Conversation = ({ interlocutor }) => {
   return (
     <div className="conversation">
@@ -11,8 +12,8 @@ const Conversation = ({ interlocutor }) => {
           <div className="new-msg-header">New Message</div>
         )}
       </div>
-      <div className="messages">messages</div>
-      <div className="message-creation">creation</div>
+      <div className="messages"></div>
+      <SendMessages />
     </div>
   );
 };

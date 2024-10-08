@@ -1,0 +1,39 @@
+.send-message-box {
+  border: 2px solid lightgray;
+  border-radius: 5px;
+  margin: 30px;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: fit-content 1fr 40px;
+  justify-content: space-between;
+}
+
+.input-formating {
+  display: flex;
+  align-items: center;
+  min-height: 40px;
+  background-color: whitesmoke;
+}
+
+.msg-input {
+  /* background-color: pink; */
+  border: none;
+  width: 100%;
+}
+
+.send-message-box input:focus,
+.send-message-box input:focus-visible {
+  box-shadow: none;
+  outline: none;
+}
+
+.input-features-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.send-msg-icon {
+  filter: invert(0%);
+  color: green;
+}

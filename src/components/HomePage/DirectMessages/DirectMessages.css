@@ -26,6 +26,7 @@
 
 .user button {
   margin: 0px 10px;
+  width: 90%;
   font-size: small;
   display: flex;
   align-items: left;
