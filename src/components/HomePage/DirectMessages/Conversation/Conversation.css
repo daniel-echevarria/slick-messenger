@@ -1,9 +1,22 @@
 .conversation {
   display: grid;
   grid-template-rows: 80px 1fr 100px;
-  border: 2px solid blue;
+  /* border: 2px solid blue; */
+}
+
+.conversation button:hover {
+  background-color: whitesmoke;
+  filter: none;
 }
 
 .conversation-header {
   border-bottom: 0.5px solid lightgray;
+}
+
+.interlocutor-btn {
+  display: flex;
+  width: fit-content;
+  background-color: inherit;
+  color: black;
+  font-weight: bolder;
 }
