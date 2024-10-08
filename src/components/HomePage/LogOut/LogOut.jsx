@@ -24,7 +24,7 @@ const LogOut = () => {
       }
     };
     logOutUser();
-  }, [isSignedOut]);
+  }, [isSignedOut, navigate]);
 
   const handleSignOut = () => {
     setIsSignedOut(true);
