@@ -19,7 +19,7 @@ const SignInWithGoogle = () => {
       });
       if (response.ok) {
         const data = await response.json();
-        sessionStorage.setItem("token", data.jwt);
+        sessionStorage.setItem("token", `Bearer ${data.jwt}`);
         navigate("/");
       }
     } catch (error) {

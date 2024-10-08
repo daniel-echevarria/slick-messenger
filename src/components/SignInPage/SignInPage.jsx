@@ -23,7 +23,7 @@ const SignInPage = () => {
         body: JSON.stringify(loginData),
       });
       if (response.ok) {
-        const token = response.headers.get("Authorization").split(" ")[1];
+        const token = response.headers.get("Authorization");
         sessionStorage.setItem("token", token);
         navigate("/");
       } else {

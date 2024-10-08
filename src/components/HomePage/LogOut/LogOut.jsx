@@ -12,13 +12,11 @@ const LogOut = () => {
       const response = await fetch("http://localhost:3000/sign_out", {
         method: "DELETE",
         headers: {
-          Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+          Authorization: sessionStorage.getItem("token"),
         },
       });
-      console.log(response);
       if (response.ok) {
-        const result = await response.json();
-        console.log(result);
+        // const result = await response.json();
         sessionStorage.removeItem("token");
         navigate("signin");
       }
