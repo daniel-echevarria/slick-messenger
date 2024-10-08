@@ -1,0 +1,9 @@
+.conversation {
+  display: grid;
+  grid-template-rows: 80px 1fr 100px;
+  border: 2px solid blue;
+}
+
+.conversation-header {
+  border-bottom: 0.5px solid lightgray;
+}
