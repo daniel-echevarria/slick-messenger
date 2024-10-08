@@ -1,11 +1,13 @@
 import "./DirectMessages.css";
 import newMsgIcon from "../../../assets/icons/new-msg.svg";
 import { useEffect, useState } from "react";
+import Conversation from "./Conversation/Conversation";
 
 const DirectMessages = () => {
   const [users, setUsers] = useState([]);
-  const [selectedContact, setSelectedContact] = useState(null);
-  const [friendshipId, setFriendshipId] = useState(null);
+  const [interlocutor, setInterlocutor] = useState(null);
+  const [friendship, setFriendship] = useState(null);
+  const [conversation, setConversation] = useState([]);
 
   useEffect(() => {
     const getUsers = async () => {
@@ -35,22 +37,21 @@ const DirectMessages = () => {
             "Content-Type": "application/json",
             Authorization: sessionStorage.getItem("token"),
           },
-          body: JSON.stringify({ contact_id: selectedContact }),
+          body: JSON.stringify({ contact_id: interlocutor.id }),
         });
         if (response.ok) {
           const result = await response.json();
-          setFriendshipId(result.id);
+          setFriendship(result);
         }
       } catch (error) {
         console.log(error);
       }
     };
     getFriendship();
-  }, [selectedContact]);
+  }, [interlocutor]);
 
   useEffect(() => {
     const getConversation = async () => {
-      console.log(friendshipId);
       try {
         const response = await fetch(`http://localhost:3000/conversations`, {
           method: "POST",
@@ -58,22 +59,21 @@ const DirectMessages = () => {
             "Content-Type": "application/json",
             Authorization: sessionStorage.getItem("token"),
           },
-          body: JSON.stringify({ friendship_id: friendshipId }),
+          body: JSON.stringify({ friendship_id: friendship.id }),
         });
         if (response.ok) {
-          console.log(response);
           const result = await response.json();
-          console.log(result);
+          setConversation(result);
         }
       } catch (error) {
         console.log(error);
       }
     };
     getConversation();
-  }, [friendshipId]);
+  }, [friendship]);
 
   const handleGetConversation = (e) => {
-    setSelectedContact(e.target.value);
+    setInterlocutor(users.find((user) => user.id == e.target.value));
   };
 
   const usersList = users.map((user) => {
@@ -87,15 +87,18 @@ const DirectMessages = () => {
   });
 
   return (
-    <div className="direct-messages">
-      <div className="dm-header">
-        <h3>Direct Messages</h3>
-        <button>
-          <img src={newMsgIcon} alt="new-message-icon" className="icon" />
-        </button>
+    <>
+      <div className="direct-messages">
+        <div className="dm-header">
+          <h3>Direct Messages</h3>
+          <button>
+            <img src={newMsgIcon} alt="new-message-icon" className="icon" />
+          </button>
+        </div>
+        <div className="users-list">{usersList}</div>
       </div>
-      <div className="users-list">{usersList}</div>
-    </div>
+      <Conversation interlocutor={interlocutor} />
+    </>
   );
 };
 

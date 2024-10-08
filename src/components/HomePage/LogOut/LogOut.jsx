@@ -16,7 +16,6 @@ const LogOut = () => {
         },
       });
       if (response.ok) {
-        // const result = await response.json();
         sessionStorage.removeItem("token");
         navigate("signin");
       }
