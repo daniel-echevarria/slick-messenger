@@ -19,6 +19,16 @@
   margin-left: 30px;
 }
 
+.msg-infos {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
 .sender {
   font-weight: bold;
+}
+
+.time-sent {
+  font-size: small;
 }
