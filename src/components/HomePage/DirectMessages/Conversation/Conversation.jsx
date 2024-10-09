@@ -34,7 +34,7 @@ const Conversation = ({ interlocutor, friendship }) => {
   return (
     <div className="conversation">
       <ConversationHeader interlocutor={interlocutor} />
-      <Messages messages={messages} />
+      <Messages messages={messages} interlocutor={interlocutor} />
       <SendMessages conversation={conversation} />
     </div>
   );

@@ -1,0 +1,9 @@
+.date-sent-separator {
+  display: flex;
+  align-items: center;
+}
+
+.date-sent {
+  padding: 5px;
+  background-color: white;
+}
