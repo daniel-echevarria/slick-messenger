@@ -1,6 +1,10 @@
+.direct-messages {
+  text-align: left;
+  text-wrap: nowrap;
+}
+
 .dm-header h3 {
   color: white;
-  flex-shrink: 0;
   padding: 0px 20px;
 }
 
@@ -14,7 +18,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 40px;
+  width: fit-content;
   margin: 0px 10px;
 }
 
@@ -30,6 +34,7 @@
   font-size: small;
   display: flex;
   align-items: left;
+  justify-content: left;
   color: white;
 }
 

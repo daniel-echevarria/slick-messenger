@@ -20,7 +20,7 @@ const SendMessages = ({ conversation }) => {
         },
         body: JSON.stringify({
           message: message,
-          conversation_id: conversation.id,
+          conversation_id: conversation.conversation.id,
         }),
       });
       if (res.ok) {
