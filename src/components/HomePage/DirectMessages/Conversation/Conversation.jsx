@@ -1,6 +1,9 @@
 import "./Conversation.css";
 import SendMessages from "./SendMessages/SendMessages";
-const Conversation = ({ interlocutor }) => {
+
+const Conversation = ({ interlocutor, conversation }) => {
+  console.log(`this is the conversation id ${conversation.id}`);
+
   return (
     <div className="conversation">
       <div className="conversation-header">
@@ -13,7 +16,7 @@ const Conversation = ({ interlocutor }) => {
         )}
       </div>
       <div className="messages"></div>
-      <SendMessages />
+      <SendMessages conversation={conversation} />
     </div>
   );
 };
