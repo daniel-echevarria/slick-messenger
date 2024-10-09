@@ -3,7 +3,18 @@
   align-items: center;
 }
 
-.date-sent {
+.date-sent-btn {
   padding: 5px;
   background-color: white;
+}
+
+.sender-and-msg {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  margin-left: 30px;
+}
+
+.sender {
+  font-weight: bold;
 }

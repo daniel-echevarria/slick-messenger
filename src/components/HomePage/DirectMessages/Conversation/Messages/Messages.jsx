@@ -12,11 +12,13 @@ const Messages = ({ messages, interlocutor }) => {
       <div className="message" key={msg.id}>
         <div className="date-sent-separator">
           <hr />
-          <button className="date-sent">{msg.created_at}</button>
+          <button className="date-sent-btn">{msg.created_at}</button>
           <hr />
         </div>
-        <p>{sender.name || sender.email}</p>
-        <p>{msg.content}</p>
+        <div className="sender-and-msg">
+          <span className="sender">{sender.name || sender.email}</span>
+          <span>{msg.content}</span>
+        </div>
       </div>
     );
   });
