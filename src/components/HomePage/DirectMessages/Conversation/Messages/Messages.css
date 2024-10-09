@@ -4,8 +4,12 @@
 }
 
 .date-sent-btn {
+  font-size: small;
   padding: 5px;
   background-color: white;
+  border: 1px solid grey;
+  border-radius: 10px;
+  padding: 5px 15px;
 }
 
 .sender-and-msg {

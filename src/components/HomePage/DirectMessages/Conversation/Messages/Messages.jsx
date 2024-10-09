@@ -1,18 +1,19 @@
-import { useContext } from "react";
-import "./Messages.css";
+import { useContext, useEffect, useState } from "react";
 import { YouContext } from "../../../../../App";
+import "./Messages.css";
+import { format } from "date-fns";
 
 const Messages = ({ messages, interlocutor }) => {
   const you = useContext(YouContext);
 
   const messagesList = messages.map((msg) => {
-    console.log(interlocutor);
+    const formatedDate = format(msg.created_at, "EEEE, MMMM do");
     const sender = [interlocutor, you].find((user) => user.id === msg.user_id);
     return (
       <div className="message" key={msg.id}>
         <div className="date-sent-separator">
           <hr />
-          <button className="date-sent-btn">{msg.created_at}</button>
+          <button className="date-sent-btn">{formatedDate}</button>
           <hr />
         </div>
         <div className="sender-and-msg">
