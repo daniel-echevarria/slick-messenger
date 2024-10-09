@@ -1,7 +1,11 @@
+:root {
+  --conv-header-height: 80px;
+  --send-msg-box-height: 200px;
+}
+
 .conversation {
   display: grid;
-  grid-template-rows: 80px 1fr 200px;
-  /* border: 2px solid blue; */
+  grid-template-rows: var(--conv-header-height) 1fr var(--send-msg-box-height);
 }
 
 .conversation button {

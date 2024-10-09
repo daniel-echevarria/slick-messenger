@@ -1,3 +1,11 @@
+.messages {
+  height: calc(
+    100vh - var(--conv-header-height) - var(--send-msg-box-height) -
+      var(--header-height)
+  );
+  overflow-y: scroll;
+}
+
 .date-sent-separator {
   display: flex;
   align-items: center;
