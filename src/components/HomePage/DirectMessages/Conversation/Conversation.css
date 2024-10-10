@@ -1,6 +1,6 @@
 :root {
   --conv-header-height: 80px;
-  --send-msg-box-height: 200px;
+  --send-msg-box-height: 160px;
 }
 
 .conversation {
