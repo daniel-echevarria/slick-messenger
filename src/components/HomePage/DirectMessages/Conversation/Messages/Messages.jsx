@@ -10,6 +10,7 @@ const Messages = ({ messages, interlocutor }) => {
     const formattedDate = format(msg.created_at, "EEEE, MMMM do");
     const formattedTime = format(msg.created_at, "p");
     const sender = [interlocutor, you].find((user) => user.id === msg.user_id);
+    console.log(sender);
     return (
       <div className="message" key={msg.id}>
         <div className="date-sent-separator">

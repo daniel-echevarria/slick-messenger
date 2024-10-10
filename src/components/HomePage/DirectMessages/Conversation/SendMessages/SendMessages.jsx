@@ -3,7 +3,7 @@ import sendMessageIcon from "../../../../../assets/icons/send-msg.svg";
 import CustomInput from "../../../../CustomInput/CustomInput.jsx";
 import { useState, useEffect } from "react";
 
-const SendMessages = ({ conversation }) => {
+const SendMessages = ({ conversation, interlocutor }) => {
   const [inputValue, setInputValue] = useState("");
   const [message, setMessage] = useState("");
 
@@ -45,7 +45,7 @@ const SendMessages = ({ conversation }) => {
         <button>B</button>
       </div>
       <CustomInput
-        placeholder={"Jot Something Down"}
+        placeholder={`Message ${interlocutor.name || interlocutor.email}`}
         value={inputValue}
         handleChange={handleChange}
       />

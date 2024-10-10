@@ -35,7 +35,7 @@ const Conversation = ({ interlocutor, friendship }) => {
     <div className="conversation">
       <ConversationHeader interlocutor={interlocutor} />
       <Messages messages={messages} interlocutor={interlocutor} />
-      <SendMessages conversation={conversation} />
+      <SendMessages conversation={conversation} interlocutor={interlocutor} />
     </div>
   );
 };
