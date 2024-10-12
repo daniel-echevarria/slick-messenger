@@ -10,7 +10,7 @@ const Messages = ({ messages, interlocutor }) => {
     const formattedDate = format(msg.created_at, "EEEE, MMMM do");
     const formattedTime = format(msg.created_at, "p");
     const sender = [interlocutor, you].find((user) => user.id === msg.user_id);
-    console.log(sender);
+
     return (
       <div className="message" key={msg.id}>
         <div className="date-sent-separator">
@@ -20,7 +20,7 @@ const Messages = ({ messages, interlocutor }) => {
         </div>
         <div className="sender-and-msg">
           <div className="msg-infos">
-            <span className="sender">{sender.name || sender.email}</span>
+            {/* <span className="sender">{sender.name || sender.email}</span> */}
             <span className="time-sent">{formattedTime}</span>
           </div>
           <span className="msg-content">{msg.content}</span>
