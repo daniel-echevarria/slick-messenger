@@ -19,16 +19,6 @@
   filter: none;
 }
 
-.conversation-header {
-  border-bottom: 0.5px solid lightgray;
-}
-
-.interlocutor-btn {
-  display: flex;
-  width: fit-content;
-  font-weight: bolder;
-}
-
 .new-msg-header {
   display: flex;
   font-weight: bolder;

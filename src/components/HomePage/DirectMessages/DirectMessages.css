@@ -29,6 +29,9 @@
 }
 
 .user button {
+  display: flex;
+  align-items: center;
+  gap: 5px;
   margin: 0px 10px;
   width: 90%;
   font-size: small;
@@ -36,6 +39,11 @@
   align-items: left;
   justify-content: left;
   color: white;
+}
+
+.user button img {
+  height: 20px;
+  border-radius: 5px;
 }
 
 .users-list {

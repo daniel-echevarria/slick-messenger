@@ -1,0 +1,16 @@
+.conversation-header img {
+  height: 30px;
+  border-radius: 8px;
+}
+
+.conversation-header {
+  border-bottom: 0.5px solid lightgray;
+}
+
+.interlocutor-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: fit-content;
+  font-weight: bolder;
+}
