@@ -9,7 +9,7 @@ const Messages = ({ messages, interlocutor }) => {
   const messagesList = messages.map((msg) => {
     const sender = [interlocutor, you].find((user) => user.id === msg.user_id);
     if (!sender) return;
-    return <Message msg={msg} sender={sender} />;
+    return <Message key={msg.id} msg={msg} sender={sender} />;
   });
 
   return (

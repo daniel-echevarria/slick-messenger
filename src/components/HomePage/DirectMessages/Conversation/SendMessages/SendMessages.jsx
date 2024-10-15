@@ -3,7 +3,12 @@ import sendMessageIcon from "../../../../../assets/icons/send-msg.svg";
 import CustomInput from "../../../../CustomInput/CustomInput.jsx";
 import { useState, useEffect } from "react";
 
-const SendMessages = ({ conversation, interlocutor }) => {
+const SendMessages = ({
+  conversation,
+  interlocutor,
+  setMessages,
+  messages,
+}) => {
   const [inputValue, setInputValue] = useState("");
   const [message, setMessage] = useState("");
   const [isSent, setIsSent] = useState(false);
@@ -24,13 +29,13 @@ const SendMessages = ({ conversation, interlocutor }) => {
       });
       if (res.ok) {
         const result = await res.json();
-        console.log(result);
+        setMessages([...messages, result]);
         setIsSent(false);
         setInputValue("");
       }
     };
     sendMessage();
-  }, [message, conversation, isSent]);
+  }, [message, conversation, isSent, messages, setMessages]);
 
   const handleChange = (e) => {
     setInputValue(e.target.value);
