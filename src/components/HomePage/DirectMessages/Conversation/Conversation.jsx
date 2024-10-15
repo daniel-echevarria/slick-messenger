@@ -10,6 +10,7 @@ const Conversation = ({ interlocutor, friendship }) => {
 
   useEffect(() => {
     const getConversation = async () => {
+      if (!friendship) return;
       try {
         const response = await fetch(`http://localhost:3000/conversations`, {
           method: "POST",

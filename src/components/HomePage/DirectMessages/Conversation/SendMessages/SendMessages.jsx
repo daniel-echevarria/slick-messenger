@@ -6,11 +6,10 @@ import { useState, useEffect } from "react";
 const SendMessages = ({ conversation, interlocutor }) => {
   const [inputValue, setInputValue] = useState("");
   const [message, setMessage] = useState("");
+  const [isSent, setIsSent] = useState(false);
 
   useEffect(() => {
-    if (!message || !conversation) {
-      return;
-    }
+    if (!isSent) return;
     const sendMessage = async () => {
       const res = await fetch("http://localhost:3000/messages", {
         method: "POST",
@@ -26,10 +25,12 @@ const SendMessages = ({ conversation, interlocutor }) => {
       if (res.ok) {
         const result = await res.json();
         console.log(result);
+        setIsSent(false);
+        setInputValue("");
       }
     };
     sendMessage();
-  }, [message, conversation]);
+  }, [message, conversation, isSent]);
 
   const handleChange = (e) => {
     setInputValue(e.target.value);
@@ -37,6 +38,7 @@ const SendMessages = ({ conversation, interlocutor }) => {
 
   const handleSendMessage = () => {
     setMessage(inputValue);
+    setIsSent(true);
   };
 
   return (
@@ -45,7 +47,11 @@ const SendMessages = ({ conversation, interlocutor }) => {
         <button>B</button>
       </div>
       <CustomInput
-        placeholder={`Message ${interlocutor.name || interlocutor.email}`}
+        placeholder={
+          interlocutor
+            ? `Message ${interlocutor.name || interlocutor.email}`
+            : "Jot something down"
+        }
         value={inputValue}
         handleChange={handleChange}
       />

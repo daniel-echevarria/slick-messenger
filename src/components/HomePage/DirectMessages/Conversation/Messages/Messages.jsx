@@ -4,6 +4,7 @@ import "./Messages.css";
 import { format } from "date-fns";
 
 const Messages = ({ messages, interlocutor }) => {
+  console.log(messages);
   const you = useContext(YouContext);
 
   const messagesList = messages.map((msg) => {
@@ -20,7 +21,9 @@ const Messages = ({ messages, interlocutor }) => {
         </div>
         <div className="sender-and-msg">
           <div className="msg-infos">
-            {/* <span className="sender">{sender.name || sender.email}</span> */}
+            {sender && (
+              <span className="sender">{sender.name || sender.email}</span>
+            )}
             <span className="time-sent">{formattedTime}</span>
           </div>
           <span className="msg-content">{msg.content}</span>

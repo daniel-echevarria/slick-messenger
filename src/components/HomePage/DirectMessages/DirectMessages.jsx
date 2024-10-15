@@ -5,7 +5,7 @@ import Conversation from "./Conversation/Conversation";
 
 const DirectMessages = () => {
   const [users, setUsers] = useState([]);
-  const [interlocutor, setInterlocutor] = useState({ name: "", id: "" });
+  const [interlocutor, setInterlocutor] = useState(null);
   const [friendship, setFriendship] = useState(null);
 
   useEffect(() => {

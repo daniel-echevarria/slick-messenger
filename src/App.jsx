@@ -27,7 +27,6 @@ function App() {
     getCurrentUser();
   }, [token]);
 
-  console.log(you);
   return (
     <>
       {token ? (
