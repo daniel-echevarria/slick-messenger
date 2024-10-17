@@ -5,7 +5,7 @@ const SignInWithGoogle = () => {
   const navigate = useNavigate();
 
   const clientId =
-    "385042624628-i84c14io7kvle9smpehrgukrdg21qefk.apps.googleusercontent.com";
+    "385042624628-m9bpist1q25an74bv6lav6tb663enbfd.apps.googleusercontent.com";
 
   const handleLoginSuccess = async (credentialResponse) => {
     const token = credentialResponse.credential;

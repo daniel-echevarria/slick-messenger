@@ -29,6 +29,7 @@ const DirectMessages = () => {
 
   useEffect(() => {
     const getFriendship = async () => {
+      if (!interlocutor) return;
       try {
         const response = await fetch(`http://localhost:3000/friendships`, {
           method: "POST",
@@ -50,7 +51,8 @@ const DirectMessages = () => {
   }, [interlocutor]);
 
   const selectInterlocutor = (e) => {
-    setInterlocutor(users.find((user) => user.id == e.target.value));
+    const selectedId = Number(e.target.value);
+    setInterlocutor(users.find((user) => user.id == selectedId));
   };
 
   const usersList = users.map((user) => {

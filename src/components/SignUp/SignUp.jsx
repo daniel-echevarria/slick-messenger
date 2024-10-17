@@ -23,10 +23,8 @@ const SignUp = () => {
         },
         body: JSON.stringify(signUpData),
       });
+      console.log(response);
       if (response.ok) {
-        const result = await response.json();
-        setIsError(false);
-        setMessage(result.status.message);
         navigate("/signin");
       }
     };

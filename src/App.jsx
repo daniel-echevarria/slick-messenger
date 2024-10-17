@@ -11,9 +11,10 @@ function App() {
 
   useEffect(() => {
     const getCurrentUser = async () => {
-      const response = await fetch("http://localhost:3000/you", {
+      console.log(sessionStorage.getItem("token"));
+      const response = await fetch("http://localhost:3000/current", {
         headers: {
-          Authorization: token,
+          Authorization: sessionStorage.getItem("token"),
         },
       });
       if (!response.ok) {
@@ -22,10 +23,11 @@ function App() {
         return;
       }
       const result = await response.json();
+      console.log(result.current_user);
       setYou(result.current_user);
     };
     getCurrentUser();
-  }, [token]);
+  }, []);
 
   return (
     <>
@@ -34,7 +36,7 @@ function App() {
           <HomePage />
         </YouContext.Provider>
       ) : (
-        <Navigate to="/signin" />
+        <Navigate replace to="/signin" />
       )}
     </>
   );

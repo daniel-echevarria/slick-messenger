@@ -16,8 +16,12 @@ const LogOut = () => {
         },
       });
       if (response.ok) {
+        const result = await response.json();
+        console.log(result);
         sessionStorage.removeItem("token");
         navigate("signin");
+      } else {
+        console.error("Failed to log out:", response.statusText); // Log error if logout fails
       }
     };
     logOutUser();
