@@ -3,15 +3,14 @@ import HomePage from "./components/homePage/homePage";
 import { Navigate } from "react-router-dom";
 import { createContext, useEffect, useState } from "react";
 
-export const YouContext = createContext(null);
+export const AuthContext = createContext(null);
 
 function App() {
   const [token, setToken] = useState(sessionStorage.getItem("token"));
-  const [you, setYou] = useState(null);
+  const [current, setCurrent] = useState(null);
 
   useEffect(() => {
     const getCurrentUser = async () => {
-      console.log(sessionStorage.getItem("token"));
       const response = await fetch("http://localhost:3000/current", {
         headers: {
           Authorization: sessionStorage.getItem("token"),
@@ -23,8 +22,11 @@ function App() {
         return;
       }
       const result = await response.json();
-      console.log(result.current_user);
-      setYou(result.current_user);
+      console.log(result);
+      setCurrent({
+        user: result.current_user,
+        profile: result.profile,
+      });
     };
     getCurrentUser();
   }, []);
@@ -32,9 +34,9 @@ function App() {
   return (
     <>
       {token ? (
-        <YouContext.Provider value={you}>
+        <AuthContext.Provider value={current}>
           <HomePage />
-        </YouContext.Provider>
+        </AuthContext.Provider>
       ) : (
         <Navigate replace to="/signin" />
       )}

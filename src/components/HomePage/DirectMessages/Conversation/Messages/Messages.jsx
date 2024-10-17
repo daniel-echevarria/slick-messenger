@@ -1,11 +1,10 @@
 import { useContext, useEffect, useRef, useState } from "react";
-import { YouContext } from "../../../../../App";
+import { AuthContext } from "../../../../../App";
 import "./Messages.css";
 import Message from "./Message/Message";
-import { useFetcher } from "react-router-dom";
 
 const Messages = ({ messages, interlocutor }) => {
-  const you = useContext(YouContext);
+  const current = useContext(AuthContext);
   const messagesBox = useRef(null);
 
   useEffect(() => {
@@ -15,7 +14,9 @@ const Messages = ({ messages, interlocutor }) => {
   }, [messages]);
 
   const messagesList = messages.map((msg) => {
-    const sender = [interlocutor, you].find((user) => user.id === msg.user_id);
+    const sender = [interlocutor, current.user].find(
+      (user) => user.id === msg.user_id
+    );
     if (!sender) return;
     return <Message key={msg.id} msg={msg} sender={sender} />;
   });

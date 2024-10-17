@@ -20,7 +20,20 @@ header {
 
 nav {
   grid-area: nav;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   background-color: var(--main-color);
+}
+
+nav img {
+  max-width: 100%;
+  margin: 20px 10px;
+  border-radius: 8px;
+}
+
+.current-user {
+  cursor: pointer;
 }
 
 .direct-messages {
