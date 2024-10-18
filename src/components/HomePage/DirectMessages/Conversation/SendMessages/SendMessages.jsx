@@ -1,14 +1,12 @@
 import "./SendMessages.css";
 import sendMessageIcon from "../../../../../assets/icons/send-msg.svg";
 import CustomInput from "../../../../CustomInput/CustomInput.jsx";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import { InterlocutorContext } from "../../DirectMessages.jsx";
 
-const SendMessages = ({
-  conversation,
-  interlocutor,
-  setMessages,
-  messages,
-}) => {
+const SendMessages = ({ conversation, setMessages, messages }) => {
+  const interlocutor = useContext(InterlocutorContext);
+
   const [inputValue, setInputValue] = useState("");
   const [message, setMessage] = useState("");
   const [isSent, setIsSent] = useState(false);
@@ -54,7 +52,9 @@ const SendMessages = ({
       <CustomInput
         placeholder={
           interlocutor
-            ? `Message ${interlocutor.name || interlocutor.email}`
+            ? `Message ${
+                interlocutor.profile.name || interlocutor.profile.email
+              }`
             : "Jot something down"
         }
         value={inputValue}

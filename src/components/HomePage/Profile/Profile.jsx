@@ -2,9 +2,9 @@ import { useState } from "react";
 import "./Profile.css";
 import { Link } from "react-router-dom";
 
-const Profile = ({ profile }) => {
+const Profile = ({ profile, show }) => {
   return (
-    <div className="profile">
+    <div className="profile" style={{ display: show ? "block" : "none" }}>
       <div className="profile-section">
         <div className="header-close">
           <h3 className="profile-header">Profile</h3>

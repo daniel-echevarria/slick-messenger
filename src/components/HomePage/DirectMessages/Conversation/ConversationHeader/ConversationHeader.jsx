@@ -1,12 +1,16 @@
+import { useContext } from "react";
 import "./ConversationHeader.css";
+import { InterlocutorContext } from "../../DirectMessages";
 
-const ConversationHeader = ({ interlocutor }) => {
+const ConversationHeader = () => {
+  const interlocutor = useContext(InterlocutorContext);
+
   return (
     <div className="conversation-header">
       {interlocutor ? (
         <button className="interlocutor-btn">
-          <img src={interlocutor.avatar_url} alt="" className="" />
-          {interlocutor.name || interlocutor.email}
+          <img src={interlocutor.profile.picture} alt="" className="" />
+          {interlocutor.profile.name || interlocutor.profile.email}
         </button>
       ) : (
         <div className="new-msg-header">New Message</div>

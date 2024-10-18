@@ -1,4 +1,5 @@
 import { AuthContext } from "../../../../App";
+import { ProfileContext } from "../../homePage";
 import Profile from "../../Profile/Profile";
 import "./Conversation.css";
 import ConversationHeader from "./ConversationHeader/ConversationHeader";
@@ -6,8 +7,10 @@ import Messages from "./Messages/Messages";
 import SendMessages from "./SendMessages/SendMessages";
 import { useContext, useEffect, useState } from "react";
 
-const Conversation = ({ interlocutor, friendship }) => {
+const Conversation = ({ friendship }) => {
   const current = useContext(AuthContext);
+  const profile = useContext(ProfileContext);
+
   const [conversation, setConversation] = useState(null);
   const [messages, setMessages] = useState([]);
 
@@ -38,16 +41,15 @@ const Conversation = ({ interlocutor, friendship }) => {
   return (
     <div className="conversation">
       <div className="chat">
-        <ConversationHeader interlocutor={interlocutor} />
-        <Messages messages={messages} interlocutor={interlocutor} />
+        <ConversationHeader />
+        <Messages messages={messages} />
         <SendMessages
           conversation={conversation}
-          interlocutor={interlocutor}
           setMessages={setMessages}
           messages={messages}
         />
       </div>
-      <Profile profile={current.profile} />
+      <Profile profile={current.profile} show={profile.profile.show} />
     </div>
   );
 };

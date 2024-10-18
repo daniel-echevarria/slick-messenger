@@ -18,8 +18,8 @@
 
 .profile img {
   margin: 10px 80px;
-  min-width: 200px;
   border-radius: 10px;
+  min-width: 250px;
 }
 
 .header-close {

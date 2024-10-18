@@ -5,7 +5,7 @@
 
 .conversation {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(0px, 1fr));
 }
 
 .conversation button {

@@ -2,22 +2,43 @@ import DirectMessages from "./DirectMessages/DirectMessages";
 import "./HomePage.css";
 import LogOut from "./LogOut/LogOut";
 import { AuthContext } from "../../App";
-import { useContext } from "react";
-import Profile from "./Profile/Profile";
+import { createContext, useContext, useState } from "react";
+
+export const ProfileContext = createContext(null);
 
 const HomePage = () => {
   const current = useContext(AuthContext);
+  const [profileState, setProfileState] = useState({
+    profile: current.profile,
+    show: false,
+  });
+
+  const handleProfileClick = (e) => {
+    setProfileState({
+      profile: e.target.value,
+      show: true,
+    });
+  };
 
   return (
-    <div className="app">
-      <header></header>
-      <nav>
-        <div className="tab-container"></div>
-        <img src={current.profile.picture} className="current-user" />
-      </nav>
-      <DirectMessages />
-      <LogOut />
-    </div>
+    <ProfileContext.Provider
+      value={{ profile: profileState, setProfile: handleProfileClick }}
+    >
+      <div className="app">
+        <header></header>
+        <nav>
+          <div className="tab-container"></div>
+          <img
+            src={current.profile.picture}
+            className="current-user"
+            onClick={handleProfileClick}
+            value={current.profile}
+          />
+        </nav>
+        <DirectMessages />
+        <LogOut />
+      </div>
+    </ProfileContext.Provider>
   );
 };
 

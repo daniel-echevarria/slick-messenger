@@ -1,7 +1,7 @@
 import "./Message.css";
 import { format } from "date-fns";
 
-const Message = ({ msg, sender }) => {
+const Message = ({ msg, senderProfile }) => {
   const formattedDate = format(msg.created_at, "EEEE, MMMM do");
   const formattedTime = format(msg.created_at, "p");
 
@@ -19,10 +19,12 @@ const Message = ({ msg, sender }) => {
     <div className="message-and-date" key={msg.id}>
       <DateSeparator />
       <div className="message">
-        <img src={sender.avatar_url} alt="" />
+        <img src={senderProfile.picture} alt="" />
         <div className="sender-and-msg">
           <div className="msg-infos">
-            <span className="sender">{sender.name || sender.email}</span>
+            <span className="sender">
+              {senderProfile.name || senderProfile.email}
+            </span>
             <span className="time-sent">{formattedTime}</span>
           </div>
           <span className="msg-content">{msg.content}</span>

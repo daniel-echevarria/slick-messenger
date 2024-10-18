@@ -22,7 +22,6 @@ function App() {
         return;
       }
       const result = await response.json();
-      console.log(result);
       setCurrent({
         user: result.current_user,
         profile: result.profile,
