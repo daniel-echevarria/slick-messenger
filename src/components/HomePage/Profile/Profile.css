@@ -1,0 +1,35 @@
+.profile {
+  display: flex;
+  flex-direction: column;
+  min-width: 400px;
+  padding: 10px 20px;
+  border-left: 1px solid whitesmoke;
+  background-color: white;
+}
+
+.profile-header {
+  margin: 0px;
+  width: 100%;
+  display: flex;
+  text-align: left;
+}
+
+.profile img {
+  margin: 10px 50px;
+  /* max-height: 250px; */
+  border-radius: 5px;
+  /* flex-grow: 1; */
+}
+
+.profile .full-name {
+  width: 100%;
+  font-size: x-large;
+  font-weight: bolder;
+  text-align: left;
+}
+
+.full-name-edit {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}

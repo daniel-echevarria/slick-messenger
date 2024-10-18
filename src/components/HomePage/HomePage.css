@@ -6,8 +6,8 @@
   height: 100vh;
   width: 100vw;
   display: grid;
-  grid-template-columns: 60px 1fr 3fr;
   grid-template-rows: var(--header-height) 1fr;
+  grid-template-columns: 60px 1fr 3fr;
   grid-template-areas:
     "header header header"
     "nav direct conversation";
@@ -26,6 +26,15 @@ nav {
   background-color: var(--main-color);
 }
 
+.direct-messages {
+  grid-area: direct;
+}
+
+.conversation {
+  grid-area: conversation;
+  background-color: white;
+}
+
 nav img {
   max-width: 100%;
   margin: 20px 10px;
@@ -34,13 +43,4 @@ nav img {
 
 .current-user {
   cursor: pointer;
-}
-
-.direct-messages {
-  grid-area: direct;
-}
-
-.conversation {
-  background-color: white;
-  grid-area: conversation;
 }

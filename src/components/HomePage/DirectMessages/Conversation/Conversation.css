@@ -5,16 +5,21 @@
 
 .conversation {
   display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.chat {
+  display: grid;
   grid-template-rows: var(--conv-header-height) 1fr var(--send-msg-box-height);
 }
 
-.conversation button {
+.chat button {
   background-color: inherit;
   color: black;
   width: fit-content;
 }
 
-.conversation button:hover {
+.chat button:hover {
   background-color: whitesmoke;
   filter: none;
 }

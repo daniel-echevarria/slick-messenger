@@ -35,7 +35,7 @@ function App() {
     <>
       {token ? (
         <AuthContext.Provider value={current}>
-          <HomePage />
+          {current && <HomePage />}
         </AuthContext.Provider>
       ) : (
         <Navigate replace to="/signin" />
