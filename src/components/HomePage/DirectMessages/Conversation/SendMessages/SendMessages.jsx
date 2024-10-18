@@ -5,7 +5,7 @@ import { useState, useEffect, useContext } from "react";
 import { InterlocutorContext } from "../../DirectMessages.jsx";
 
 const SendMessages = ({ conversation, setMessages, messages }) => {
-  const interlocutor = useContext(InterlocutorContext);
+  const interlocutorProfile = useContext(InterlocutorContext);
 
   const [inputValue, setInputValue] = useState("");
   const [message, setMessage] = useState("");
@@ -51,10 +51,8 @@ const SendMessages = ({ conversation, setMessages, messages }) => {
       </div>
       <CustomInput
         placeholder={
-          interlocutor
-            ? `Message ${
-                interlocutor.profile.name || interlocutor.profile.email
-              }`
+          interlocutorProfile
+            ? `Message ${interlocutorProfile.name || interlocutorProfile.email}`
             : "Jot something down"
         }
         value={inputValue}

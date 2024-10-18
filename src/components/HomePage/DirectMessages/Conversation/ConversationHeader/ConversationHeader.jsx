@@ -3,14 +3,14 @@ import "./ConversationHeader.css";
 import { InterlocutorContext } from "../../DirectMessages";
 
 const ConversationHeader = () => {
-  const interlocutor = useContext(InterlocutorContext);
+  const interlocutorProfile = useContext(InterlocutorContext);
 
   return (
     <div className="conversation-header">
-      {interlocutor ? (
+      {interlocutorProfile ? (
         <button className="interlocutor-btn">
-          <img src={interlocutor.profile.picture} alt="" className="" />
-          {interlocutor.profile.name || interlocutor.profile.email}
+          <img src={interlocutorProfile.picture} alt="" className="" />
+          {interlocutorProfile.name || interlocutorProfile.email}
         </button>
       ) : (
         <div className="new-msg-header">New Message</div>

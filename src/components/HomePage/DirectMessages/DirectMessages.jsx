@@ -39,7 +39,7 @@ const DirectMessages = () => {
             "Content-Type": "application/json",
             Authorization: sessionStorage.getItem("token"),
           },
-          body: JSON.stringify({ contact_id: interlocutor.user }),
+          body: JSON.stringify({ contact_id: interlocutor.user_id }),
         });
         if (response.ok) {
           const result = await response.json();
@@ -57,10 +57,7 @@ const DirectMessages = () => {
     const selectedProfile = profiles.find(
       (profile) => profile.id == selectedId
     );
-    setInterlocutor({
-      user: selectedProfile.user_id,
-      profile: selectedProfile,
-    });
+    setInterlocutor(selectedProfile);
   };
 
   const profilesList = profiles.map((profile) => {
