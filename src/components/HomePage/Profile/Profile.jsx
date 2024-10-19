@@ -1,4 +1,4 @@
-import { useContext, useRef, useState } from "react";
+import { useContext, useState } from "react";
 import "./Profile.css";
 import { Link } from "react-router-dom";
 import { ProfileContext } from "../homePage";

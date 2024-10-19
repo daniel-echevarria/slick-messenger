@@ -5,18 +5,14 @@ import { useEffect, useRef, useState } from "react";
 const EditProfileModal = ({ profile, open, setEditProfileIsOpen }) => {
   const modal = useRef(null);
   const [save, setSave] = useState(false);
-  const [fieldValues, setFieldValues] = useState({
-    name: profile.name,
-    display_name: profile.display_name,
-    title: profile.about,
-  });
+  const [fieldValues, setFieldValues] = useState(null);
 
   useEffect(() => {
     const updateProfileFields = () => {
       setFieldValues({
-        name: profile.name,
-        display_name: profile.display_name,
-        title: profile.about,
+        name: profile.name || "",
+        display_name: profile.display_name || "",
+        title: profile.title || "",
       });
     };
     updateProfileFields();
@@ -73,39 +69,41 @@ const EditProfileModal = ({ profile, open, setEditProfileIsOpen }) => {
   };
 
   return (
-    <dialog className="edit-profile-modal" ref={modal}>
-      <h2>Edit your profile</h2>
-      <form action="" className="edit-form">
-        <div className="name-fields">
-          <CustomInput
-            label={"Full name"}
-            value={fieldValues.name}
-            handleChange={handleChangeName}
-          />
-          <CustomInput
-            label={"Display name"}
-            value={fieldValues.display_name}
-            handleChange={handleChangeDisplayName}
-          />
-          <CustomInput
-            label={"Title"}
-            value={fieldValues.about}
-            handleChange={handleChangeTitle}
-          />
+    fieldValues && (
+      <dialog className="edit-profile-modal" ref={modal}>
+        <h2>Edit your profile</h2>
+        <form action="" className="edit-form">
+          <div className="name-fields">
+            <CustomInput
+              label={"Full name"}
+              value={fieldValues.name}
+              handleChange={handleChangeName}
+            />
+            <CustomInput
+              label={"Display name"}
+              value={fieldValues.display_name}
+              handleChange={handleChangeDisplayName}
+            />
+            <CustomInput
+              label={"Title"}
+              value={fieldValues.title}
+              handleChange={handleChangeTitle}
+            />
+          </div>
+          <div className="profile-photo-field">
+            <span>Profile photo</span>
+            <img src={profile.picture} alt="" />
+            <button id="update-photo-btn">Update Photo</button>
+          </div>
+        </form>
+        <div className="edit-form-buttons">
+          <button onClick={handleCloseModal}>Cancel</button>
+          <button className="confirm" onClick={handleSaveChanges}>
+            Save Changes
+          </button>
         </div>
-        <div className="profile-photo-field">
-          <span>Profile photo</span>
-          <img src={profile.picture} alt="" />
-          <button id="update-photo-btn">Update Photo</button>
-        </div>
-      </form>
-      <div className="edit-form-buttons">
-        <button onClick={handleCloseModal}>Cancel</button>
-        <button className="confirm" onClick={handleSaveChanges}>
-          Save Changes
-        </button>
-      </div>
-    </dialog>
+      </dialog>
+    )
   );
 };
 
