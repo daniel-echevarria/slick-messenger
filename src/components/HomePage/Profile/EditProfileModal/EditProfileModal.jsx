@@ -1,14 +1,52 @@
 import CustomInput from "../../../CustomInput/CustomInput";
 import "./EditProfileModal.css";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const EditProfileModal = ({ profile, open, setEditProfileIsOpen }) => {
   const modal = useRef(null);
+  const [save, setSave] = useState(false);
   const [fieldValues, setFieldValues] = useState({
     name: profile.name,
     display_name: profile.display_name,
     title: profile.about,
   });
+
+  useEffect(() => {
+    const updateProfileFields = () => {
+      setFieldValues({
+        name: profile.name,
+        display_name: profile.display_name,
+        title: profile.about,
+      });
+    };
+    updateProfileFields();
+  }, [profile]);
+
+  useEffect(() => {
+    if (!save) return;
+    const saveChanges = async () => {
+      const response = await fetch(
+        `http://localhost:3000/profiles/${profile.id}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(fieldValues),
+        }
+      );
+      if (response.ok) {
+        const result = response.json();
+        console.log(result);
+      } else {
+        console.log("problem when updating the profile");
+      }
+      setSave(false);
+    };
+    saveChanges();
+  }, [save, fieldValues, profile.id]);
+
+  open && modal.current.showModal();
 
   const handleChangeName = (e) => {
     const newName = e.target.value;
@@ -20,11 +58,9 @@ const EditProfileModal = ({ profile, open, setEditProfileIsOpen }) => {
     setFieldValues({ ...fieldValues, display_name: newName });
   };
   const handleChangeTitle = (e) => {
-    const newName = e.target.value;
-    setFieldValues({ ...fieldValues, title: newName });
+    const newTitle = e.target.value;
+    setFieldValues({ ...fieldValues, title: newTitle });
   };
-
-  open && modal.current.showModal();
 
   const handleCloseModal = () => {
     modal.current.close();
@@ -60,7 +96,9 @@ const EditProfileModal = ({ profile, open, setEditProfileIsOpen }) => {
       </form>
       <div className="edit-form-buttons">
         <button onClick={handleCloseModal}>Cancel</button>
-        <button className="confirm">Save Changes</button>
+        <button className="confirm" onClick={() => setSave(true)}>
+          Save Changes
+        </button>
       </div>
     </dialog>
   );
