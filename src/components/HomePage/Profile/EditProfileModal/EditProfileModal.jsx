@@ -1,9 +1,29 @@
 import CustomInput from "../../../CustomInput/CustomInput";
 import "./EditProfileModal.css";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
 const EditProfileModal = ({ profile, open, setEditProfileIsOpen }) => {
   const modal = useRef(null);
+  const [fieldValues, setFieldValues] = useState({
+    name: profile.name,
+    display_name: profile.display_name,
+    title: profile.about,
+  });
+
+  const handleChangeName = (e) => {
+    const newName = e.target.value;
+    setFieldValues({ ...fieldValues, name: newName });
+  };
+
+  const handleChangeDisplayName = (e) => {
+    const newName = e.target.value;
+    setFieldValues({ ...fieldValues, display_name: newName });
+  };
+  const handleChangeTitle = (e) => {
+    const newName = e.target.value;
+    setFieldValues({ ...fieldValues, title: newName });
+  };
+
   open && modal.current.showModal();
 
   const handleCloseModal = () => {
@@ -11,16 +31,26 @@ const EditProfileModal = ({ profile, open, setEditProfileIsOpen }) => {
     setEditProfileIsOpen(false);
   };
 
-  console.log(profile);
-
   return (
     <dialog className="edit-profile-modal" ref={modal}>
       <h2>Edit your profile</h2>
       <form action="" className="edit-form">
         <div className="name-fields">
-          <CustomInput label={"Full name"} value={profile.name} />
-          <CustomInput label={"Display name"} value={profile.display_name} />
-          <CustomInput label={"Title"} value={profile.about} />
+          <CustomInput
+            label={"Full name"}
+            value={fieldValues.name}
+            handleChange={handleChangeName}
+          />
+          <CustomInput
+            label={"Display name"}
+            value={fieldValues.display_name}
+            handleChange={handleChangeDisplayName}
+          />
+          <CustomInput
+            label={"Title"}
+            value={fieldValues.about}
+            handleChange={handleChangeTitle}
+          />
         </div>
         <div className="profile-photo-field">
           <span>Profile photo</span>
