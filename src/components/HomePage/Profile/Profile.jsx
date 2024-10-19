@@ -5,7 +5,7 @@ import { ProfileContext } from "../homePage";
 import EditProfileModal from "./EditProfileModal/EditProfileModal";
 
 const Profile = ({ profile, show }) => {
-  const [openEditProfileModal, setOpenEditProfileModal] = useState(false);
+  const [editProfileIsOpen, setEditProfileIsOpen] = useState(false);
   const currentProfile = useContext(ProfileContext);
 
   const closeProfile = () => {
@@ -24,8 +24,11 @@ const Profile = ({ profile, show }) => {
         <img src={profile.picture} alt="" />
         <div className="header-edit">
           <div className="full-name">{profile.name}</div>
-          <Link onClick={() => setOpenEditProfileModal(true)}>Edit</Link>
-          <EditProfileModal open={openEditProfileModal} />
+          <Link onClick={() => setEditProfileIsOpen(true)}>Edit</Link>
+          <EditProfileModal
+            open={editProfileIsOpen}
+            setEditProfileIsOpen={setEditProfileIsOpen}
+          />
         </div>
       </div>
 
