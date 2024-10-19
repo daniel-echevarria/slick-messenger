@@ -83,6 +83,10 @@ input:focus {
   width: 30px;
 }
 
+button img {
+  pointer-events: none;
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
