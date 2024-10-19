@@ -1,9 +1,11 @@
-import { useContext, useState } from "react";
+import { useContext, useRef, useState } from "react";
 import "./Profile.css";
 import { Link } from "react-router-dom";
 import { ProfileContext } from "../homePage";
+import EditProfileModal from "./EditProfileModal/EditProfileModal";
 
 const Profile = ({ profile, show }) => {
+  const [openEditProfileModal, setOpenEditProfileModal] = useState(false);
   const currentProfile = useContext(ProfileContext);
 
   const closeProfile = () => {
@@ -22,7 +24,8 @@ const Profile = ({ profile, show }) => {
         <img src={profile.picture} alt="" />
         <div className="header-edit">
           <div className="full-name">{profile.name}</div>
-          <Link>Edit</Link>
+          <Link onClick={() => setOpenEditProfileModal(true)}>Edit</Link>
+          <EditProfileModal open={openEditProfileModal} />
         </div>
       </div>
 

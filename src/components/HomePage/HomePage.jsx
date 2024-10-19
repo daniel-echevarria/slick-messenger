@@ -41,9 +41,6 @@ const HomePage = () => {
             value={current.profile.id}
             className="profile-image"
           />
-          {/* <button onClick={handleProfileClick} value={current.profile.id}>
-            <img src={current.profile.picture} className="current-user" />
-          </button> */}
         </nav>
         <DirectMessages />
         <LogOut />
