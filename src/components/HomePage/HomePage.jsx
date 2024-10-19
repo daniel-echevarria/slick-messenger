@@ -14,6 +14,8 @@ const HomePage = () => {
   });
 
   const handleProfileClick = (e) => {
+    console.log(current.profile.id);
+    console.log(e.target);
     setProfileState({
       id: e.target.value,
       show: true,
@@ -32,12 +34,16 @@ const HomePage = () => {
         <header></header>
         <nav>
           <div className="tab-container"></div>
-          <img
+          <input
+            type="image"
             src={current.profile.picture}
-            className="current-user"
             onClick={handleProfileClick}
-            value={current.profile}
+            value={current.profile.id}
+            className="profile-image"
           />
+          {/* <button onClick={handleProfileClick} value={current.profile.id}>
+            <img src={current.profile.picture} className="current-user" />
+          </button> */}
         </nav>
         <DirectMessages />
         <LogOut />

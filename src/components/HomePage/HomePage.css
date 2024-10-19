@@ -23,6 +23,7 @@ nav {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  align-items: center;
   background-color: var(--main-color);
 }
 
@@ -43,4 +44,12 @@ nav img {
 
 .current-user {
   cursor: pointer;
+}
+
+.profile-image {
+  padding: 0px;
+  margin: 15px;
+  border: none;
+  border-radius: 8px;
+  max-width: 40px;
 }

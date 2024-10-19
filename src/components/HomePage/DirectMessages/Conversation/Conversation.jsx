@@ -8,7 +8,6 @@ import SendMessages from "./SendMessages/SendMessages";
 import { useContext, useEffect, useState } from "react";
 
 const Conversation = ({ friendship, profiles }) => {
-  // const current = useContext(AuthContext);
   const profileContext = useContext(ProfileContext);
 
   const currentProfile = profiles.find(
