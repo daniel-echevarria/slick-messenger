@@ -67,6 +67,11 @@ const EditProfileModal = ({ profile, open, setEditProfileIsOpen }) => {
     setEditProfileIsOpen(false);
   };
 
+  const handleSaveChanges = () => {
+    setSave(true);
+    handleCloseModal();
+  };
+
   return (
     <dialog className="edit-profile-modal" ref={modal}>
       <h2>Edit your profile</h2>
@@ -96,7 +101,7 @@ const EditProfileModal = ({ profile, open, setEditProfileIsOpen }) => {
       </form>
       <div className="edit-form-buttons">
         <button onClick={handleCloseModal}>Cancel</button>
-        <button className="confirm" onClick={() => setSave(true)}>
+        <button className="confirm" onClick={handleSaveChanges}>
           Save Changes
         </button>
       </div>
