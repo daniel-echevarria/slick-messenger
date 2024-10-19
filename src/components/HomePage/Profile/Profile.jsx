@@ -26,6 +26,7 @@ const Profile = ({ profile, show }) => {
           <div className="full-name">{profile.name}</div>
           <Link onClick={() => setEditProfileIsOpen(true)}>Edit</Link>
           <EditProfileModal
+            profile={profile}
             open={editProfileIsOpen}
             setEditProfileIsOpen={setEditProfileIsOpen}
           />

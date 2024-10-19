@@ -19,6 +19,10 @@
   filter: none;
 }
 
+.conversation button.confirm:hover {
+  background-color: darkgreen;
+}
+
 .chat {
   display: grid;
   grid-template-rows: var(--conv-header-height) 1fr var(--send-msg-box-height);

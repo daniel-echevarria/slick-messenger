@@ -50,7 +50,12 @@ button {
   font-family: inherit;
   border: 1px solid transparent;
   cursor: pointer;
-  transition: filter 0.25s;
+  transition: filter 0.25s, background-color 0.25s;
+}
+
+button.confirm {
+  background-color: green;
+  color: white;
 }
 
 button:hover {
@@ -60,8 +65,8 @@ button:hover {
 .login-box button:focus,
 button:focus-visible,
 input:focus {
-  box-shadow: 0px 0px 5px 5px lightblue;
-  outline: 4px auto -webkit-focus-ring-color;
+  box-shadow: 0px 0px 3px 3px lightblue;
+  outline: 0px auto -webkit-focus-ring-color;
 }
 
 .logo-box {

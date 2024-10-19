@@ -1,0 +1,50 @@
+.edit-profile-modal {
+  padding: 30px;
+  max-width: 800px;
+  border-radius: 10px;
+}
+
+dialog button {
+  border: 1px solid grey;
+  padding: 10px 20px;
+  border-radius: 10px;
+}
+
+.edit-profile-modal h2 {
+  width: 100%;
+  margin: 0px;
+  margin-bottom: 30px;
+  text-align: left;
+}
+
+.edit-form {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  margin-bottom: 50px;
+}
+
+.edit-form .name-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.profile-photo-field span {
+  font-weight: bold;
+  display: flex;
+}
+
+.profile-photo-field img {
+  margin: 0px;
+}
+
+#update-photo-btn {
+  width: 100%;
+}
+
+.edit-form-buttons {
+  width: 100%;
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+}

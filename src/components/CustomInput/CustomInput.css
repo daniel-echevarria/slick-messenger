@@ -7,6 +7,14 @@ button {
   border: 1px solid lightgray;
 }
 
-label {
-  font-size: 24px;
+.form-field {
+  display: flex;
+  gap: 8px;
+  flex-direction: column;
+  font-size: medium;
+}
+
+.form-field label {
+  text-align: left;
+  font-weight: 600;
 }
