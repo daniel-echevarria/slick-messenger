@@ -1,11 +1,22 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import "./Profile.css";
 import { Link } from "react-router-dom";
 import { ProfileContext } from "../homePage";
 import EditProfileModal from "./EditProfileModal/EditProfileModal";
+import { AuthContext } from "../../../App";
 
 const Profile = ({ profile, show }) => {
+  const currentUser = useContext(AuthContext);
   const [editProfileIsOpen, setEditProfileIsOpen] = useState(false);
+  const [isCurrentUser, setIsCurrentUser] = useState(false);
+
+  useEffect(() => {
+    const hideEdits = () => {
+      setIsCurrentUser(currentUser.user.id === profile.user_id);
+    };
+    hideEdits();
+  }, [currentUser.user.id, profile.user_id]);
+
   const currentProfile = useContext(ProfileContext);
 
   const closeProfile = () => {
@@ -24,7 +35,9 @@ const Profile = ({ profile, show }) => {
         <img src={profile.picture} alt="" />
         <div className="header-edit">
           <div className="full-name">{profile.name}</div>
-          <Link onClick={() => setEditProfileIsOpen(true)}>Edit</Link>
+          {isCurrentUser && (
+            <Link onClick={() => setEditProfileIsOpen(true)}>Edit</Link>
+          )}
           <EditProfileModal
             profile={profile}
             open={editProfileIsOpen}
@@ -38,7 +51,7 @@ const Profile = ({ profile, show }) => {
       <div className="profile-section">
         <div className="header-edit">
           <span className="profile-section-header">Contact Information</span>
-          <Link>Edit</Link>
+          {isCurrentUser && <Link>Edit</Link>}
         </div>
       </div>
 
@@ -47,7 +60,7 @@ const Profile = ({ profile, show }) => {
       <div className="profile-section">
         <div className="header-edit">
           <span className="profile-section-header">About me</span>
-          <Link>Edit</Link>
+          {isCurrentUser && <Link>Edit</Link>}
         </div>
       </div>
     </div>
