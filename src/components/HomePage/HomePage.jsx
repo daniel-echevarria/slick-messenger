@@ -9,13 +9,13 @@ export const ProfileContext = createContext(null);
 const HomePage = () => {
   const current = useContext(AuthContext);
   const [profileState, setProfileState] = useState({
-    profile: current.profile,
+    id: current.profile.id,
     show: false,
   });
 
   const handleProfileClick = (e) => {
     setProfileState({
-      profile: e.target.value,
+      id: e.target.value,
       show: true,
     });
   };
