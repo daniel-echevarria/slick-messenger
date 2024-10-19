@@ -22,7 +22,11 @@ const HomePage = () => {
 
   return (
     <ProfileContext.Provider
-      value={{ profile: profileState, setProfile: handleProfileClick }}
+      value={{
+        profile: profileState,
+        setProfile: setProfileState,
+        handleProfileClick: handleProfileClick,
+      }}
     >
       <div className="app">
         <header></header>
