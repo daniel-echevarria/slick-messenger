@@ -6,7 +6,6 @@ import { InterlocutorContext } from "../../DirectMessages.jsx";
 
 const SendMessages = ({ conversation, setMessages, messages }) => {
   const interlocutorProfile = useContext(InterlocutorContext);
-
   const [inputValue, setInputValue] = useState("");
   const [message, setMessage] = useState("");
   const [isSent, setIsSent] = useState(false);
@@ -60,9 +59,19 @@ const SendMessages = ({ conversation, setMessages, messages }) => {
       />
       <div className="input-features-box">
         <div className="features"></div>
-        <button onClick={handleSendMessage}>
-          <img src={sendMessageIcon} className="icon send-msg-icon" />
-        </button>
+        {inputValue ? (
+          <button onClick={handleSendMessage} className={"send confirm"}>
+            <img src={sendMessageIcon} className="icon send-msg-icon" />
+          </button>
+        ) : (
+          <button
+            onClick={handleSendMessage}
+            className={"send confirm"}
+            disabled
+          >
+            <img src={sendMessageIcon} className="icon send-msg-icon" />
+          </button>
+        )}
       </div>
     </div>
   );

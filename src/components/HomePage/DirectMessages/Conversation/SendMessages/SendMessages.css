@@ -4,7 +4,7 @@
   margin: 0px 30px 30px 30px;
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: fit-content 1fr 40px;
+  grid-template-rows: fit-content 1fr 50px;
   justify-content: space-between;
   overflow: hidden;
 }
@@ -17,7 +17,6 @@
 }
 
 .send-message-box input {
-  /* background-color: pink; */
   border: none;
   width: 100%;
 }
@@ -34,7 +33,16 @@
   justify-content: space-between;
 }
 
-.send-msg-icon {
-  filter: invert(0%);
-  color: green;
+.send-message-icon {
+  max-height: 8px;
+}
+
+.send {
+  display: flex;
+  margin: 5px;
+  padding: 2px 10px;
+}
+
+.send:disabled {
+  background-color: lightgrey;
 }
