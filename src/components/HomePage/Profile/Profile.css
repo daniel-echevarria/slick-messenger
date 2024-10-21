@@ -16,7 +16,7 @@
   text-align: left;
 }
 
-.profile img {
+.profile-img {
   margin: 10px 80px;
   border-radius: 10px;
   min-width: 250px;
@@ -37,11 +37,42 @@
   font-weight: bold;
   width: 100%;
   text-align: left;
+  margin-bottom: 10px;
 }
 
 .profile .full-name {
   width: 100%;
   font-size: x-large;
   font-weight: bolder;
+  text-align: left;
+}
+
+.profile .title {
+  width: 100%;
+  text-align: left;
+}
+
+.profile-icons {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border-radius: 8px;
+  background-color: whitesmoke;
+  width: 40px;
+}
+
+.profile-icons img {
+  max-width: 20px;
+}
+
+.profile .email {
+  display: flex;
+  gap: 10px;
+  font-size: small;
+}
+
+.email-text {
+  display: flex;
+  flex-direction: column;
   text-align: left;
 }

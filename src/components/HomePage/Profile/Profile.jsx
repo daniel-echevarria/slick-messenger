@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { ProfileContext } from "../homePage";
 import EditProfileModal from "./EditProfileModal/EditProfileModal";
 import { AuthContext } from "../../../App";
+import emailIcon from "../../../assets/icons/email.svg";
 
 const Profile = ({ profile, show }) => {
   const currentUser = useContext(AuthContext);
@@ -32,7 +33,7 @@ const Profile = ({ profile, show }) => {
             ╳
           </button>
         </div>
-        <img src={profile.picture} alt="" />
+        <img src={profile.picture} alt="" className="profile-img" />
         <div className="header-edit">
           <div className="full-name">{profile.name}</div>
           {isCurrentUser && (
@@ -44,6 +45,7 @@ const Profile = ({ profile, show }) => {
             setEditProfileIsOpen={setEditProfileIsOpen}
           />
         </div>
+        <div className="title">{profile.title}</div>
       </div>
 
       <hr />
@@ -52,6 +54,15 @@ const Profile = ({ profile, show }) => {
         <div className="header-edit">
           <span className="profile-section-header">Contact Information</span>
           {isCurrentUser && <Link>Edit</Link>}
+        </div>
+        <div className="email">
+          <div className="profile-icons">
+            <img src={emailIcon} alt="" />
+          </div>
+          <div className="email-text">
+            <span>Email address</span>
+            <Link>{profile.email}</Link>
+          </div>
         </div>
       </div>
 

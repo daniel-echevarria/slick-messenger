@@ -92,7 +92,7 @@ const EditProfileModal = ({ profile, open, setEditProfileIsOpen }) => {
           </div>
           <div className="profile-photo-field">
             <span>Profile photo</span>
-            <img src={profile.picture} alt="" />
+            <img src={profile.picture} alt="" className="profile-img" />
             <button id="update-photo-btn">Update Photo</button>
           </div>
         </form>

@@ -1,11 +1,12 @@
 import "./SendMessages.css";
 import sendMessageIcon from "../../../../../assets/icons/send-msg.svg";
 import CustomInput from "../../../../CustomInput/CustomInput.jsx";
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext, useRef } from "react";
 import { InterlocutorContext } from "../../DirectMessages.jsx";
 
 const SendMessages = ({ conversation, setMessages, messages }) => {
   const interlocutorProfile = useContext(InterlocutorContext);
+
   const [inputValue, setInputValue] = useState("");
   const [message, setMessage] = useState("");
   const [isSent, setIsSent] = useState(false);
