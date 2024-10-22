@@ -83,7 +83,8 @@ input:focus {
   width: 30px;
 }
 
-button img {
+button img,
+button span {
   pointer-events: none;
 }
 

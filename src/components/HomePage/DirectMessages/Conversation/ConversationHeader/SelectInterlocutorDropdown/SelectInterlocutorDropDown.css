@@ -26,3 +26,7 @@
   align-items: center;
   gap: 10px;
 }
+
+.display-name {
+  font-weight: bolder;
+}
