@@ -9,19 +9,23 @@ const CustomInput = ({
   placeholder,
   required,
   min,
+  disabled,
 }) => {
   return (
     <div className="form-field">
       <label>{label}</label>
-      <input
-        id={name}
-        type={type}
-        value={value}
-        onChange={handleChange}
-        placeholder={placeholder}
-        required={required}
-        minLength={min}
-      />
+      <div>
+        <input
+          id={name}
+          type={type}
+          value={value}
+          onChange={handleChange}
+          placeholder={placeholder}
+          required={required}
+          minLength={min}
+          disabled={disabled}
+        />
+      </div>
     </div>
   );
 };

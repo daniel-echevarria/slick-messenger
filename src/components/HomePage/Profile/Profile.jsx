@@ -5,10 +5,12 @@ import { ProfileContext } from "../homePage";
 import EditProfileModal from "./EditProfileModal/EditProfileModal";
 import { AuthContext } from "../../../App";
 import emailIcon from "../../../assets/icons/email.svg";
+import EditContactInfoModal from "./EditContactInfoModal/EditContactInfoModal";
 
 const Profile = ({ profile, show }) => {
   const currentUser = useContext(AuthContext);
   const [editProfileIsOpen, setEditProfileIsOpen] = useState(false);
+  const [editContactIsOpen, setEditContactIsOpen] = useState(false);
   const [isCurrentUser, setIsCurrentUser] = useState(false);
 
   useEffect(() => {
@@ -53,7 +55,14 @@ const Profile = ({ profile, show }) => {
       <div className="profile-section">
         <div className="header-edit">
           <span className="profile-section-header">Contact Information</span>
-          {isCurrentUser && <Link>Edit</Link>}
+          {isCurrentUser && (
+            <Link onClick={() => setEditContactIsOpen(true)}>Edit</Link>
+          )}
+          <EditContactInfoModal
+            profile={profile}
+            open={editContactIsOpen}
+            setEditContactIsOpen={setEditContactIsOpen}
+          />
         </div>
         <div className="email">
           <div className="profile-icons">
