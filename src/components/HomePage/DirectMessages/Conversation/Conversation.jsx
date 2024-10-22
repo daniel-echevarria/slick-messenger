@@ -7,7 +7,7 @@ import Messages from "./Messages/Messages";
 import SendMessages from "./SendMessages/SendMessages";
 import { useContext, useEffect, useState } from "react";
 
-const Conversation = ({ friendship, profiles }) => {
+const Conversation = ({ friendship, profiles, setProfilesWereEdited }) => {
   const profileContext = useContext(ProfileContext);
 
   const currentProfile = profiles.find(
@@ -53,7 +53,11 @@ const Conversation = ({ friendship, profiles }) => {
         />
       </div>
       {currentProfile && (
-        <Profile profile={currentProfile} show={profileContext.profile.show} />
+        <Profile
+          profile={currentProfile}
+          show={profileContext.profile.show}
+          setProfilesWereEdited={setProfilesWereEdited}
+        />
       )}
     </div>
   );

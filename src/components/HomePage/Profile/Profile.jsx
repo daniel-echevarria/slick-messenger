@@ -5,19 +5,20 @@ import { ProfileContext } from "../homePage";
 import EditProfileModal from "./EditProfileModal/EditProfileModal";
 import { AuthContext } from "../../../App";
 import emailIcon from "../../../assets/icons/email.svg";
+import phoneIcon from "../../../assets/icons/phone.svg";
 import EditContactInfoModal from "./EditContactInfoModal/EditContactInfoModal";
 
-const Profile = ({ profile, show }) => {
+const Profile = ({ profile, show, setProfilesWereEdited }) => {
   const currentUser = useContext(AuthContext);
   const [editProfileIsOpen, setEditProfileIsOpen] = useState(false);
   const [editContactIsOpen, setEditContactIsOpen] = useState(false);
   const [isCurrentUser, setIsCurrentUser] = useState(false);
 
   useEffect(() => {
-    const hideEdits = () => {
+    const authorizeEdits = () => {
       setIsCurrentUser(currentUser.user.id === profile.user_id);
     };
-    hideEdits();
+    authorizeEdits();
   }, [currentUser.user.id, profile.user_id]);
 
   const currentProfile = useContext(ProfileContext);
@@ -45,6 +46,7 @@ const Profile = ({ profile, show }) => {
             profile={profile}
             open={editProfileIsOpen}
             setEditProfileIsOpen={setEditProfileIsOpen}
+            setProfilesWereEdited={setProfilesWereEdited}
           />
         </div>
         <div className="title">{profile.title}</div>
@@ -62,17 +64,40 @@ const Profile = ({ profile, show }) => {
             profile={profile}
             open={editContactIsOpen}
             setEditContactIsOpen={setEditContactIsOpen}
+            setProfilesWereEdited={setProfilesWereEdited}
           />
         </div>
-        <div className="email">
+        <div className="contact-field">
           <div className="profile-icons">
             <img src={emailIcon} alt="" />
           </div>
-          <div className="email-text">
+          <div className="contact-text">
             <span>Email address</span>
             <Link>{profile.email}</Link>
           </div>
         </div>
+        {profile.phone ? (
+          <div className="contact-field">
+            <div className="profile-icons">
+              <img src={phoneIcon} alt="" />
+            </div>
+            <div className="contact-text">
+              <span>Phone</span>
+              <Link>{profile.phone}</Link>
+            </div>
+          </div>
+        ) : (
+          isCurrentUser && (
+            <div className="contact-field">
+              <Link
+                className="add-info"
+                onClick={() => setEditContactIsOpen(true)}
+              >
+                + Add Phone
+              </Link>
+            </div>
+          )
+        )}
       </div>
 
       <hr />

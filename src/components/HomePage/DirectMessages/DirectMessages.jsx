@@ -9,6 +9,7 @@ const DirectMessages = () => {
   const [profiles, setProfiles] = useState([]);
   const [friendship, setFriendship] = useState(null);
   const [interlocutor, setInterlocutor] = useState(null);
+  const [profilesWereEdited, setProfilesWereEdited] = useState(false);
 
   useEffect(() => {
     const getProfiles = async () => {
@@ -21,13 +22,14 @@ const DirectMessages = () => {
         if (response.ok) {
           const result = await response.json();
           setProfiles(result);
+          setProfilesWereEdited(false);
         }
       } catch (error) {
         console.log(error);
       }
     };
     getProfiles();
-  }, []);
+  }, [profilesWereEdited]);
 
   useEffect(() => {
     const getFriendship = async () => {
@@ -82,7 +84,11 @@ const DirectMessages = () => {
         </div>
         <div className="users-list">{profilesList}</div>
       </div>
-      <Conversation friendship={friendship} profiles={profiles} />
+      <Conversation
+        friendship={friendship}
+        profiles={profiles}
+        setProfilesWereEdited={setProfilesWereEdited}
+      />
     </InterlocutorContext.Provider>
   );
 };

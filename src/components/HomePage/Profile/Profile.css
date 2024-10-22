@@ -6,6 +6,7 @@
 .profile-section {
   display: flex;
   flex-direction: column;
+  gap: 10px;
   padding: 10px 20px;
 }
 
@@ -35,9 +36,6 @@
 
 .profile-section-header {
   font-weight: bold;
-  width: 100%;
-  text-align: left;
-  margin-bottom: 10px;
 }
 
 .profile .full-name {
@@ -65,14 +63,22 @@
   max-width: 20px;
 }
 
-.profile .email {
+.profile .contact-field {
   display: flex;
   gap: 10px;
   font-size: small;
 }
 
-.email-text {
+.contact-text {
   display: flex;
   flex-direction: column;
   text-align: left;
+}
+
+.add-info {
+  font-size: small;
+}
+
+.add-info:hover {
+  text-decoration: none;
 }

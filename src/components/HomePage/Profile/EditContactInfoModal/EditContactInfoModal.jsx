@@ -2,7 +2,12 @@ import CustomInput from "../../../CustomInput/CustomInput";
 import "./EditContactInfoModal.css";
 import { useEffect, useRef, useState } from "react";
 
-const EditContactInfoModal = ({ profile, open, setEditContactIsOpen }) => {
+const EditContactInfoModal = ({
+  profile,
+  open,
+  setEditContactIsOpen,
+  setProfilesWereEdited,
+}) => {
   const modal = useRef(null);
   const [save, setSave] = useState(false);
   const [fieldValues, setFieldValues] = useState(null);
@@ -11,6 +16,7 @@ const EditContactInfoModal = ({ profile, open, setEditContactIsOpen }) => {
     const updateProfileFields = () => {
       setFieldValues({
         email: profile.email || "",
+        phone: profile.phone || "",
       });
     };
     updateProfileFields();
@@ -30,21 +36,23 @@ const EditContactInfoModal = ({ profile, open, setEditContactIsOpen }) => {
         }
       );
       if (response.ok) {
-        const result = response.json();
+        const result = await response.json();
+        setProfilesWereEdited(true);
         console.log(result);
       } else {
-        console.log("problem when updating the profile");
+        const result = await response.json();
+        console.log(result);
       }
       setSave(false);
     };
     saveChanges();
-  }, [save, fieldValues, profile.id]);
+  }, [save, fieldValues, profile.id, setProfilesWereEdited]);
 
   open && modal.current.showModal();
 
-  const handleChangeEmail = (e) => {
-    const newName = e.target.value;
-    setFieldValues({ ...fieldValues, name: newName });
+  const handleChangePhone = (e) => {
+    const newPhone = e.target.value;
+    setFieldValues({ ...fieldValues, phone: newPhone });
   };
 
   const handleCloseModal = () => {
@@ -66,8 +74,12 @@ const EditContactInfoModal = ({ profile, open, setEditContactIsOpen }) => {
             <CustomInput
               label={"🔒 Email"}
               value={fieldValues.email}
-              handleChange={handleChangeEmail}
               disabled={true}
+            />
+            <CustomInput
+              label={"Phone"}
+              value={fieldValues.phone}
+              handleChange={handleChangePhone}
             />
           </div>
         </form>

@@ -2,7 +2,12 @@ import CustomInput from "../../../CustomInput/CustomInput";
 import "./EditProfileModal.css";
 import { useEffect, useRef, useState } from "react";
 
-const EditProfileModal = ({ profile, open, setEditProfileIsOpen }) => {
+const EditProfileModal = ({
+  profile,
+  open,
+  setEditProfileIsOpen,
+  setProfilesWereEdited,
+}) => {
   const modal = useRef(null);
   const [save, setSave] = useState(false);
   const [fieldValues, setFieldValues] = useState(null);
@@ -32,15 +37,16 @@ const EditProfileModal = ({ profile, open, setEditProfileIsOpen }) => {
         }
       );
       if (response.ok) {
-        const result = response.json();
+        const result = await response.json();
         console.log(result);
+        setProfilesWereEdited(true);
       } else {
         console.log("problem when updating the profile");
       }
       setSave(false);
     };
     saveChanges();
-  }, [save, fieldValues, profile.id]);
+  }, [save, fieldValues, profile.id, setProfilesWereEdited]);
 
   open && modal.current.showModal();
 

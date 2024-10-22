@@ -12,6 +12,7 @@ button {
   gap: 8px;
   flex-direction: column;
   font-size: medium;
+  text-align: left;
 }
 
 .form-field label {
