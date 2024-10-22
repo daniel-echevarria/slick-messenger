@@ -1,4 +1,3 @@
-import { AuthContext } from "../../../../App";
 import { ProfileContext } from "../../homePage";
 import Profile from "../../Profile/Profile";
 import "./Conversation.css";

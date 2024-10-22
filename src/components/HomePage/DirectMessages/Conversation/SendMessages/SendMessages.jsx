@@ -52,7 +52,11 @@ const SendMessages = ({ conversation, setMessages, messages }) => {
       <CustomInput
         placeholder={
           interlocutorProfile
-            ? `Message ${interlocutorProfile.name || interlocutorProfile.email}`
+            ? `Message ${
+                interlocutorProfile.display_name ||
+                interlocutorProfile.name ||
+                interlocutorProfile.email
+              }`
             : "Jot something down"
         }
         value={inputValue}

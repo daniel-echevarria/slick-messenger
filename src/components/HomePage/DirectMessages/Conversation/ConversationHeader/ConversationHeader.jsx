@@ -21,7 +21,9 @@ const ConversationHeader = () => {
           onClick={handleProfileClick}
         >
           <img src={interlocutorProfile.picture} alt="" />
-          {interlocutorProfile.name || interlocutorProfile.email}
+          {interlocutorProfile.display_name ||
+            interlocutorProfile.name ||
+            interlocutorProfile.email}
         </button>
       ) : (
         <div className="new-msg-header">New Message</div>

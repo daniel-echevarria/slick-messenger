@@ -67,7 +67,7 @@ const DirectMessages = () => {
       <div key={profile.id} className="user">
         <button onClick={selectInterlocutor} value={profile.id}>
           <img src={profile.picture} className="avatar-img" />
-          {profile.name || profile.email}
+          {profile.display_name || profile.name || profile.email}
         </button>
       </div>
     );

@@ -23,7 +23,9 @@ const Message = ({ msg, senderProfile }) => {
         <div className="sender-and-msg">
           <div className="msg-infos">
             <span className="sender">
-              {senderProfile.name || senderProfile.email}
+              {senderProfile.display_name ||
+                senderProfile.name ||
+                senderProfile.email}
             </span>
             <span className="time-sent">{formattedTime}</span>
           </div>
