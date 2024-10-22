@@ -6,7 +6,7 @@ import { InterlocutorContext } from "../../DirectMessages";
 
 const Messages = ({ messages }) => {
   const current = useContext(AuthContext);
-  const interlocutorProfile = useContext(InterlocutorContext);
+  const interlocutorProfile = useContext(InterlocutorContext).interlocutor;
   const messagesBox = useRef(null);
 
   useEffect(() => {
@@ -16,6 +16,7 @@ const Messages = ({ messages }) => {
   }, [messages]);
 
   const messagesList = messages.map((msg) => {
+    if (!interlocutorProfile) return;
     const senderProfile = [interlocutorProfile, current.profile].find(
       (profile) => profile.user_id === msg.user_id
     );

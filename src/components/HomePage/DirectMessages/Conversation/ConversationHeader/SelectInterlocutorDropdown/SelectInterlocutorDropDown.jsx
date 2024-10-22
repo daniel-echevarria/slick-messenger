@@ -10,7 +10,7 @@ const SelectInterlocutorDropDown = ({ items, show }) => {
       <button
         key={item.id}
         className="select-interlocutor"
-        onClick={(e) => interlocutorProfile.setter(e)}
+        onClick={interlocutorProfile.setter}
         value={item.id}
       >
         <img src={item.picture} alt="" />

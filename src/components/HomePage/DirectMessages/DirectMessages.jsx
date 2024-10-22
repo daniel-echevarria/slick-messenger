@@ -59,6 +59,7 @@ const DirectMessages = () => {
     const selectedProfile = profiles.find(
       (profile) => profile.id == selectedId
     );
+    console.log(selectedProfile);
     setInterlocutor(selectedProfile);
   };
 
@@ -80,7 +81,7 @@ const DirectMessages = () => {
       <div className="direct-messages">
         <div className="dm-header">
           <h3>Direct Messages</h3>
-          <button>
+          <button onClick={() => setInterlocutor(null)}>
             <img src={newMsgIcon} alt="new-message-icon" className="icon" />
           </button>
         </div>
