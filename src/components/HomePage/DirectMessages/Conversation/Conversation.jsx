@@ -43,7 +43,7 @@ const Conversation = ({ friendship, profiles, setProfilesWereEdited }) => {
   return (
     <div className="conversation">
       <div className="chat">
-        <ConversationHeader />
+        <ConversationHeader profiles={profiles} />
         <Messages messages={messages} />
         <SendMessages
           conversation={conversation}

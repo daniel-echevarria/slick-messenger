@@ -14,3 +14,29 @@
   width: fit-content;
   font-weight: bolder;
 }
+
+.new-msg-header {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  /* background-color: blue; */
+}
+
+.new-msg-interlocutor {
+  display: flex;
+  font-size: medium;
+  align-items: center;
+  font-weight: 500;
+}
+
+input#new-msg-interlocutor-input {
+  width: 800px;
+  border: none;
+  margin: none;
+  padding: none;
+}
+
+.new-msg-interlocutor input:focus {
+  /* border: none; */
+  box-shadow: none;
+}

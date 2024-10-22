@@ -74,7 +74,9 @@ const DirectMessages = () => {
   });
 
   return (
-    <InterlocutorContext.Provider value={interlocutor}>
+    <InterlocutorContext.Provider
+      value={{ interlocutor: interlocutor, setter: selectInterlocutor }}
+    >
       <div className="direct-messages">
         <div className="dm-header">
           <h3>Direct Messages</h3>

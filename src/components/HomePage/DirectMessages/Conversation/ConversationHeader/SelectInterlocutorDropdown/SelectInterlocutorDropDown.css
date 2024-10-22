@@ -1,0 +1,28 @@
+.drop-down-menu {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  transform: translateY(120px);
+  background-color: whitesmoke;
+  border-radius: 8px;
+  width: 60%;
+  padding: 15px 0px;
+}
+
+.drop-down-menu button {
+  border-radius: 0px;
+  font-size: small;
+  text-align: left;
+  width: 100%;
+}
+
+.drop-down-menu button:hover {
+  background-color: var(--secondary-color);
+  color: white;
+}
+
+.drop-down-menu .select-interlocutor {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}

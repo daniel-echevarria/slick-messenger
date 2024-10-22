@@ -14,8 +14,6 @@ const HomePage = () => {
   });
 
   const handleProfileClick = (e) => {
-    console.log(current.profile.id);
-    console.log(e.target);
     setProfileState({
       id: e.target.value,
       show: true,

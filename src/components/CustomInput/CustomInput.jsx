@@ -1,8 +1,8 @@
+import { useEffect, useRef } from "react";
 import "../CustomInput/CustomInput.css";
 
 const CustomInput = ({
   label,
-  name,
   type,
   value,
   handleChange,
@@ -10,13 +10,17 @@ const CustomInput = ({
   required,
   min,
   disabled,
+  id,
+  setInputIsFocused,
 }) => {
+  const input = useRef(null);
+
   return (
     <div className="form-field">
       <label>{label}</label>
       <div>
         <input
-          id={name}
+          id={id}
           type={type}
           value={value}
           onChange={handleChange}
@@ -24,6 +28,9 @@ const CustomInput = ({
           required={required}
           minLength={min}
           disabled={disabled}
+          ref={input}
+          onFocus={() => setInputIsFocused(true)}
+          // onBlur={() => setInputIsFocused(false)}
         />
       </div>
     </div>
