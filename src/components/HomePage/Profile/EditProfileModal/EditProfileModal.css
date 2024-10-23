@@ -35,6 +35,7 @@ dialog button {
 }
 
 .profile-photo-field img {
+  max-width: 100%;
   margin: 0px;
 }
 

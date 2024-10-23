@@ -14,6 +14,7 @@ const SignInPage = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   useEffect(() => {
+    if (!isSubmitted) return;
     const login = async () => {
       const response = await fetch("http://localhost:3000/sign_in", {
         method: "POST",

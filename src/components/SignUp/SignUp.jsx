@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import logo from "../../assets/slack-logo.svg";
 import CustomInput from "../CustomInput/CustomInput";
 import { useNavigate } from "react-router-dom";
+import defaultAvatar from "../../assets/default-avatar.png";
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -54,6 +55,7 @@ const SignUp = () => {
       user: {
         email: emailValue,
         password: passwordValue,
+        picture: defaultAvatar,
       },
     });
     setIsSubmitted(true);
