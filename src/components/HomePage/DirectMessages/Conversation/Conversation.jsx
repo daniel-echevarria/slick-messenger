@@ -7,14 +7,14 @@ import SendMessages from "./SendMessages/SendMessages";
 import { useContext, useEffect, useState } from "react";
 
 const Conversation = ({ friendship, profiles, setProfilesWereEdited }) => {
+  const [conversation, setConversation] = useState(null);
+  const [messages, setMessages] = useState([]);
+
   const profileContext = useContext(ProfileContext);
 
   const currentProfile = profiles.find(
     (pro) => pro.id == profileContext.profile.id
   );
-
-  const [conversation, setConversation] = useState(null);
-  const [messages, setMessages] = useState([]);
 
   useEffect(() => {
     const getConversation = async () => {

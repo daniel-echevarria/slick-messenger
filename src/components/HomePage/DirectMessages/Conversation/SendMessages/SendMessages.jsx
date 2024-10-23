@@ -5,7 +5,7 @@ import { useState, useEffect, useContext, useRef } from "react";
 import { InterlocutorContext } from "../../DirectMessages.jsx";
 
 const SendMessages = ({ conversation, setMessages, messages }) => {
-  const interlocutorProfile = useContext(InterlocutorContext);
+  const interlocutorProfile = useContext(InterlocutorContext).interlocutor;
 
   const [inputValue, setInputValue] = useState("");
   const [message, setMessage] = useState("");
@@ -53,9 +53,7 @@ const SendMessages = ({ conversation, setMessages, messages }) => {
         placeholder={
           interlocutorProfile
             ? `Message ${
-                interlocutorProfile.display_name ||
-                interlocutorProfile.name ||
-                interlocutorProfile.email
+                interlocutorProfile.display_name || interlocutorProfile.email
               }`
             : "Jot something down"
         }
@@ -64,7 +62,7 @@ const SendMessages = ({ conversation, setMessages, messages }) => {
       />
       <div className="input-features-box">
         <div className="features"></div>
-        {inputValue ? (
+        {inputValue && interlocutorProfile ? (
           <button onClick={handleSendMessage} className={"send confirm"}>
             <img src={sendMessageIcon} className="icon send-msg-icon" />
           </button>
