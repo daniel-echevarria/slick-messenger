@@ -2,6 +2,7 @@ import "./DirectMessages.css";
 import newMsgIcon from "../../../assets/icons/new-msg.svg";
 import { createContext, useEffect, useState } from "react";
 import Conversation from "./Conversation/Conversation";
+const apiUrl = import.meta.env.VITE_API_URL;
 
 export const InterlocutorContext = createContext(null);
 
@@ -14,7 +15,7 @@ const DirectMessages = () => {
   useEffect(() => {
     const getProfiles = async () => {
       try {
-        const response = await fetch("http://localhost:3000/profiles", {
+        const response = await fetch(`${apiUrl}/profiles`, {
           headers: {
             Authorization: sessionStorage.getItem("token"),
           },
@@ -35,7 +36,7 @@ const DirectMessages = () => {
     const getFriendship = async () => {
       if (!interlocutor) return;
       try {
-        const response = await fetch(`http://localhost:3000/friendships`, {
+        const response = await fetch(`${apiUrl}/friendships`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

@@ -5,6 +5,7 @@ import ConversationHeader from "./ConversationHeader/ConversationHeader";
 import Messages from "./Messages/Messages";
 import SendMessages from "./SendMessages/SendMessages";
 import { useContext, useEffect, useState } from "react";
+const apiUrl = import.meta.env.VITE_API_URL;
 
 const Conversation = ({ friendship, profiles, setProfilesWereEdited }) => {
   const [conversation, setConversation] = useState(null);
@@ -20,7 +21,7 @@ const Conversation = ({ friendship, profiles, setProfilesWereEdited }) => {
     const getConversation = async () => {
       if (!friendship) return;
       try {
-        const response = await fetch(`http://localhost:3000/conversations`, {
+        const response = await fetch(`${apiUrl}/conversations`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

@@ -4,6 +4,7 @@ import logo from "../../assets/slack-logo.svg";
 import CustomInput from "../CustomInput/CustomInput";
 import "../SignInPage/SignInPage.css";
 import SignInWithGoogle from "./SignInWithGoogle";
+const apiUrl = import.meta.env.VITE_API_URL;
 
 const SignInPage = () => {
   const navigate = useNavigate();
@@ -16,7 +17,7 @@ const SignInPage = () => {
   useEffect(() => {
     if (!isSubmitted) return;
     const login = async () => {
-      const response = await fetch("http://localhost:3000/sign_in", {
+      const response = await fetch(`${apiUrl}/sign_in`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

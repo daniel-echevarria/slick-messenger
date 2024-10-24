@@ -1,6 +1,7 @@
 import CustomInput from "../../../CustomInput/CustomInput";
 import "./EditProfileModal.css";
 import { useEffect, useRef, useState } from "react";
+const apiUrl = import.meta.env.VITE_API_URL;
 
 const EditProfileModal = ({
   profile,
@@ -26,16 +27,13 @@ const EditProfileModal = ({
   useEffect(() => {
     if (!save) return;
     const saveChanges = async () => {
-      const response = await fetch(
-        `http://localhost:3000/profiles/${profile.id}`,
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(fieldValues),
-        }
-      );
+      const response = await fetch(`${apiUrl}/profiles/${profile.id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(fieldValues),
+      });
       if (response.ok) {
         const result = await response.json();
         console.log(result);

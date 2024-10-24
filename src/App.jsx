@@ -2,6 +2,7 @@ import "./App.css";
 import HomePage from "./components/homePage/homePage";
 import { Navigate } from "react-router-dom";
 import { createContext, useEffect, useState } from "react";
+const apiUrl = import.meta.env.VITE_API_URL;
 
 export const AuthContext = createContext(null);
 
@@ -11,7 +12,7 @@ function App() {
 
   useEffect(() => {
     const getCurrentUser = async () => {
-      const response = await fetch("http://localhost:3000/current", {
+      const response = await fetch(`${apiUrl}/current`, {
         headers: {
           Authorization: sessionStorage.getItem("token"),
         },

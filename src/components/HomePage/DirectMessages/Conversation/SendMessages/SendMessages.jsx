@@ -3,6 +3,7 @@ import sendMessageIcon from "../../../../../assets/icons/send-msg.svg";
 import CustomInput from "../../../../CustomInput/CustomInput.jsx";
 import { useState, useEffect, useContext, useRef } from "react";
 import { InterlocutorContext } from "../../DirectMessages.jsx";
+const apiUrl = import.meta.env.VITE_API_URL;
 
 const SendMessages = ({ conversation, setMessages, messages }) => {
   const interlocutorProfile = useContext(InterlocutorContext).interlocutor;
@@ -14,7 +15,7 @@ const SendMessages = ({ conversation, setMessages, messages }) => {
   useEffect(() => {
     if (!isSent) return;
     const sendMessage = async () => {
-      const res = await fetch("http://localhost:3000/messages", {
+      const res = await fetch(`${apiUrl}/messages`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
