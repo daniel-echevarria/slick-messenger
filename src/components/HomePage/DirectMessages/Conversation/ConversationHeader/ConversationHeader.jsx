@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import "./ConversationHeader.css";
 import { InterlocutorContext } from "../../DirectMessages";
 import { ProfileContext } from "../../../homePage";
@@ -8,7 +8,6 @@ import SelectInterlocutorDropDown from "./SelectInterlocutorDropdown/SelectInter
 const ConversationHeader = ({ profiles }) => {
   const interlocutorProfile = useContext(InterlocutorContext).interlocutor;
   const profileContext = useContext(ProfileContext);
-  const [inputIsFocused, setInputIsFocused] = useState(false);
 
   const handleProfileClick = (e) => {
     console.log(e.target.value);
@@ -32,16 +31,9 @@ const ConversationHeader = ({ profiles }) => {
         <div className="new-msg-header">
           <span>New Message</span>
           <div className="new-msg-interlocutor">
-            <SelectInterlocutorDropDown
-              items={profiles}
-              show={inputIsFocused}
-              value={interlocutorProfile}
-            />
+            <SelectInterlocutorDropDown items={profiles} />
             <span>To:</span>
-            <CustomInput
-              id={"new-msg-interlocutor-input"}
-              setInputIsFocused={setInputIsFocused}
-            />
+            <CustomInput id={"new-msg-interlocutor-input"} />
           </div>
         </div>
       )}

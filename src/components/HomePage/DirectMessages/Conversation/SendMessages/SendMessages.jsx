@@ -46,9 +46,7 @@ const SendMessages = ({ conversation, setMessages, messages }) => {
 
   return (
     <div className="send-message-box">
-      <div className="input-formating">
-        <button>B</button>
-      </div>
+      <div className="input-formating"></div>
       <CustomInput
         placeholder={
           interlocutorProfile

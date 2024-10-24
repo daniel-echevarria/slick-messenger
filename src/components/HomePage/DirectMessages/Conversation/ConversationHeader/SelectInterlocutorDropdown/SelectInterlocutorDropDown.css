@@ -1,5 +1,9 @@
-.drop-down-menu {
+.new-msg-interlocutor:focus-within .drop-down-menu {
   display: block;
+}
+
+.drop-down-menu {
+  display: none;
   flex-direction: column;
   position: absolute;
   left: 20px;

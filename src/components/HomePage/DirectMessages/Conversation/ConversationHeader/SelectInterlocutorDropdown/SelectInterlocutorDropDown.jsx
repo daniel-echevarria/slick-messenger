@@ -2,7 +2,7 @@ import { useContext } from "react";
 import "./SelectInterlocutorDropDown.css";
 import { InterlocutorContext } from "../../../DirectMessages";
 
-const SelectInterlocutorDropDown = ({ items, show }) => {
+const SelectInterlocutorDropDown = ({ items }) => {
   const interlocutorProfile = useContext(InterlocutorContext);
 
   const ItemsList = items.map((item) => {
@@ -20,7 +20,7 @@ const SelectInterlocutorDropDown = ({ items, show }) => {
     );
   });
 
-  return show && <div className="drop-down-menu">{ItemsList}</div>;
+  return <div className="drop-down-menu">{ItemsList}</div>;
 };
 
 export default SelectInterlocutorDropDown;
