@@ -1,5 +1,5 @@
 .send-message-box {
-  border: 2px solid lightgray;
+  border: 1px solid lightgrey;
   border-radius: 10px;
   margin: 0px 30px 30px 30px;
   display: grid;
@@ -7,6 +7,12 @@
   grid-template-rows: fit-content 1fr 50px;
   justify-content: space-between;
   overflow: hidden;
+}
+
+.send-message-box:focus-within {
+  transition: 0.25s;
+  border: 1px solid grey;
+  box-shadow: 1px 1px 2px 1px rgb(0, 0, 0, 0.1);
 }
 
 .input-formating {
