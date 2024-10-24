@@ -1,8 +1,9 @@
 .drop-down-menu {
-  display: flex;
+  display: block;
   flex-direction: column;
   position: absolute;
-  transform: translateY(120px);
+  left: 20px;
+  top: 90%;
   background-color: whitesmoke;
   border-radius: 8px;
   width: 60%;
@@ -29,4 +30,8 @@
 
 .display-name {
   font-weight: bolder;
+}
+
+.new-msg-header {
+  position: relative;
 }

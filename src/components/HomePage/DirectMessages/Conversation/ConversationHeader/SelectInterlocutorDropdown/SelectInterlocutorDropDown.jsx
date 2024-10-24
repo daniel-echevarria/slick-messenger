@@ -14,7 +14,7 @@ const SelectInterlocutorDropDown = ({ items, show }) => {
         value={item.id}
       >
         <img src={item.picture} alt="" />
-        <span className="display-name">{item.display_name}</span>
+        <span className="display-name">{item.display_name || item.email}</span>
         <span>{item.name}</span>
       </button>
     );

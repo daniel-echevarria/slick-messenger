@@ -32,15 +32,15 @@ const ConversationHeader = ({ profiles }) => {
         <div className="new-msg-header">
           <span>New Message</span>
           <div className="new-msg-interlocutor">
-            <span>To:</span>
-            <CustomInput
-              id={"new-msg-interlocutor-input"}
-              setInputIsFocused={setInputIsFocused}
-            />
             <SelectInterlocutorDropDown
               items={profiles}
               show={inputIsFocused}
               value={interlocutorProfile}
+            />
+            <span>To:</span>
+            <CustomInput
+              id={"new-msg-interlocutor-input"}
+              setInputIsFocused={setInputIsFocused}
             />
           </div>
         </div>
