@@ -1,9 +1,9 @@
-import { useContext, useEffect, useState } from "react";
 import "./ConversationHeader.css";
-import { InterlocutorContext } from "../../DirectMessages";
-import { ProfileContext } from "../../../homePage";
 import CustomInput from "../../../../CustomInput/CustomInput";
 import SelectInterlocutorDropDown from "./SelectInterlocutorDropdown/SelectInterlocutorDropDown";
+import { useContext } from "react";
+import { InterlocutorContext } from "../../DirectMessages";
+import { ProfileContext } from "../../../HomePage";
 
 const ConversationHeader = ({ profiles }) => {
   const interlocutorProfile = useContext(InterlocutorContext).interlocutor;

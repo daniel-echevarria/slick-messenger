@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import "./Profile.css";
 import { Link } from "react-router-dom";
-import { ProfileContext } from "../homePage";
+import { ProfileContext } from "../HomePage";
 import EditProfileModal from "./EditProfileModal/EditProfileModal";
 import { AuthContext } from "../../../App";
 import emailIcon from "../../../assets/icons/email.svg";

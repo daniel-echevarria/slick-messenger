@@ -1,5 +1,6 @@
-import { useContext } from "react";
 import "./SelectInterlocutorDropDown.css";
+
+import { useContext } from "react";
 import { InterlocutorContext } from "../../../DirectMessages";
 
 const SelectInterlocutorDropDown = ({ items }) => {

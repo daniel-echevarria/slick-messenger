@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import "./LogOut.css";
 import { useNavigate } from "react-router-dom";
+import "./LogOut.css";
 const apiUrl = import.meta.env.VITE_API_URL;
 
 const LogOut = () => {

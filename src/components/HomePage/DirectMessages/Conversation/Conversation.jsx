@@ -1,4 +1,4 @@
-import { ProfileContext } from "../../homePage";
+import { ProfileContext } from "../../HomePage";
 import Profile from "../../Profile/Profile";
 import "./Conversation.css";
 import ConversationHeader from "./ConversationHeader/ConversationHeader";
