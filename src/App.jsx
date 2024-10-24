@@ -1,5 +1,5 @@
 import "./App.css";
-import HomePage from "./components/homePage/homePage";
+import HomePage from "./components/HomePage/homePage";
 import { Navigate } from "react-router-dom";
 import { createContext, useEffect, useState } from "react";
 const apiUrl = import.meta.env.VITE_API_URL;

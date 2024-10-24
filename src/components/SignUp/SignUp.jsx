@@ -10,7 +10,6 @@ const SignUp = () => {
   const [passwordValue, setPasswordValue] = useState("");
   const [passConfirmationValue, setPassConfirmationValue] = useState("");
   const [message, setMessage] = useState(null);
-  const [isError, setIsError] = useState(true);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [signUpData, setSignUpData] = useState(null);
 
@@ -55,7 +54,6 @@ const SignUp = () => {
       user: {
         email: emailValue,
         password: passwordValue,
-        picture: defaultAvatar,
       },
     });
     setIsSubmitted(true);
@@ -73,7 +71,7 @@ const SignUp = () => {
           We suggest using the <strong> email address you use at work </strong>
         </p>
         <form action="" onSubmit={handleSubmitted} className="login-box">
-          <span style={{ color: isError ? "red" : "green" }}>{message}</span>
+          <span style={{ color: "red" }}>{message}</span>
           <CustomInput
             name={"email"}
             type={"email"}
