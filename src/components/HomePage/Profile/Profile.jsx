@@ -101,13 +101,14 @@ const Profile = ({ profile, show, setProfilesWereEdited }) => {
       </div>
 
       <hr />
+      {/* Potential about section in the future */}
 
-      <div className="profile-section">
+      {/* <div className="profile-section">
         <div className="header-edit">
           <span className="profile-section-header">About me</span>
           {isCurrentUser && <Link>Edit</Link>}
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };
