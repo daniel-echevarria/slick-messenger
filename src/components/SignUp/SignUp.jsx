@@ -1,3 +1,4 @@
+import "./SignUp.css";
 import { useEffect, useState } from "react";
 import logo from "../../assets/slack-logo.svg";
 import CustomInput from "../CustomInput/CustomInput";
@@ -6,48 +7,45 @@ const apiUrl = import.meta.env.VITE_API_URL;
 
 const SignUp = () => {
   const navigate = useNavigate();
+
+  const [errorMessage, setErrorMessage] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
+
   const [emailValue, setEmailValue] = useState("");
   const [passwordValue, setPasswordValue] = useState("");
   const [passConfirmationValue, setPassConfirmationValue] = useState("");
-  const [message, setMessage] = useState(null);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [signUpData, setSignUpData] = useState(null);
 
   useEffect(() => {
     if (!isSubmitted) return;
     const createUser = async () => {
-      const response = await fetch(`${apiUrl}`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(signUpData),
-      });
-      console.log(response);
-      if (response.ok) {
-        navigate("/signin");
+      try {
+        const response = await fetch(`${apiUrl}`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(signUpData),
+        });
+        const result = await response.json();
+
+        response.ok
+          ? setSuccessMessage(result.message)
+          : setErrorMessage(result.message);
+      } catch (error) {
+        console.log(error);
       }
     };
     createUser();
   }, [signUpData, isSubmitted, navigate]);
 
-  const handleEmailChange = (e) => {
-    setEmailValue(e.target.value);
-  };
-
-  const handlePasswordChange = (e) => {
-    setPasswordValue(e.target.value);
-  };
-
-  const handlePassConfirmationChange = (e) => {
-    setPassConfirmationValue(e.target.value);
-  };
-
   const handleSubmitted = (e) => {
     e.preventDefault();
-    setMessage("");
+    setErrorMessage("");
+    setSuccessMessage("");
     if (passwordValue !== passConfirmationValue) {
-      setMessage("Passwords don't match");
+      setErrorMessage("Passwords don't match");
       return;
     }
     setSignUpData({
@@ -70,14 +68,15 @@ const SignUp = () => {
         <p>
           We suggest using the <strong> email address you use at work </strong>
         </p>
+        {errorMessage && <p className="error">{errorMessage}</p>}
+        {successMessage && <p className="success">{successMessage}</p>}
         <form action="" onSubmit={handleSubmitted} className="login-box">
-          <span style={{ color: "red" }}>{message}</span>
           <CustomInput
             name={"email"}
             type={"email"}
             placeholder={"name@work-email.com"}
             value={emailValue}
-            handleChange={handleEmailChange}
+            handleChange={(e) => setEmailValue(e.target.value)}
             required={true}
           />
           <CustomInput
@@ -85,7 +84,7 @@ const SignUp = () => {
             type={"password"}
             placeholder={"********"}
             value={passwordValue}
-            handleChange={handlePasswordChange}
+            handleChange={(e) => setPasswordValue(e.target.value)}
             required={true}
           />
           <CustomInput
@@ -93,7 +92,7 @@ const SignUp = () => {
             type={"password"}
             placeholder={"********"}
             value={passConfirmationValue}
-            handleChange={handlePassConfirmationChange}
+            handleChange={(e) => setPassConfirmationValue(e.target.value)}
             required={true}
           />
           <button>Create Account</button>

@@ -1,6 +1,4 @@
-import { useEffect, useRef } from "react";
 import "../CustomInput/CustomInput.css";
-import { useFetcher } from "react-router-dom";
 
 const CustomInput = ({
   label,
@@ -12,15 +10,7 @@ const CustomInput = ({
   min,
   disabled,
   id,
-  setInputIsFocused,
-  inputIsFocused,
 }) => {
-  const input = useRef(null);
-
-  useEffect(() => {
-    inputIsFocused ? input.current.focus() : input.current.blur();
-  }, [inputIsFocused]);
-
   return (
     <div className="form-field">
       <label>{label}</label>
@@ -34,8 +24,6 @@ const CustomInput = ({
           required={required}
           minLength={min}
           disabled={disabled}
-          ref={input}
-          onFocus={() => setInputIsFocused(true)}
         />
       </div>
     </div>
