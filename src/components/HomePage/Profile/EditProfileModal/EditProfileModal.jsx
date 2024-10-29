@@ -1,6 +1,9 @@
 import CustomInput from "../../../CustomInput/CustomInput";
 import "./EditProfileModal.css";
 import { useEffect, useRef, useState } from "react";
+import * as ActiveStorage from "activestorage";
+ActiveStorage.start();
+
 const apiUrl = import.meta.env.VITE_API_URL;
 
 const EditProfileModal = ({
@@ -97,6 +100,7 @@ const EditProfileModal = ({
           <div className="profile-photo-field">
             <span>Profile photo</span>
             <img src={profile.picture} alt="" className="profile-img" />
+            <CustomInput type={"file"} />
             <button id="update-photo-btn">Update Photo</button>
           </div>
         </form>

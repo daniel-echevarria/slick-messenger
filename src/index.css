@@ -58,6 +58,15 @@ button.confirm {
   color: white;
 }
 
+button:disabled {
+  background-color: lightgray;
+}
+
+button.confirm:disabled:hover {
+  cursor: default;
+  background-color: lightgrey;
+}
+
 button:hover {
   filter: brightness(120%);
 }

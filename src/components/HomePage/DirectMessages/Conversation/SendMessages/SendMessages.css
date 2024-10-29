@@ -50,6 +50,6 @@
   padding: 2px 10px;
 }
 
-.send:disabled {
+.send:disabled:hover {
   background-color: lightgrey;
 }
