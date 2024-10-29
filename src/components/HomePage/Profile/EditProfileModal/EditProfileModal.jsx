@@ -1,8 +1,7 @@
 import CustomInput from "../../../CustomInput/CustomInput";
 import "./EditProfileModal.css";
 import { useEffect, useRef, useState } from "react";
-import * as ActiveStorage from "activestorage";
-ActiveStorage.start();
+import { DirectUpload } from "activestorage";
 
 const apiUrl = import.meta.env.VITE_API_URL;
 
@@ -15,6 +14,7 @@ const EditProfileModal = ({
   const modal = useRef(null);
   const [save, setSave] = useState(false);
   const [fieldValues, setFieldValues] = useState(null);
+  const [uploadedFile, setUploadedFile] = useState(null);
 
   useEffect(() => {
     const updateProfileFields = () => {
@@ -49,6 +49,33 @@ const EditProfileModal = ({
     saveChanges();
   }, [save, fieldValues, profile.id, setProfilesWereEdited]);
 
+  useEffect(() => {
+    const submitPicture = async () => {
+      if (!uploadedFile) return;
+      const upload = new DirectUpload(
+        uploadedFile,
+        `${apiUrl}/rails/active_storage/direct_uploads`
+      );
+      upload.create(async (error, blob) => {
+        if (error) {
+          console.error("Upload failed:", error);
+        } else {
+          const response = await fetch(
+            `${apiUrl}/profiles/${profile.id}/update_profile_picture`,
+            {
+              method: "PATCH",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ blob_id: blob.signed_id }),
+            }
+          );
+          const result = await response.json();
+          console.log(result);
+        }
+      });
+    };
+    submitPicture();
+  }, [uploadedFile, profile.id]);
+
   open && modal.current.showModal();
 
   const handleChangeName = (e) => {
@@ -73,6 +100,10 @@ const EditProfileModal = ({
   const handleSaveChanges = () => {
     setSave(true);
     handleCloseModal();
+  };
+
+  const handleFileUpload = (e) => {
+    setUploadedFile(e.target.files[0]);
   };
 
   return (
@@ -100,8 +131,9 @@ const EditProfileModal = ({
           <div className="profile-photo-field">
             <span>Profile photo</span>
             <img src={profile.picture} alt="" className="profile-img" />
-            <CustomInput type={"file"} />
-            <button id="update-photo-btn">Update Photo</button>
+            <button id="update-photo-btn">
+              <input type="file" onChange={handleFileUpload} />
+            </button>
           </div>
         </form>
         <div className="edit-form-buttons">
