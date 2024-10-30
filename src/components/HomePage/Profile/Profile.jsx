@@ -36,7 +36,7 @@ const Profile = ({ profile, show, setProfilesWereEdited }) => {
             ╳
           </button>
         </div>
-        <img src={profile.picture} alt="" className="profile-img" />
+        <img src={profile.avatar} alt="" className="profile-img" />
         <div className="header-edit">
           <div className="full-name">{profile.name}</div>
           {isCurrentUser && (

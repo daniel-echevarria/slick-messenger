@@ -130,7 +130,7 @@ const EditProfileModal = ({
           </div>
           <div className="profile-photo-field">
             <span>Profile photo</span>
-            <img src={profile.picture} alt="" className="profile-img" />
+            <img src={profile.avatar} alt="" className="profile-img" />
             <label htmlFor="fileInput" id="update-photo-btn">
               Upload photo
               <input type="file" onChange={handleFileUpload} id="fileInput" />

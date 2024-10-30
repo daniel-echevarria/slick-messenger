@@ -26,6 +26,7 @@ function App() {
       setCurrent({
         user: result.current_user,
         profile: result.profile,
+        avatar: result.avatar,
       });
     };
     getCurrentUser();

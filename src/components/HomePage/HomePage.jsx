@@ -34,10 +34,10 @@ const HomePage = () => {
           <div className="tab-container"></div>
           <input
             type="image"
-            src={current.profile.avatar}
-            onClick={handleProfileClick}
+            src={current.avatar}
             value={current.profile.id}
             className="profile-image"
+            onClick={handleProfileClick}
           />
         </nav>
         <DirectMessages />
