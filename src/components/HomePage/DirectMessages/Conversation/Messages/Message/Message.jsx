@@ -19,7 +19,7 @@ const Message = ({ msg, senderProfile }) => {
     <div className="message-and-date" key={msg.id}>
       <DateSeparator />
       <div className="message">
-        <img src={senderProfile.picture} alt="" />
+        <img src={senderProfile.avatar} alt="" />
         <div className="sender-and-msg">
           <div className="msg-infos">
             <span className="sender">

@@ -30,7 +30,7 @@ dialog button {
 }
 
 .profile-photo-field {
-  max-width: 300px;
+  /* max-width: 300px; */
 }
 
 .profile-photo-field span {
@@ -45,6 +45,15 @@ dialog button {
 
 #update-photo-btn {
   width: 100%;
+}
+
+#update-photo-btn:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+#update-photo-btn input {
+  display: none;
 }
 
 .edit-form-buttons {

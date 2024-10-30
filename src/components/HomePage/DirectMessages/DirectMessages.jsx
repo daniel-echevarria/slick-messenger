@@ -22,6 +22,7 @@ const DirectMessages = () => {
         });
         if (response.ok) {
           const result = await response.json();
+          console.log(result);
           setProfiles(result);
           setProfilesWereEdited(false);
         }
@@ -68,7 +69,7 @@ const DirectMessages = () => {
     return (
       <div key={profile.id} className="user">
         <button onClick={selectInterlocutor} value={profile.id}>
-          <img src={profile.picture} className="avatar-img" />
+          <img src={profile.avatar} className="avatar-img" />
           {profile.display_name || profile.name || profile.email}
         </button>
       </div>

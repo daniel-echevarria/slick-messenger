@@ -34,7 +34,7 @@ const HomePage = () => {
           <div className="tab-container"></div>
           <input
             type="image"
-            src={current.profile.picture}
+            src={current.profile.avatar}
             onClick={handleProfileClick}
             value={current.profile.id}
             className="profile-image"
