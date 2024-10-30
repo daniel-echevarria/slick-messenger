@@ -22,7 +22,6 @@ const DirectMessages = () => {
         });
         if (response.ok) {
           const result = await response.json();
-          console.log(result);
           setProfiles(result);
           setProfilesWereEdited(false);
         }
@@ -61,7 +60,6 @@ const DirectMessages = () => {
     const selectedProfile = profiles.find(
       (profile) => profile.id == selectedId
     );
-    console.log(selectedProfile);
     setInterlocutor(selectedProfile);
   };
 

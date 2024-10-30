@@ -17,10 +17,12 @@ const Messages = ({ messages }) => {
 
   const messagesList = messages.map((msg) => {
     if (!interlocutorProfile) return;
-    const senderProfile = [interlocutorProfile, current.profile].find(
-      (profile) => profile.user_id === msg.user_id
-    );
+    const senderProfile =
+      current.profile.user_id === msg.user_id
+        ? current.profile
+        : interlocutorProfile;
     if (!senderProfile) return;
+    console.log(senderProfile);
     return <Message key={msg.id} msg={msg} senderProfile={senderProfile} />;
   });
 
