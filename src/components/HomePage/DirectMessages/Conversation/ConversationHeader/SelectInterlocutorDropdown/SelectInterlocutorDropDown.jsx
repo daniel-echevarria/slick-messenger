@@ -14,7 +14,7 @@ const SelectInterlocutorDropDown = ({ items }) => {
         onClick={interlocutorProfile.setter}
         value={item.id}
       >
-        <img src={item.avatar} alt="" />
+        <img src={item.avatar} alt="" className="avatar-img" />
         <span className="display-name">{item.display_name || item.email}</span>
         <span>{item.name}</span>
       </button>

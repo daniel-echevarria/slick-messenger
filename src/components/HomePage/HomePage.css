@@ -36,9 +36,10 @@ nav {
   background-color: white;
 }
 
-nav img {
-  max-width: 100%;
-  margin: 20px 10px;
+.profile-image {
+  object-fit: cover;
+  width: 40px;
+  height: 40px;
   border-radius: 8px;
 }
 

@@ -67,7 +67,7 @@
   gap: 8px;
 }
 
-.message img {
+.message .avatar-img {
   height: 40px;
-  border-radius: 8px;
+  width: 40px;
 }

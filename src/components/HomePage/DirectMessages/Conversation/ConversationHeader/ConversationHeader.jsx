@@ -22,7 +22,7 @@ const ConversationHeader = ({ profiles }) => {
           value={interlocutorProfile.id}
           onClick={handleProfileClick}
         >
-          <img src={interlocutorProfile.avatar} alt="" />
+          <img src={interlocutorProfile.avatar} alt="" className="avatar-img" />
           {interlocutorProfile.display_name ||
             interlocutorProfile.name ||
             interlocutorProfile.email}

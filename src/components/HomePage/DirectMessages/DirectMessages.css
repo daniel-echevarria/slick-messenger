@@ -31,7 +31,7 @@
 .user button {
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 10px;
   margin: 0px 10px;
   width: 90%;
   font-size: small;
@@ -41,13 +41,16 @@
   color: white;
 }
 
-.user button img {
-  height: 20px;
-  border-radius: 5px;
-}
-
 .users-list {
   display: flex;
   flex-direction: column;
   gap: 10px;
+}
+
+.avatar-img {
+  flex-shrink: 0;
+  width: 30px;
+  height: 30px;
+  object-fit: cover;
+  border-radius: 5px;
 }
