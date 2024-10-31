@@ -9,7 +9,7 @@ const EditProfileModal = ({
   profile,
   open,
   setEditProfileIsOpen,
-  setProfilesWereEdited,
+  setCurrentUserProfile,
 }) => {
   const modal = useRef(null);
   const [save, setSave] = useState(false);
@@ -38,17 +38,17 @@ const EditProfileModal = ({
         },
         body: JSON.stringify(fieldValues),
       });
+      const result = await response.json();
       if (response.ok) {
-        const result = await response.json();
-        console.log(result);
-        setProfilesWereEdited(true);
+        setCurrentUserProfile({ ...result.profile });
+        setSave(false);
       } else {
         console.log("problem when updating the profile");
+        setSave(false);
       }
-      setSave(false);
     };
     saveChanges();
-  }, [save, fieldValues, profile.id, setProfilesWereEdited]);
+  }, [save, fieldValues, profile.id, setCurrentUserProfile]);
 
   useEffect(() => {
     const submitPicture = async () => {

@@ -7,7 +7,7 @@ const EditContactInfoModal = ({
   profile,
   open,
   setEditContactIsOpen,
-  setProfilesWereEdited,
+  setCurrentUserProfile,
 }) => {
   const modal = useRef(null);
   const [save, setSave] = useState(false);
@@ -33,18 +33,14 @@ const EditContactInfoModal = ({
         },
         body: JSON.stringify(fieldValues),
       });
+      const result = await response.json();
       if (response.ok) {
-        const result = await response.json();
-        setProfilesWereEdited(true);
-        console.log(result);
-      } else {
-        const result = await response.json();
-        console.log(result);
+        setCurrentUserProfile({ ...result.profile });
       }
       setSave(false);
     };
     saveChanges();
-  }, [save, fieldValues, profile.id, setProfilesWereEdited]);
+  }, [save, fieldValues, profile.id, setCurrentUserProfile]);
 
   open && modal.current.showModal();
 

@@ -6,31 +6,9 @@ const apiUrl = import.meta.env.VITE_API_URL;
 
 export const InterlocutorContext = createContext(null);
 
-const DirectMessages = () => {
-  const [profiles, setProfiles] = useState([]);
+const DirectMessages = ({ profiles, setCurrentUserProfile }) => {
   const [friendship, setFriendship] = useState(null);
   const [interlocutor, setInterlocutor] = useState(null);
-  const [profilesWereEdited, setProfilesWereEdited] = useState(false);
-
-  useEffect(() => {
-    const getProfiles = async () => {
-      try {
-        const response = await fetch(`${apiUrl}/profiles`, {
-          headers: {
-            Authorization: sessionStorage.getItem("token"),
-          },
-        });
-        if (response.ok) {
-          const result = await response.json();
-          setProfiles(result);
-          setProfilesWereEdited(false);
-        }
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    getProfiles();
-  }, [profilesWereEdited]);
 
   useEffect(() => {
     const getFriendship = async () => {
@@ -90,7 +68,7 @@ const DirectMessages = () => {
       <Conversation
         friendship={friendship}
         profiles={profiles}
-        setProfilesWereEdited={setProfilesWereEdited}
+        setCurrentUserProfile={setCurrentUserProfile}
       />
     </InterlocutorContext.Provider>
   );

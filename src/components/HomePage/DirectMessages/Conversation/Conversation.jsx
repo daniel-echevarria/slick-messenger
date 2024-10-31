@@ -7,7 +7,7 @@ import SendMessages from "./SendMessages/SendMessages";
 import { useContext, useEffect, useState } from "react";
 const apiUrl = import.meta.env.VITE_API_URL;
 
-const Conversation = ({ friendship, profiles, setProfilesWereEdited }) => {
+const Conversation = ({ friendship, profiles, setCurrentUserProfile }) => {
   const [conversation, setConversation] = useState(null);
   const [messages, setMessages] = useState([]);
 
@@ -56,7 +56,7 @@ const Conversation = ({ friendship, profiles, setProfilesWereEdited }) => {
         <Profile
           profile={currentProfile}
           show={profileContext.profile.show}
-          setProfilesWereEdited={setProfilesWereEdited}
+          setCurrentUserProfile={setCurrentUserProfile}
         />
       )}
     </div>

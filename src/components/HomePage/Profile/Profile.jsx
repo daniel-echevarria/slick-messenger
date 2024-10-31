@@ -8,7 +8,7 @@ import emailIcon from "../../../assets/icons/email.svg";
 import phoneIcon from "../../../assets/icons/phone.svg";
 import EditContactInfoModal from "./EditContactInfoModal/EditContactInfoModal";
 
-const Profile = ({ profile, show, setProfilesWereEdited }) => {
+const Profile = ({ profile, show, setCurrentUserProfile }) => {
   const currentUser = useContext(AuthContext);
   const [editProfileIsOpen, setEditProfileIsOpen] = useState(false);
   const [editContactIsOpen, setEditContactIsOpen] = useState(false);
@@ -46,7 +46,7 @@ const Profile = ({ profile, show, setProfilesWereEdited }) => {
             profile={profile}
             open={editProfileIsOpen}
             setEditProfileIsOpen={setEditProfileIsOpen}
-            setProfilesWereEdited={setProfilesWereEdited}
+            setCurrentUserProfile={setCurrentUserProfile}
           />
         </div>
         <div className="title">{profile.title}</div>
@@ -64,7 +64,7 @@ const Profile = ({ profile, show, setProfilesWereEdited }) => {
             profile={profile}
             open={editContactIsOpen}
             setEditContactIsOpen={setEditContactIsOpen}
-            setProfilesWereEdited={setProfilesWereEdited}
+            setCurrentUserProfile={setCurrentUserProfile}
           />
         </div>
         <div className="contact-field">

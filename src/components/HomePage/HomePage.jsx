@@ -2,16 +2,38 @@ import DirectMessages from "./DirectMessages/DirectMessages";
 import "./HomePage.css";
 import LogOut from "./LogOut/LogOut";
 import { AuthContext } from "../../App";
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
+const apiUrl = import.meta.env.VITE_API_URL;
 
 export const ProfileContext = createContext(null);
 
 const HomePage = () => {
-  const current = useContext(AuthContext);
-  const [profileState, setProfileState] = useState({
-    id: current.profile.id,
-    show: false,
+  const currentUser = useContext(AuthContext);
+
+  const [profileState, setProfileState] = useState({});
+  const [profiles, setProfiles] = useState([]);
+  const [currentUserProfile, setCurrentUserProfile] = useState({
+    ...currentUser.profile,
   });
+
+  useEffect(() => {
+    const getProfiles = async () => {
+      try {
+        const response = await fetch(`${apiUrl}/profiles`, {
+          headers: {
+            Authorization: sessionStorage.getItem("token"),
+          },
+        });
+        if (response.ok) {
+          const result = await response.json();
+          setProfiles(result);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getProfiles();
+  }, [currentUserProfile]);
 
   const handleProfileClick = (e) => {
     setProfileState({
@@ -34,13 +56,16 @@ const HomePage = () => {
           <div className="tab-container"></div>
           <input
             type="image"
-            src={current.profile.avatar}
-            value={current.profile.id}
+            src={currentUserProfile.avatar}
+            value={currentUserProfile.id}
             className="profile-image"
             onClick={handleProfileClick}
           />
         </nav>
-        <DirectMessages />
+        <DirectMessages
+          profiles={profiles}
+          setCurrentUserProfile={setCurrentUserProfile}
+        />
         <LogOut />
       </div>
     </ProfileContext.Provider>
