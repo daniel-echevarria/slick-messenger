@@ -9,9 +9,9 @@ export const ProfileContext = createContext(null);
 
 const HomePage = () => {
   const currentUser = useContext(AuthContext);
-
-  const [profileState, setProfileState] = useState({});
   const [profiles, setProfiles] = useState([]);
+
+  const [profileSectionState, setProfileSectionState] = useState({});
   const [currentUserProfile, setCurrentUserProfile] = useState({
     ...currentUser.profile,
   });
@@ -36,7 +36,7 @@ const HomePage = () => {
   }, [currentUserProfile]);
 
   const handleProfileClick = (e) => {
-    setProfileState({
+    setProfileSectionState({
       id: e.target.value,
       show: true,
     });
@@ -45,8 +45,8 @@ const HomePage = () => {
   return (
     <ProfileContext.Provider
       value={{
-        profile: profileState,
-        setProfile: setProfileState,
+        profile: profileSectionState,
+        setProfile: setProfileSectionState,
         handleProfileClick: handleProfileClick,
       }}
     >

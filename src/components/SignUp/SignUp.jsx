@@ -10,7 +10,6 @@ const SignUp = () => {
 
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
-
   const [emailValue, setEmailValue] = useState("");
   const [passwordValue, setPasswordValue] = useState("");
   const [passConfirmationValue, setPassConfirmationValue] = useState("");

@@ -72,6 +72,7 @@ const EditProfileModal = ({
           const result = await response.json();
           if (response.ok) {
             setFieldValues({ ...fieldValues, avatar: result.avatar_url });
+            setUploadedFile(null);
           }
         }
       });
