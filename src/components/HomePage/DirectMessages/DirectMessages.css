@@ -42,6 +42,8 @@
 }
 
 .users-list {
+  max-height: calc(90vh - var(--header-height));
+  overflow-y: scroll;
   display: flex;
   flex-direction: column;
   gap: 10px;
