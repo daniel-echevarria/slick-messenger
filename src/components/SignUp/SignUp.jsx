@@ -14,11 +14,10 @@ const SignUp = () => {
   const [emailValue, setEmailValue] = useState("");
   const [passwordValue, setPasswordValue] = useState("");
   const [passConfirmationValue, setPassConfirmationValue] = useState("");
-  const [isSubmitted, setIsSubmitted] = useState(false);
   const [signUpData, setSignUpData] = useState(null);
 
   useEffect(() => {
-    if (!isSubmitted) return;
+    if (!signUpData) return;
     const createUser = async () => {
       try {
         const response = await fetch(`${apiUrl}`, {
@@ -30,15 +29,18 @@ const SignUp = () => {
         });
         const result = await response.json();
 
-        response.ok
-          ? setSuccessMessage(result.message)
-          : setErrorMessage(result.message);
+        if (response.ok) {
+          setSuccessMessage(result.message);
+          navigate("/");
+        } else {
+          setErrorMessage(result.message);
+        }
       } catch (error) {
         console.log(error);
       }
     };
     createUser();
-  }, [signUpData, isSubmitted, navigate]);
+  }, [signUpData, navigate]);
 
   const handleSubmitted = (e) => {
     e.preventDefault();
@@ -56,7 +58,6 @@ const SignUp = () => {
         password: passwordValue,
       },
     });
-    setIsSubmitted(true);
   };
 
   return (
