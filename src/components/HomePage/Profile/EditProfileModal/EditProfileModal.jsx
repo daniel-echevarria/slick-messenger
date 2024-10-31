@@ -22,6 +22,7 @@ const EditProfileModal = ({
         name: profile.name || "",
         display_name: profile.display_name || "",
         title: profile.title || "",
+        avatar: profile.avatar,
       });
     };
     updateProfileFields();
@@ -69,12 +70,14 @@ const EditProfileModal = ({
             }
           );
           const result = await response.json();
-          console.log(result);
+          if (response.ok) {
+            setFieldValues({ ...fieldValues, avatar: result.avatar_url });
+          }
         }
       });
     };
     submitPicture();
-  }, [uploadedFile, profile.id]);
+  }, [uploadedFile, profile.id, fieldValues]);
 
   open && modal.current.showModal();
 
@@ -130,7 +133,7 @@ const EditProfileModal = ({
           </div>
           <div className="profile-photo-field">
             <span>Profile photo</span>
-            <img src={profile.avatar} alt="" className="profile-img" />
+            <img src={fieldValues.avatar} alt="" className="profile-img" />
             <label htmlFor="fileInput" id="update-photo-btn">
               Upload photo
               <input type="file" onChange={handleFileUpload} id="fileInput" />
