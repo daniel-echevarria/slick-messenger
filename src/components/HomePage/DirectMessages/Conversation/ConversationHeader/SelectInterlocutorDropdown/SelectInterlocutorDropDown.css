@@ -12,6 +12,8 @@
   border-radius: 8px;
   width: 60%;
   padding: 15px 0px;
+  max-height: 60vh;
+  overflow-y: scroll;
 }
 
 .drop-down-menu button {
