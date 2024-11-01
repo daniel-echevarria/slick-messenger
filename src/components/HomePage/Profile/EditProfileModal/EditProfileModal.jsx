@@ -2,6 +2,7 @@ import CustomInput from "../../../CustomInput/CustomInput";
 import "./EditProfileModal.css";
 import { useEffect, useRef, useState } from "react";
 import { DirectUpload } from "activestorage";
+import imageCompression from "browser-image-compression";
 
 const apiUrl = import.meta.env.VITE_API_URL;
 
@@ -82,6 +83,22 @@ const EditProfileModal = ({
 
   open && modal.current.showModal();
 
+  const resizeFile = (file) =>
+    new Promise((resolve) => {
+      Resizer.imageFileResizer(
+        file,
+        300,
+        300,
+        "JPEG",
+        100,
+        0,
+        (uri) => {
+          resolve(uri);
+        },
+        "base64"
+      );
+    });
+
   const handleChangeName = (e) => {
     const newName = e.target.value;
     setFieldValues({ ...fieldValues, name: newName });
@@ -106,8 +123,22 @@ const EditProfileModal = ({
     handleCloseModal();
   };
 
-  const handleFileUpload = (e) => {
-    setUploadedFile(e.target.files[0]);
+  const handleFileUpload = async (e) => {
+    try {
+      const file = e.target.files[0];
+
+      const options = {
+        maxSizeMB: 3,
+        maxWidthOrHeight: 500,
+        useWebWorker: true,
+      };
+
+      const compressedFile = await imageCompression(file, options);
+
+      setUploadedFile(compressedFile);
+    } catch (err) {
+      console.log("Error during image resizing:", err);
+    }
   };
 
   return (
