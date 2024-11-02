@@ -2,7 +2,7 @@ import "./SignUp.css";
 import { useEffect, useState } from "react";
 import logo from "../../assets/slack-logo.svg";
 import CustomInput from "../CustomInput/CustomInput";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 const apiUrl = import.meta.env.VITE_API_URL;
 
 const SignUp = () => {
@@ -101,6 +101,10 @@ const SignUp = () => {
           />
           <button>Create Account</button>
         </form>
+        <div className="back-to-signin">
+          <p>Already using Slick?</p>
+          <Link to={"/signin"}>Sign in to an existing account</Link>
+        </div>
       </main>
     </>
   );
