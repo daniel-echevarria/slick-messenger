@@ -3,6 +3,7 @@ import "./HomePage.css";
 import LogOut from "./LogOut/LogOut";
 import { AuthContext } from "../../App";
 import { createContext, useContext, useEffect, useState } from "react";
+
 const apiUrl = import.meta.env.VITE_API_URL;
 
 export const ProfileContext = createContext(null);

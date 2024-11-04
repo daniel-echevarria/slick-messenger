@@ -81,24 +81,6 @@ const EditProfileModal = ({
     submitPicture();
   }, [uploadedFile, profile.id, fieldValues]);
 
-  open && modal.current.showModal();
-
-  const resizeFile = (file) =>
-    new Promise((resolve) => {
-      Resizer.imageFileResizer(
-        file,
-        300,
-        300,
-        "JPEG",
-        100,
-        0,
-        (uri) => {
-          resolve(uri);
-        },
-        "base64"
-      );
-    });
-
   const handleChangeName = (e) => {
     const newName = e.target.value;
     setFieldValues({ ...fieldValues, name: newName });
@@ -140,6 +122,8 @@ const EditProfileModal = ({
       console.log("Error during image resizing:", err);
     }
   };
+
+  open && modal.current.showModal();
 
   return (
     fieldValues && (
