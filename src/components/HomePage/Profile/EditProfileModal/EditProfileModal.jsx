@@ -14,10 +14,11 @@ const EditProfileModal = ({
 }) => {
   const modal = useRef(null);
 
-  const [save, setSave] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
   const [fieldValues, setFieldValues] = useState(null);
   const [uploadedFile, setUploadedFile] = useState(null);
   const [isUploadingPicture, setIsUploadingPicture] = useState(false);
+  const [isSaving, setIsSaving] = useState(false);
 
   useEffect(() => {
     const updateProfileFields = () => {
@@ -32,26 +33,37 @@ const EditProfileModal = ({
   }, [profile]);
 
   useEffect(() => {
-    if (!save) return;
+    if (!isSubmitted) return;
     const saveChanges = async () => {
-      const response = await fetch(`${apiUrl}/profiles/${profile.id}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(fieldValues),
-      });
-      const result = await response.json();
-      if (response.ok) {
+      setIsSaving(true);
+      try {
+        const response = await fetch(`${apiUrl}/profiles/${profile.id}`, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(fieldValues),
+        });
+        const result = await response.json();
+        if (!response.ok) throw new Error("Problem while updating the profile");
         setCurrentUserProfile({ ...result.profile });
-        setSave(false);
-      } else {
-        console.log("problem when updating the profile");
-        setSave(false);
+        modal.current.close();
+        setEditProfileIsOpen(false);
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setIsSubmitted(false);
+        setIsSaving(false);
       }
     };
     saveChanges();
-  }, [save, fieldValues, profile.id, setCurrentUserProfile]);
+  }, [
+    isSubmitted,
+    fieldValues,
+    profile.id,
+    setCurrentUserProfile,
+    setEditProfileIsOpen,
+  ]);
 
   useEffect(() => {
     const submitPicture = async () => {
@@ -104,11 +116,6 @@ const EditProfileModal = ({
   const handleCloseModal = () => {
     modal.current.close();
     setEditProfileIsOpen(false);
-  };
-
-  const handleSaveChanges = () => {
-    setSave(true);
-    handleCloseModal();
   };
 
   const handleFileUpload = async (e) => {
@@ -184,9 +191,13 @@ const EditProfileModal = ({
         </form>
         <div className="edit-form-buttons">
           <button onClick={handleCloseModal}>Cancel</button>
-          <button className="confirm" onClick={handleSaveChanges}>
-            Save Changes
-          </button>
+          {isSaving ? (
+            <button disabled={true}>Saving...</button>
+          ) : (
+            <button className="confirm" onClick={() => setIsSubmitted(true)}>
+              Save Changes
+            </button>
+          )}
         </div>
       </dialog>
     )
