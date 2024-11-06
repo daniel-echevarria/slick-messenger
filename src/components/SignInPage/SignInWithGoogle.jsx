@@ -1,9 +1,11 @@
 import { GoogleOAuthProvider, GoogleLogin } from "@react-oauth/google";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 const apiUrl = import.meta.env.VITE_API_URL;
 
 const SignInWithGoogle = () => {
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
 
   const clientId =
     "385042624628-m9bpist1q25an74bv6lav6tb663enbfd.apps.googleusercontent.com";
@@ -11,6 +13,7 @@ const SignInWithGoogle = () => {
   const handleLoginSuccess = async (credentialResponse) => {
     const token = credentialResponse.credential;
     try {
+      setIsLoading(true);
       const response = await fetch(`${apiUrl}/auth/google`, {
         method: "POST",
         headers: {
@@ -18,24 +21,31 @@ const SignInWithGoogle = () => {
         },
         body: JSON.stringify({ token }),
       });
-      if (response.ok) {
-        const data = await response.json();
-        sessionStorage.setItem("token", `Bearer ${data.jwt}`);
-        navigate("/");
+      const result = await response.json();
+      if (!response.ok) {
+        throw new Error(result.message ? result.message : "Server Error");
       }
+      sessionStorage.setItem("token", `Bearer ${result.jwt}`);
+      navigate("/");
     } catch (error) {
-      console.error("Error:", error);
+      console.log(error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
   return (
     <GoogleOAuthProvider clientId={clientId}>
-      <GoogleLogin
-        onSuccess={handleLoginSuccess}
-        onError={() => {
-          console.log("Login Failed");
-        }}
-      />
+      {isLoading ? (
+        <button disabled={true}> Loading...</button>
+      ) : (
+        <GoogleLogin
+          onSuccess={handleLoginSuccess}
+          onError={() => {
+            console.log("Login Failed");
+          }}
+        />
+      )}
     </GoogleOAuthProvider>
   );
 };
