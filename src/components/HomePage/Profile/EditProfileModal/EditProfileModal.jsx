@@ -174,8 +174,8 @@ const EditProfileModal = ({ profile, open, setEditProfileIsOpen }) => {
         </form>
         <div className="edit-form-buttons">
           <button onClick={handleCloseModal}>Cancel</button>
-          {isSaving ? (
-            <button disabled={true}>Saving...</button>
+          {isSaving || isUploadingPicture ? (
+            <button disabled={true}>Loading...</button>
           ) : (
             <button className="confirm" onClick={() => setIsSubmitted(true)}>
               Save Changes

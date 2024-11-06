@@ -62,17 +62,17 @@ button.confirm {
   color: white;
 }
 
+button:hover {
+  filter: brightness(120%);
+}
+
 button:disabled {
   background-color: lightgray;
 }
 
 button.confirm:disabled:hover {
   cursor: default;
-  background-color: lightgrey;
-}
-
-button:hover {
-  filter: brightness(120%);
+  background-color: lightgray;
 }
 
 .login-box button:focus,
