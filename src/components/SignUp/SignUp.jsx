@@ -14,10 +14,12 @@ const SignUp = () => {
   const [passwordValue, setPasswordValue] = useState("");
   const [passConfirmationValue, setPassConfirmationValue] = useState("");
   const [signUpData, setSignUpData] = useState(null);
+  const [isCreatingUser, setIsCreatingUser] = useState(false);
 
   useEffect(() => {
     if (!signUpData) return;
     const createUser = async () => {
+      setIsCreatingUser(true);
       try {
         const response = await fetch(`${apiUrl}`, {
           method: "POST",
@@ -27,15 +29,14 @@ const SignUp = () => {
           body: JSON.stringify(signUpData),
         });
         const result = await response.json();
-
-        if (response.ok) {
-          setSuccessMessage(result.message);
-          navigate("/");
-        } else {
-          setErrorMessage(result.message);
-        }
+        if (response.status >= 400) throw new Error(result.message);
+        setSuccessMessage(result.message);
+        navigate("/");
       } catch (error) {
-        console.log(error);
+        setErrorMessage(error.message);
+      } finally {
+        setIsCreatingUser(false);
+        setSignUpData(null);
       }
     };
     createUser();
@@ -99,7 +100,11 @@ const SignUp = () => {
             min={6}
             required={true}
           />
-          <button>Create Account</button>
+          {isCreatingUser ? (
+            <button disabled={true}> Creating User...</button>
+          ) : (
+            <button>Create Account</button>
+          )}
         </form>
         <div className="back-to-signin">
           <p>Already using Slick?</p>

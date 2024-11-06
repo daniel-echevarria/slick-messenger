@@ -13,24 +13,30 @@ const SignInPage = () => {
   const [loginData, setLoginData] = useState(null);
   const [message, setMessage] = useState(null);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     if (!isSubmitted) return;
     const login = async () => {
-      const response = await fetch(`${apiUrl}/sign_in`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(loginData),
-      });
-      if (response.ok) {
+      setIsLoading(true);
+      try {
+        const response = await fetch(`${apiUrl}/sign_in`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(loginData),
+        });
+        if (!response.ok) throw new Error("Invalid Credentials");
         const token = response.headers.get("Authorization");
         sessionStorage.setItem("token", token);
         navigate("/");
-      } else {
+      } catch (error) {
         sessionStorage.removeItem("token");
-        setMessage("Invalid Credentials");
+        setMessage(error.message);
+      } finally {
+        setIsLoading(false);
+        setIsSubmitted(false);
       }
     };
     login();
@@ -85,7 +91,11 @@ const SignInPage = () => {
           required={true}
           min={6}
         />
-        <button>Sign in</button>
+        {isLoading ? (
+          <button disabled={true}> Loading...</button>
+        ) : (
+          <button>Sign in</button>
+        )}
       </form>
       <div className="signup-offer">
         <span>New to Slick?</span>
