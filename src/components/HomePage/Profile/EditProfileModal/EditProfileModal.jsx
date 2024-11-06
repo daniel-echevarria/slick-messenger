@@ -1,18 +1,16 @@
 import CustomInput from "../../../CustomInput/CustomInput";
 import "./EditProfileModal.css";
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { DirectUpload } from "activestorage";
 import imageCompression from "browser-image-compression";
+import { ProfileContext } from "../../HomePage";
 
 const apiUrl = import.meta.env.VITE_API_URL;
 
-const EditProfileModal = ({
-  profile,
-  open,
-  setEditProfileIsOpen,
-  setCurrentUserProfile,
-}) => {
+const EditProfileModal = ({ profile, open, setEditProfileIsOpen }) => {
   const modal = useRef(null);
+
+  const profileContext = useContext(ProfileContext);
 
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [fieldValues, setFieldValues] = useState(null);
@@ -46,7 +44,7 @@ const EditProfileModal = ({
         });
         const result = await response.json();
         if (!response.ok) throw new Error("Problem while updating the profile");
-        setCurrentUserProfile({ ...result.profile });
+        profileContext.setUpdatedProfile(result.profile);
         modal.current.close();
         setEditProfileIsOpen(false);
       } catch (error) {
@@ -61,8 +59,8 @@ const EditProfileModal = ({
     isSubmitted,
     fieldValues,
     profile.id,
-    setCurrentUserProfile,
     setEditProfileIsOpen,
+    profileContext,
   ]);
 
   useEffect(() => {

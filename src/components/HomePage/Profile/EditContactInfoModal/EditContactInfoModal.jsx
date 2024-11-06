@@ -1,14 +1,11 @@
 import CustomInput from "../../../CustomInput/CustomInput";
+import { ProfileContext } from "../../HomePage";
 import "./EditContactInfoModal.css";
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 const apiUrl = import.meta.env.VITE_API_URL;
 
-const EditContactInfoModal = ({
-  profile,
-  open,
-  setEditContactIsOpen,
-  setCurrentUserProfile,
-}) => {
+const EditContactInfoModal = ({ profile, open, setEditContactIsOpen }) => {
+  const profileContext = useContext(ProfileContext);
   const modal = useRef(null);
   const [save, setSave] = useState(false);
   const [fieldValues, setFieldValues] = useState(null);
@@ -35,12 +32,12 @@ const EditContactInfoModal = ({
       });
       const result = await response.json();
       if (response.ok) {
-        setCurrentUserProfile({ ...result.profile });
+        profileContext.setUpdatedProfile(result.profile);
       }
       setSave(false);
     };
     saveChanges();
-  }, [save, fieldValues, profile.id, setCurrentUserProfile]);
+  }, [save, fieldValues, profile.id, profileContext]);
 
   open && modal.current.showModal();
 

@@ -6,7 +6,7 @@ const apiUrl = import.meta.env.VITE_API_URL;
 
 export const InterlocutorContext = createContext(null);
 
-const DirectMessages = ({ profiles, setCurrentUserProfile }) => {
+const DirectMessages = ({ profiles }) => {
   const [friendship, setFriendship] = useState(null);
   const [interlocutor, setInterlocutor] = useState(null);
 
@@ -65,11 +65,7 @@ const DirectMessages = ({ profiles, setCurrentUserProfile }) => {
         </div>
         <div className="users-list">{profilesList}</div>
       </div>
-      <Conversation
-        friendship={friendship}
-        profiles={profiles}
-        setCurrentUserProfile={setCurrentUserProfile}
-      />
+      <Conversation friendship={friendship} profiles={profiles} />
     </InterlocutorContext.Provider>
   );
 };
