@@ -8,19 +8,17 @@ import { useContext, useEffect, useState } from "react";
 const apiUrl = import.meta.env.VITE_API_URL;
 
 const Conversation = ({ friendship, profiles }) => {
-  const [conversation, setConversation] = useState(null);
-  const [messages, setMessages] = useState([]);
-
   const profileContext = useContext(ProfileContext);
 
-  const displayedProfile = profiles.find(
-    (pro) => pro.id == profileContext.profile.id
-  );
+  const [conversation, setConversation] = useState(null);
+  const [messages, setMessages] = useState([]);
+  const [areLoading, setAreLoading] = useState(false);
 
   useEffect(() => {
     const getConversation = async () => {
       if (!friendship) return;
       try {
+        setAreLoading(true);
         const response = await fetch(`${apiUrl}/conversations`, {
           method: "POST",
           headers: {
@@ -36,16 +34,26 @@ const Conversation = ({ friendship, profiles }) => {
         }
       } catch (error) {
         console.log(error);
+      } finally {
+        setAreLoading(false);
       }
     };
     getConversation();
   }, [friendship]);
 
+  const displayedProfile = profiles.find(
+    (pro) => pro.id == profileContext.profile.id
+  );
+
   return (
     <div className="conversation">
       <div className="chat">
         <ConversationHeader profiles={profiles} />
-        <Messages messages={messages} profiles={profiles} />
+        {areLoading ? (
+          "Loading..."
+        ) : (
+          <Messages messages={messages} profiles={profiles} />
+        )}
         <SendMessages
           conversation={conversation}
           setMessages={setMessages}

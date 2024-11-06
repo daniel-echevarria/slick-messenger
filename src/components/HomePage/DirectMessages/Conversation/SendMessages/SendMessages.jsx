@@ -11,10 +11,12 @@ const SendMessages = ({ conversation, setMessages, messages }) => {
   const [inputValue, setInputValue] = useState("");
   const [message, setMessage] = useState("");
   const [isSent, setIsSent] = useState(false);
+  const [isSending, setIsSending] = useState(false);
 
   useEffect(() => {
     if (!isSent) return;
     const sendMessage = async () => {
+      setIsSending(true);
       const res = await fetch(`${apiUrl}/messages`, {
         method: "POST",
         headers: {
@@ -32,6 +34,7 @@ const SendMessages = ({ conversation, setMessages, messages }) => {
         setIsSent(false);
         setInputValue("");
       }
+      setIsSending(false);
     };
     sendMessage();
   }, [message, conversation, isSent, messages, setMessages]);
@@ -56,24 +59,18 @@ const SendMessages = ({ conversation, setMessages, messages }) => {
               }`
             : "Jot something down"
         }
-        value={inputValue}
+        value={isSending ? "Sending..." : inputValue}
         handleChange={handleChange}
       />
       <div className="input-features-box">
         <div className="features"></div>
-        {inputValue && interlocutorProfile ? (
-          <button onClick={handleSendMessage} className={"send confirm"}>
-            <img src={sendMessageIcon} className="icon send-msg-icon" />
-          </button>
-        ) : (
-          <button
-            onClick={handleSendMessage}
-            className={"send confirm"}
-            disabled
-          >
-            <img src={sendMessageIcon} className="icon send-msg-icon" />
-          </button>
-        )}
+        <button
+          onClick={handleSendMessage}
+          className={"send confirm"}
+          disabled={!((inputValue && interlocutorProfile) || isSending)}
+        >
+          <img src={sendMessageIcon} className="icon send-msg-icon" />
+        </button>
       </div>
     </div>
   );
