@@ -53,6 +53,10 @@ button {
   transition: filter 0.25s, background-color 0.25s;
 }
 
+img.loading {
+  opacity: 10%;
+}
+
 button.confirm {
   background-color: green;
   color: white;

@@ -13,9 +13,11 @@ const EditProfileModal = ({
   setCurrentUserProfile,
 }) => {
   const modal = useRef(null);
+
   const [save, setSave] = useState(false);
   const [fieldValues, setFieldValues] = useState(null);
   const [uploadedFile, setUploadedFile] = useState(null);
+  const [isUploadingPicture, setIsUploadingPicture] = useState(false);
 
   useEffect(() => {
     const updateProfileFields = () => {
@@ -23,7 +25,7 @@ const EditProfileModal = ({
         name: profile.name || "",
         display_name: profile.display_name || "",
         title: profile.title || "",
-        avatar: profile.avatar,
+        avatar: profile.avatar || "",
       });
     };
     updateProfileFields();
@@ -54,14 +56,14 @@ const EditProfileModal = ({
   useEffect(() => {
     const submitPicture = async () => {
       if (!uploadedFile) return;
+      setIsUploadingPicture(true);
       const upload = new DirectUpload(
         uploadedFile,
         `${apiUrl}/rails/active_storage/direct_uploads`
       );
       upload.create(async (error, blob) => {
-        if (error) {
-          console.error("Upload failed:", error);
-        } else {
+        if (error) throw new Error(error);
+        try {
           const response = await fetch(
             `${apiUrl}/profiles/${profile.id}/update_profile_picture`,
             {
@@ -75,6 +77,10 @@ const EditProfileModal = ({
             setFieldValues({ ...fieldValues, avatar: result.avatar_url });
             setUploadedFile(null);
           }
+        } catch (error) {
+          console.log(error.message);
+        } finally {
+          setIsUploadingPicture(false);
         }
       });
     };
@@ -149,11 +155,31 @@ const EditProfileModal = ({
           </div>
           <div className="profile-photo-field">
             <span>Profile photo</span>
-            <img src={fieldValues.avatar} alt="" className="profile-img" />
-            <label htmlFor="fileInput" id="update-photo-btn">
-              Upload photo
-              <input type="file" onChange={handleFileUpload} id="fileInput" />
-            </label>
+            {isUploadingPicture ? (
+              <>
+                <img src={fieldValues.avatar} className="profile-img loading" />
+                <label htmlFor="fileInput" id="update-photo-btn">
+                  Loading...
+                  <input
+                    type="file"
+                    onChange={handleFileUpload}
+                    id="fileInput"
+                  />
+                </label>
+              </>
+            ) : (
+              <>
+                <img src={fieldValues.avatar} alt="" className="profile-img" />
+                <label htmlFor="fileInput" id="update-photo-btn">
+                  Upload photo
+                  <input
+                    type="file"
+                    onChange={handleFileUpload}
+                    id="fileInput"
+                  />
+                </label>
+              </>
+            )}
           </div>
         </form>
         <div className="edit-form-buttons">
