@@ -61,6 +61,7 @@ const SendMessages = ({ conversation, setMessages, messages }) => {
         }
         value={isSending ? "Sending..." : inputValue}
         handleChange={handleChange}
+        onEnter={handleSendMessage}
       />
       <div className="input-features-box">
         <div className="features"></div>

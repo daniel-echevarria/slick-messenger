@@ -89,7 +89,7 @@ const SignInPage = () => {
           value={passwordValue}
           handleChange={handlePasswordChange}
           required={true}
-          min={6}
+          minLength={6}
         />
         {isLoading ? (
           <button disabled={true}> Loading...</button>

@@ -88,7 +88,7 @@ const SignUp = () => {
             placeholder={"********"}
             value={passwordValue}
             handleChange={(e) => setPasswordValue(e.target.value)}
-            min={6}
+            minLength={6}
             required={true}
           />
           <CustomInput
@@ -97,7 +97,6 @@ const SignUp = () => {
             placeholder={"********"}
             value={passConfirmationValue}
             handleChange={(e) => setPassConfirmationValue(e.target.value)}
-            min={6}
             required={true}
           />
           {isCreatingUser ? (

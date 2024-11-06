@@ -7,10 +7,16 @@ const CustomInput = ({
   handleChange,
   placeholder,
   required,
-  min,
+  minLength,
   disabled,
+  onEnter,
   id,
 }) => {
+  const handleEnterPress = (e) => {
+    if (e.key === "Enter" || e.keyCode === 13) {
+      onEnter();
+    }
+  };
   return (
     <div className="form-field">
       <label>{label}</label>
@@ -22,8 +28,9 @@ const CustomInput = ({
           onChange={handleChange}
           placeholder={placeholder}
           required={required}
-          minLength={min}
+          minLength={minLength}
           disabled={disabled}
+          onKeyDown={handleEnterPress}
         />
       </div>
     </div>
