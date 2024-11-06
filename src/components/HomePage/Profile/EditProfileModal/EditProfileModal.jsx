@@ -162,31 +162,16 @@ const EditProfileModal = ({
           </div>
           <div className="profile-photo-field">
             <span>Profile photo</span>
-            {isUploadingPicture ? (
-              <>
-                <img src={fieldValues.avatar} className="profile-img loading" />
-                <label htmlFor="fileInput" id="update-photo-btn">
-                  Loading...
-                  <input
-                    type="file"
-                    onChange={handleFileUpload}
-                    id="fileInput"
-                  />
-                </label>
-              </>
-            ) : (
-              <>
-                <img src={fieldValues.avatar} alt="" className="profile-img" />
-                <label htmlFor="fileInput" id="update-photo-btn">
-                  Upload photo
-                  <input
-                    type="file"
-                    onChange={handleFileUpload}
-                    id="fileInput"
-                  />
-                </label>
-              </>
-            )}
+            <img
+              src={fieldValues.avatar}
+              className={
+                isUploadingPicture ? "profile-img loading" : "profile-img"
+              }
+            />
+            <label htmlFor="fileInput" id="update-photo-btn">
+              {isUploadingPicture ? "Loading..." : "Upload photo"}
+              <input type="file" onChange={handleFileUpload} id="fileInput" />
+            </label>
           </div>
         </form>
         <div className="edit-form-buttons">
