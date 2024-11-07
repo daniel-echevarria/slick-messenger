@@ -44,8 +44,10 @@ const SendMessages = ({ conversation, setMessages, messages }) => {
   };
 
   const handleSendMessage = () => {
-    setMessage(inputValue);
-    setIsSent(true);
+    if (inputValue && interlocutorProfile) {
+      setMessage(inputValue);
+      setIsSent(true);
+    }
   };
 
   return (
@@ -68,7 +70,7 @@ const SendMessages = ({ conversation, setMessages, messages }) => {
         <button
           onClick={handleSendMessage}
           className={"send confirm"}
-          disabled={!((inputValue && interlocutorProfile) || isSending)}
+          disabled={!(inputValue && interlocutorProfile) || isSending}
         >
           <img src={sendMessageIcon} className="icon send-msg-icon" />
         </button>
