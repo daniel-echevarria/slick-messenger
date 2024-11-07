@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import "../CustomInput/CustomInput.css";
 
 const CustomInput = ({
@@ -11,12 +12,14 @@ const CustomInput = ({
   disabled,
   onEnter,
   id,
+  inputRef,
 }) => {
   const handleEnterPress = (e) => {
     if (e.key === "Enter" || e.keyCode === 13) {
       onEnter();
     }
   };
+
   return (
     <div className="form-field">
       <label>{label}</label>
@@ -31,6 +34,7 @@ const CustomInput = ({
           minLength={minLength}
           disabled={disabled}
           onKeyDown={handleEnterPress}
+          ref={inputRef}
         />
       </div>
     </div>

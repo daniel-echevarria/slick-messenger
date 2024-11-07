@@ -1,12 +1,14 @@
 import "./SendMessages.css";
 import sendMessageIcon from "../../../../../assets/icons/send-msg.svg";
 import CustomInput from "../../../../CustomInput/CustomInput.jsx";
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext, useRef } from "react";
 import { InterlocutorContext } from "../../DirectMessages.jsx";
 const apiUrl = import.meta.env.VITE_API_URL;
 
 const SendMessages = ({ conversation, setMessages, messages }) => {
   const interlocutorProfile = useContext(InterlocutorContext).interlocutor;
+
+  const inputRef = useRef(null);
 
   const [inputValue, setInputValue] = useState("");
   const [message, setMessage] = useState("");
@@ -47,8 +49,15 @@ const SendMessages = ({ conversation, setMessages, messages }) => {
     if (inputValue && interlocutorProfile) {
       setMessage(inputValue);
       setIsSent(true);
+      inputRef.current.focus();
     }
   };
+
+  const interlocutorName = () =>
+    interlocutorProfile &&
+    (interlocutorProfile.display_name ||
+      interlocutorProfile.name ||
+      interlocutorProfile.email);
 
   return (
     <div className="send-message-box">
@@ -56,14 +65,13 @@ const SendMessages = ({ conversation, setMessages, messages }) => {
       <CustomInput
         placeholder={
           interlocutorProfile
-            ? `Message ${
-                interlocutorProfile.display_name || interlocutorProfile.email
-              }`
+            ? `Message ${interlocutorName()}`
             : "Jot something down"
         }
         value={isSending ? "Sending..." : inputValue}
         handleChange={handleChange}
         onEnter={handleSendMessage}
+        inputRef={inputRef}
       />
       <div className="input-features-box">
         <div className="features"></div>
