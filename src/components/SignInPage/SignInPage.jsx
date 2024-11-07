@@ -68,7 +68,7 @@ const SignInPage = () => {
         <span>slick</span>
       </div>
       <h1>Sign in to Slick</h1>
-      <SignInWithGoogle />
+      <SignInWithGoogle isLoading={isLoading} setIsLoading={setIsLoading} />
       <div className="break">
         <hr />
         <div id="or">OR</div>

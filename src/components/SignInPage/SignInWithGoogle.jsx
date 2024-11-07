@@ -3,9 +3,8 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 const apiUrl = import.meta.env.VITE_API_URL;
 
-const SignInWithGoogle = () => {
+const SignInWithGoogle = ({ isLoading, setIsLoading }) => {
   const navigate = useNavigate();
-  const [isLoading, setIsLoading] = useState(false);
 
   const clientId =
     "385042624628-m9bpist1q25an74bv6lav6tb663enbfd.apps.googleusercontent.com";
@@ -36,9 +35,7 @@ const SignInWithGoogle = () => {
 
   return (
     <GoogleOAuthProvider clientId={clientId}>
-      {isLoading ? (
-        <button disabled={true}> Loading...</button>
-      ) : (
+      {!isLoading && (
         <GoogleLogin
           onSuccess={handleLoginSuccess}
           onError={() => {
