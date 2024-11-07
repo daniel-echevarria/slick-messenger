@@ -16,7 +16,10 @@ const Conversation = ({ friendship, profiles }) => {
 
   useEffect(() => {
     const getConversation = async () => {
-      if (!friendship) return;
+      if (!friendship) {
+        setMessages([]);
+        return;
+      }
       try {
         setAreLoading(true);
         const response = await fetch(`${apiUrl}/conversations`, {

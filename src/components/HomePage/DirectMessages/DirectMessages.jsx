@@ -52,6 +52,11 @@ const DirectMessages = ({ profiles }) => {
     );
   });
 
+  const removeInterlocutor = () => {
+    setInterlocutor(null);
+    setFriendship(null);
+  };
+
   return (
     <InterlocutorContext.Provider
       value={{ interlocutor: interlocutor, setter: selectInterlocutor }}
@@ -59,7 +64,7 @@ const DirectMessages = ({ profiles }) => {
       <div className="direct-messages">
         <div className="dm-header">
           <h3>Direct Messages</h3>
-          <button onClick={() => setInterlocutor(null)}>
+          <button onClick={removeInterlocutor}>
             <img src={newMsgIcon} alt="new-message-icon" className="icon" />
           </button>
         </div>
