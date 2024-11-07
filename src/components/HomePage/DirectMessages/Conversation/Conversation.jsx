@@ -13,6 +13,7 @@ const Conversation = ({ friendship, profiles }) => {
   const [conversation, setConversation] = useState(null);
   const [messages, setMessages] = useState([]);
   const [areLoading, setAreLoading] = useState(false);
+  const [showSpinner, setShowSpinner] = useState(false);
 
   useEffect(() => {
     const getConversation = async () => {
@@ -21,7 +22,6 @@ const Conversation = ({ friendship, profiles }) => {
         return;
       }
       try {
-        setAreLoading(true);
         const response = await fetch(`${apiUrl}/conversations`, {
           method: "POST",
           headers: {
@@ -30,6 +30,7 @@ const Conversation = ({ friendship, profiles }) => {
           },
           body: JSON.stringify({ friendship_id: friendship.id }),
         });
+        setAreLoading(true);
         if (response.ok) {
           const result = await response.json();
           setConversation(result);
@@ -44,6 +45,20 @@ const Conversation = ({ friendship, profiles }) => {
     getConversation();
   }, [friendship]);
 
+  useEffect(() => {
+    let myTimeout;
+    if (areLoading) {
+      myTimeout = setTimeout(() => {
+        setShowSpinner(true);
+      }, 300);
+    } else {
+      clearTimeout(myTimeout);
+      setShowSpinner(false);
+    }
+
+    return () => clearTimeout(myTimeout);
+  }, [areLoading]);
+
   const displayedProfile = profiles.find(
     (pro) => pro.id == profileContext.profile.id
   );
@@ -52,7 +67,7 @@ const Conversation = ({ friendship, profiles }) => {
     <div className="conversation">
       <div className="chat">
         <ConversationHeader profiles={profiles} />
-        {areLoading ? (
+        {areLoading && showSpinner ? (
           "Loading..."
         ) : (
           <Messages messages={messages} profiles={profiles} />
