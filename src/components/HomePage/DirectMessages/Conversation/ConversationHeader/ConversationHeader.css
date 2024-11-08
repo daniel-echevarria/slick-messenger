@@ -35,3 +35,7 @@ input#new-msg-interlocutor-input {
   /* border: none; */
   box-shadow: none;
 }
+
+.conversation-header .icon {
+  filter: invert(0%);
+}

@@ -4,6 +4,7 @@ import SelectInterlocutorDropDown from "./SelectInterlocutorDropdown/SelectInter
 import { useContext } from "react";
 import { InterlocutorContext } from "../../DirectMessages";
 import { ProfileContext } from "../../../HomePage";
+import messagesIcon from "../../../../../assets/icons/messages.svg";
 
 const ConversationHeader = ({ profiles }) => {
   const interlocutorProfile = useContext(InterlocutorContext).interlocutor;
@@ -17,16 +18,26 @@ const ConversationHeader = ({ profiles }) => {
   return (
     <div className="conversation-header">
       {interlocutorProfile ? (
-        <button
-          className="interlocutor-btn"
-          value={interlocutorProfile.id}
-          onClick={handleProfileClick}
-        >
-          <img src={interlocutorProfile.avatar} alt="" className="avatar-img" />
-          {interlocutorProfile.display_name ||
-            interlocutorProfile.name ||
-            interlocutorProfile.email}
-        </button>
+        <div>
+          <button
+            className="interlocutor-btn"
+            value={interlocutorProfile.id}
+            onClick={handleProfileClick}
+          >
+            <img
+              src={interlocutorProfile.avatar}
+              alt=""
+              className="avatar-img"
+            />
+            {interlocutorProfile.display_name ||
+              interlocutorProfile.name ||
+              interlocutorProfile.email}
+          </button>
+          <button>
+            <img src={messagesIcon} alt="" className="icon" />
+            Messages
+          </button>
+        </div>
       ) : (
         <div className="new-msg-header">
           <span>New Message</span>
