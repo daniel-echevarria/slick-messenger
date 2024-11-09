@@ -16,9 +16,9 @@ const ConversationHeader = ({ profiles }) => {
   };
 
   return (
-    <div className="conversation-header">
+    <>
       {interlocutorProfile ? (
-        <div>
+        <div className="conversation-header">
           <button
             className="interlocutor-btn"
             value={interlocutorProfile.id}
@@ -33,10 +33,12 @@ const ConversationHeader = ({ profiles }) => {
               interlocutorProfile.name ||
               interlocutorProfile.email}
           </button>
-          <button>
-            <img src={messagesIcon} alt="" className="icon" />
-            Messages
-          </button>
+          <div className="conv-header-nav">
+            <button>
+              <img src={messagesIcon} alt="" className="icon" />
+              <span>Messages</span>
+            </button>
+          </div>
         </div>
       ) : (
         <div className="new-msg-header">
@@ -48,7 +50,7 @@ const ConversationHeader = ({ profiles }) => {
           </div>
         </div>
       )}
-    </div>
+    </>
   );
 };
 
