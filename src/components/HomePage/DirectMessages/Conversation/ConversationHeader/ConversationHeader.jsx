@@ -5,6 +5,7 @@ import { useContext } from "react";
 import { InterlocutorContext } from "../../DirectMessages";
 import { ProfileContext } from "../../../HomePage";
 import messagesIcon from "../../../../../assets/icons/messages.svg";
+import NavButton from "../../../../NavButton/NavButton";
 
 const ConversationHeader = ({ profiles }) => {
   const interlocutorProfile = useContext(InterlocutorContext).interlocutor;
@@ -34,10 +35,8 @@ const ConversationHeader = ({ profiles }) => {
               interlocutorProfile.email}
           </button>
           <div className="conv-header-nav">
-            <button>
-              <img src={messagesIcon} alt="" className="icon" />
-              <span>Messages</span>
-            </button>
+            <NavButton icon={messagesIcon} text={"Messages"} />
+            <NavButton icon={messagesIcon} text={"Canvas"} />
           </div>
         </div>
       ) : (
