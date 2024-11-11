@@ -1,11 +1,15 @@
 import "./ConversationHeader.css";
 import CustomInput from "../../../../CustomInput/CustomInput";
 import SelectInterlocutorDropDown from "./SelectInterlocutorDropdown/SelectInterlocutorDropDown";
+
 import { useContext } from "react";
 import { InterlocutorContext } from "../../DirectMessages";
 import { ProfileContext } from "../../../HomePage";
+
 import messagesIcon from "../../../../../assets/icons/messages.svg";
+import messagesIconFilled from "../../../../../assets/icons/messages-filled.svg";
 import filesIcon from "../../../../../assets/icons/files.svg";
+import filesIconFilled from "../../../../../assets/icons/files-filled.svg";
 import NavBar from "../../../../NavBar/NavBar";
 
 const ConversationHeader = ({ profiles }) => {
@@ -26,8 +30,8 @@ const ConversationHeader = ({ profiles }) => {
   };
 
   const tabs = [
-    { icon: messagesIcon, text: "Messages" },
-    { icon: filesIcon, text: "Files" },
+    { icon: messagesIcon, iconFilled: messagesIconFilled, text: "Messages" },
+    { icon: filesIcon, iconFilled: filesIconFilled, text: "Files" },
   ];
 
   return (

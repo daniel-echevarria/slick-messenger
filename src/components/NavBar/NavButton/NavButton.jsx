@@ -1,7 +1,10 @@
-import "./NavButton.css";
-const NavButton = ({ icon, text, className }) => {
+const NavButton = ({ icon, text, onClick, id, isSelected }) => {
   return (
-    <button className={className}>
+    <button
+      className={isSelected == id ? "nav-button selected" : "nav-button"}
+      onClick={onClick}
+      id={id}
+    >
       <img src={icon} alt="" className="icon" />
       <span>{text}</span>
     </button>

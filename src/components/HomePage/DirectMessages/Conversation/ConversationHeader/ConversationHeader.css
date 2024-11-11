@@ -51,13 +51,16 @@ input#new-msg-interlocutor-input {
   border-bottom: 5px;
 }
 
-.conversation-header nav button {
+.conversation-header .nav-button {
   display: flex;
   font-size: small;
   align-items: center;
   gap: 3px;
-  border-bottom: 1px solid var(--secondary-color);
   margin-left: 5px;
   border-radius: 5px 5px 0px 0px;
   padding: 8px;
+}
+
+.conversation-header .nav-button.selected {
+  border-bottom: 1px solid var(--secondary-color);
 }
