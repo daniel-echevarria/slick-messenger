@@ -3,6 +3,7 @@ import "./HomePage.css";
 import LogOut from "./LogOut/LogOut";
 import { AuthContext } from "../../App";
 import { createContext, useContext, useEffect, useState } from "react";
+import NavBar from "../NavBar/NavBar";
 
 const apiUrl = import.meta.env.VITE_API_URL;
 
@@ -62,7 +63,7 @@ const HomePage = () => {
     >
       <div className="app">
         <header></header>
-        <nav>
+        <nav className="main-nav">
           <div className="tab-container"></div>
           {currentUserProfile && (
             <input

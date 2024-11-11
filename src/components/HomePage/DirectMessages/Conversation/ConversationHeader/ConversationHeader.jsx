@@ -5,7 +5,8 @@ import { useContext } from "react";
 import { InterlocutorContext } from "../../DirectMessages";
 import { ProfileContext } from "../../../HomePage";
 import messagesIcon from "../../../../../assets/icons/messages.svg";
-import NavButton from "../../../../NavButton/NavButton";
+import filesIcon from "../../../../../assets/icons/files.svg";
+import NavBar from "../../../../NavBar/NavBar";
 
 const ConversationHeader = ({ profiles }) => {
   const interlocutorProfile = useContext(InterlocutorContext).interlocutor;
@@ -15,6 +16,19 @@ const ConversationHeader = ({ profiles }) => {
     console.log(e.target.value);
     profileContext.handleProfileClick(e);
   };
+
+  const interlocutorName = () => {
+    return (
+      interlocutorProfile.display_name ||
+      interlocutorProfile.name ||
+      interlocutorProfile.email
+    );
+  };
+
+  const tabs = [
+    { icon: messagesIcon, text: "Messages" },
+    { icon: filesIcon, text: "Files" },
+  ];
 
   return (
     <>
@@ -30,14 +44,9 @@ const ConversationHeader = ({ profiles }) => {
               alt=""
               className="avatar-img"
             />
-            {interlocutorProfile.display_name ||
-              interlocutorProfile.name ||
-              interlocutorProfile.email}
+            {interlocutorName()}
           </button>
-          <div className="conv-header-nav">
-            <NavButton icon={messagesIcon} text={"Messages"} />
-            <NavButton icon={messagesIcon} text={"Canvas"} />
-          </div>
+          <NavBar tabs={tabs} />
         </div>
       ) : (
         <div className="new-msg-header">
