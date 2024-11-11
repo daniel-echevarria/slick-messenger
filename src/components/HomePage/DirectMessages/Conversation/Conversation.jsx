@@ -21,7 +21,7 @@ const Conversation = ({ friendship, profiles }) => {
   const [messages, setMessages] = useState([]);
   const [areLoading, setAreLoading] = useState(false);
   const [showSpinner, setShowSpinner] = useState(false);
-  const [selectedTabText, setSelectedTabText] = useState("Messages");
+  const [selectedTabText, setSelectedTabText] = useState(0);
 
   const tabs = [
     {
@@ -102,7 +102,7 @@ const Conversation = ({ friendship, profiles }) => {
   };
 
   const filesPage = () => {
-    return "Coming Soon";
+    return "No files to show yet";
   };
 
   return (

@@ -6,18 +6,19 @@
   padding: 10px 0px 0px 10px;
 }
 
+.new-msg-header {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  border-bottom: 0.5px solid lightgray;
+}
+
 .interlocutor-btn {
   display: flex;
   align-items: center;
   gap: 10px;
   width: fit-content;
   font-weight: bolder;
-}
-
-.new-msg-header {
-  display: flex;
-  flex-direction: column;
-  text-align: left;
 }
 
 .new-msg-interlocutor {

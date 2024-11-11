@@ -10,20 +10,20 @@
   top: 90%;
   background-color: whitesmoke;
   border-radius: 8px;
-  width: 60%;
+  width: 90%;
   padding: 15px 0px;
   max-height: 60vh;
   overflow-y: scroll;
 }
 
-.drop-down-menu button {
+.drop-down-menu .select-interlocutor {
   border-radius: 0px;
   font-size: small;
   text-align: left;
   width: 100%;
 }
 
-.drop-down-menu button:hover {
+.drop-down-menu .select-interlocutor:hover {
   background-color: var(--secondary-color);
   color: white;
 }
