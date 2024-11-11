@@ -1,18 +1,12 @@
 import "./ConversationHeader.css";
 import CustomInput from "../../../../CustomInput/CustomInput";
 import SelectInterlocutorDropDown from "./SelectInterlocutorDropdown/SelectInterlocutorDropDown";
-
 import { useContext } from "react";
 import { InterlocutorContext } from "../../DirectMessages";
 import { ProfileContext } from "../../../HomePage";
-
-import messagesIcon from "../../../../../assets/icons/messages.svg";
-import messagesIconFilled from "../../../../../assets/icons/messages-filled.svg";
-import filesIcon from "../../../../../assets/icons/files.svg";
-import filesIconFilled from "../../../../../assets/icons/files-filled.svg";
 import NavBar from "../../../../NavBar/NavBar";
 
-const ConversationHeader = ({ profiles }) => {
+const ConversationHeader = ({ profiles, tabs, setSelectedTabText }) => {
   const interlocutorProfile = useContext(InterlocutorContext).interlocutor;
   const profileContext = useContext(ProfileContext);
 
@@ -28,11 +22,6 @@ const ConversationHeader = ({ profiles }) => {
       interlocutorProfile.email
     );
   };
-
-  const tabs = [
-    { icon: messagesIcon, iconFilled: messagesIconFilled, text: "Messages" },
-    { icon: filesIcon, iconFilled: filesIconFilled, text: "Files" },
-  ];
 
   return (
     <>
@@ -50,7 +39,7 @@ const ConversationHeader = ({ profiles }) => {
             />
             {interlocutorName()}
           </button>
-          <NavBar tabs={tabs} />
+          <NavBar tabs={tabs} setSelectedTabText={setSelectedTabText} />
         </div>
       ) : (
         <div className="new-msg-header">

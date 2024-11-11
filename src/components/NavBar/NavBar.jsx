@@ -1,11 +1,12 @@
 import { useState } from "react";
 import NavButton from "./NavButton/NavButton";
 
-const NavBar = ({ className, tabs }) => {
+const NavBar = ({ className, tabs, setSelectedTabText }) => {
   const [isSelected, setIsSelected] = useState(0);
 
   const handleTabSelection = (e) => {
     setIsSelected(e.target.id);
+    setSelectedTabText(e.target.id);
   };
 
   const navButtons = tabs.map((el, index) => {
