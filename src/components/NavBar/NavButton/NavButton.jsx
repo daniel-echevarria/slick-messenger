@@ -1,9 +1,9 @@
-const NavButton = ({ icon, text, onClick, id, isSelected }) => {
+const NavButton = ({ icon, text, onClick, id, selectedTabId }) => {
   return (
     <button
-      className={isSelected == id ? "nav-button selected" : "nav-button"}
-      onClick={onClick}
       id={id}
+      onClick={onClick}
+      className={selectedTabId == id ? "nav-button selected" : "nav-button"}
     >
       <img src={icon} alt="" className="icon" />
       <span>{text}</span>

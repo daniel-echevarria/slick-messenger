@@ -11,6 +11,7 @@ import messagesIconFilled from "../../../../assets/icons/messages-filled.svg";
 import filesIcon from "../../../../assets/icons/files.svg";
 import filesIconFilled from "../../../../assets/icons/files-filled.svg";
 import { ProfileContext } from "../../HomePage";
+import NavBar from "../../../NavBar/NavBar";
 
 const apiUrl = import.meta.env.VITE_API_URL;
 
@@ -21,20 +22,7 @@ const Conversation = ({ friendship, profiles }) => {
   const [messages, setMessages] = useState([]);
   const [areLoading, setAreLoading] = useState(false);
   const [showSpinner, setShowSpinner] = useState(false);
-  const [selectedTabText, setSelectedTabText] = useState(0);
-
-  const tabs = [
-    {
-      icon: messagesIcon,
-      iconFilled: messagesIconFilled,
-      text: "Messages",
-    },
-    {
-      icon: filesIcon,
-      iconFilled: filesIconFilled,
-      text: "Files",
-    },
-  ];
+  const [selectedTabId, setSelectedTabId] = useState(0);
 
   useEffect(() => {
     const getConversation = async () => {
@@ -102,19 +90,38 @@ const Conversation = ({ friendship, profiles }) => {
   };
 
   const filesPage = () => {
-    return "No files to show yet";
+    return "No files found for this channel.";
   };
+
+  const tabs = [
+    {
+      id: 0,
+      icon: messagesIcon,
+      iconFilled: messagesIconFilled,
+      text: "Messages",
+      page: messagesPage,
+    },
+    {
+      id: 1,
+      icon: filesIcon,
+      iconFilled: filesIconFilled,
+      text: "Files",
+      page: filesPage,
+    },
+  ];
 
   return (
     <div className="conversation">
       <div className="chat">
-        <ConversationHeader
-          profiles={profiles}
-          tabs={tabs}
-          setSelectedTabText={setSelectedTabText}
-        />
-        {selectedTabText == 0 && messagesPage()}
-        {selectedTabText == 1 && filesPage()}
+        <ConversationHeader profiles={profiles}>
+          <NavBar
+            setSelectedTabId={setSelectedTabId}
+            selectedTabId={selectedTabId}
+          >
+            {tabs}
+          </NavBar>
+        </ConversationHeader>
+        {tabs.find((tab) => tab.id == selectedTabId).page()}
       </div>
       {displayedProfile && (
         <Profile

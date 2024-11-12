@@ -4,9 +4,8 @@ import SelectInterlocutorDropDown from "./SelectInterlocutorDropdown/SelectInter
 import { useContext } from "react";
 import { InterlocutorContext } from "../../DirectMessages";
 import { ProfileContext } from "../../../HomePage";
-import NavBar from "../../../../NavBar/NavBar";
 
-const ConversationHeader = ({ profiles, tabs, setSelectedTabText }) => {
+const ConversationHeader = ({ profiles, children }) => {
   const interlocutorProfile = useContext(InterlocutorContext).interlocutor;
   const profileContext = useContext(ProfileContext);
 
@@ -39,7 +38,7 @@ const ConversationHeader = ({ profiles, tabs, setSelectedTabText }) => {
             />
             {interlocutorName()}
           </button>
-          <NavBar tabs={tabs} setSelectedTabText={setSelectedTabText} />
+          {children}
         </div>
       ) : (
         <div className="new-msg-header">
