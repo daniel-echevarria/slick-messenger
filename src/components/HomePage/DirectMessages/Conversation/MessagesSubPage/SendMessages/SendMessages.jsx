@@ -1,8 +1,8 @@
 import "./SendMessages.css";
-import sendMessageIcon from "../../../../../assets/icons/send-msg.svg";
-import CustomInput from "../../../../CustomInput/CustomInput.jsx";
+import sendMessageIcon from "../../../../../../assets/icons/send-msg.svg";
+import CustomInput from "../../../../../CustomInput/CustomInput.jsx";
 import { useState, useEffect, useContext, useRef } from "react";
-import { InterlocutorContext } from "../../DirectMessages.jsx";
+import { InterlocutorContext } from "../../../DirectMessages.jsx";
 const apiUrl = import.meta.env.VITE_API_URL;
 
 const SendMessages = ({ conversation, setMessages, messages }) => {
