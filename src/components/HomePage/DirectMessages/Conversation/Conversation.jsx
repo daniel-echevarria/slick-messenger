@@ -74,13 +74,10 @@ const Conversation = ({ friendship, profiles }) => {
   );
 
   const messagesPage = () => {
+    if (areLoading && showSpinner) return "Loading...";
     return (
       <>
-        {areLoading && showSpinner ? (
-          "Loading..."
-        ) : (
-          <Messages messages={messages} profiles={profiles} />
-        )}
+        <Messages messages={messages} profiles={profiles} />
         <SendMessages
           conversation={conversation}
           setMessages={setMessages}
