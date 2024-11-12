@@ -4,6 +4,7 @@ import Profile from "../../Profile/Profile";
 import ConversationHeader from "./ConversationHeader/ConversationHeader";
 import Messages from "./Messages/Messages";
 import SendMessages from "./SendMessages/SendMessages";
+import NavButton from "../../../NavBar/NavButton/NavButton";
 // Icons && CSS
 import "./Conversation.css";
 import messagesIcon from "../../../../assets/icons/messages.svg";
@@ -110,16 +111,24 @@ const Conversation = ({ friendship, profiles }) => {
     },
   ];
 
+  const navButtons = tabs.map((el, index) => {
+    return (
+      <NavButton
+        key={index}
+        id={index}
+        icon={selectedTabId == index ? el.iconFilled : el.icon}
+        text={el.text}
+        onClick={(e) => setSelectedTabId(e.target.id)}
+        selectedTabId={selectedTabId}
+      />
+    );
+  });
+
   return (
     <div className="conversation">
       <div className="chat">
         <ConversationHeader profiles={profiles}>
-          <NavBar
-            setSelectedTabId={setSelectedTabId}
-            selectedTabId={selectedTabId}
-          >
-            {tabs}
-          </NavBar>
+          <NavBar>{navButtons}</NavBar>
         </ConversationHeader>
         {tabs.find((tab) => tab.id == selectedTabId).page()}
       </div>
