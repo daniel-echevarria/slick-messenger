@@ -10,7 +10,6 @@ const ConversationHeader = ({ profiles, children }) => {
   const profileContext = useContext(ProfileContext);
 
   const handleProfileClick = (e) => {
-    console.log(e.target.value);
     profileContext.handleProfileClick(e);
   };
 

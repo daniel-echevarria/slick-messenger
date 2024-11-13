@@ -13,9 +13,13 @@ import { ProfileContext } from "../../HomePage";
 import NavBar from "../../../NavBar/NavBar";
 import MessagesSubPage from "./MessagesSubPage/MessagesSubPage";
 
-const Conversation = ({ friendship, profiles }) => {
+const Conversation = ({ friendship, profiles, interlocutor }) => {
   const profileContext = useContext(ProfileContext);
   const [selectedTabId, setSelectedTabId] = useState(0);
+
+  useEffect(() => {
+    setSelectedTabId(0);
+  }, [interlocutor]);
 
   const displayedProfile = profiles.find(
     (pro) => pro.id == profileContext.profile.id

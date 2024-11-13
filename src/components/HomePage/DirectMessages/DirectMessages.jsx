@@ -70,7 +70,11 @@ const DirectMessages = ({ profiles }) => {
         </div>
         <div className="users-list">{profilesList}</div>
       </div>
-      <Conversation friendship={friendship} profiles={profiles} />
+      <Conversation
+        friendship={friendship}
+        profiles={profiles}
+        interlocutor={interlocutor}
+      />
     </InterlocutorContext.Provider>
   );
 };
