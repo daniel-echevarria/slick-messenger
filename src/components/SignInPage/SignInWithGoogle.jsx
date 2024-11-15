@@ -1,5 +1,4 @@
 import { GoogleOAuthProvider, GoogleLogin } from "@react-oauth/google";
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 const apiUrl = import.meta.env.VITE_API_URL;
 

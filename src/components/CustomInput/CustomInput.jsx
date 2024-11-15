@@ -13,6 +13,7 @@ const CustomInput = ({
   onEnter,
   id,
   inputRef,
+  autoFocus,
 }) => {
   const handleEnterPress = (e) => {
     if (e.key === "Enter" || e.keyCode === 13) {
@@ -35,6 +36,7 @@ const CustomInput = ({
           disabled={disabled}
           onKeyDown={handleEnterPress}
           ref={inputRef}
+          autoFocus={autoFocus}
         />
       </div>
     </div>
