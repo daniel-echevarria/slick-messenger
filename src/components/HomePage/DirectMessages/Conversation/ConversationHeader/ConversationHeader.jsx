@@ -58,7 +58,6 @@ const ConversationHeader = ({ profiles, children }) => {
         <div className="new-msg-header">
           <span>New Message</span>
           <div className="new-msg-interlocutor">
-            <SelectInterlocutorDropDown items={profilesList} />
             <span>To:</span>
             <CustomInput
               id={"new-msg-interlocutor-input"}
@@ -66,6 +65,9 @@ const ConversationHeader = ({ profiles, children }) => {
               value={inputValue}
               autoFocus={true}
             />
+            {profilesList.length > 0 && (
+              <SelectInterlocutorDropDown items={profilesList} />
+            )}
           </div>
         </div>
       )}
