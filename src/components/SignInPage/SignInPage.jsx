@@ -99,10 +99,12 @@ const SignInPage = () => {
           <button>Sign in</button>
         )}
       </form>
-      <div className="signup-offer">
-        <span>New to Slick?</span>
-        <Link to="/signup">Create an account</Link>
-      </div>
+      {!isLoading && (
+        <div className="signup-offer">
+          <span>New to Slick?</span>
+          <Link to="/signup">Create an account</Link>
+        </div>
+      )}
     </main>
   );
 };
