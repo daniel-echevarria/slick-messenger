@@ -166,10 +166,14 @@ const EditProfileModal = ({ profile, open, setEditProfileIsOpen }) => {
                 isUploadingPicture ? "profile-img loading" : "profile-img"
               }
             />
-            <label htmlFor="fileInput" id="update-photo-btn">
-              {isUploadingPicture ? "Loading..." : "Upload photo"}
-              <input type="file" onChange={handleFileUpload} id="fileInput" />
-            </label>
+            {isUploadingPicture ? (
+              <p>Loading...</p>
+            ) : (
+              <label htmlFor="fileInput" id="update-photo-btn">
+                Upload photo
+                <input type="file" onChange={handleFileUpload} id="fileInput" />
+              </label>
+            )}
           </div>
         </form>
         <div className="edit-form-buttons">
