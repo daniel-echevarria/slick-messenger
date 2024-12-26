@@ -27,9 +27,9 @@ const Conversation = ({ friendship, profiles, interlocutor }) => {
 
   const FilesPage = () => {
     return (
-      <>
+      <div className="files">
         <span>No files found for this channel.</span>
-      </>
+      </div>
     );
   };
 
