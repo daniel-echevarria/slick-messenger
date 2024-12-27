@@ -13,10 +13,13 @@ const ConversationHeader = ({ profiles, children }) => {
 
   useEffect(() => {
     const filteredProfiles = profiles.filter((profile) => {
-      const normalizedProfileName = profile.display_name.toLowerCase();
-      return normalizedProfileName.includes(inputValue.toLowerCase());
+      const names = [profile.display_name, profile.name, profile.email].join(
+        ""
+      );
+      const normalizedProfileNames = names.toLowerCase();
+      console.log(normalizedProfileNames);
+      return normalizedProfileNames.includes(inputValue.toLowerCase());
     });
-    console.log(filteredProfiles);
     setProfilesList(filteredProfiles);
   }, [inputValue, profiles]);
 
