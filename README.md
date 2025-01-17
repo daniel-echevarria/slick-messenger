@@ -1,35 +1,52 @@
 # Slick Messenger - A Slack Clone
 
-Slick is a messaging app built with **Rails** (backend) and **React** (frontend), inspired by Slack. Users can send direct messages to each other, update their profiles, and upload profile pictures. This project demonstrates a full-stack approach with Rails as the backend API and React for the frontend.
+**Slick Messenger** is a modern messaging app built with **Rails** (backend) and **React** (frontend), inspired by **Slack**. Users can send direct messages, update profiles, and upload profile pictures. This project showcases a full-stack approach, utilizing Rails for the backend API and React for the frontend.
 
-## Features
-- **User authentication** with email and password using **Devise** and **JWT** (JSON Web Tokens).
-- **Send and receive direct messages** between users.
-- **Profile management**: Users can update their profile information and upload a profile picture using Active Storage.
+---    
 
-## Technologies Used
-- **Frontend**: React.
-- **Backend**: Ruby on Rails, **Devise-JWT** (for JSON Web Token authentication), Active Storage (for handling file uploads).
-- **Database**: PostgreSQL.
-- **Authentication**: Devise-JWT for token-based authentication.
-- **Deployment**: Render (backend) and Netlify (frontend) for hosting.
+## 🚀 Features
+- **User Authentication**: Secure login with email and password using **Devise** and **JWT** (JSON Web Tokens).
+- **Direct Messaging**: Send and receive direct messages between users.
+- **Profile Management**: Users can update their profile information and upload profile pictures using **Active Storage**.
 
-## Live Demo
-You can view the live versions below:
+---
 
-- **Frontend (React)**: [Live Demo](https://slick-messenger.netlify.app/signin)
+## 🔧 Technologies Used
+- **Frontend**: React
+- **Backend**: Ruby on Rails, **Devise-JWT** (for token-based authentication), **Active Storage** (for file uploads)
+- **Database**: PostgreSQL
+- **Authentication**: **Devise-JWT** for secure token-based authentication
+- **Deployment**: 
+  - Backend: **Render**
+  - Frontend: **Netlify**
 
-Feel free to try out the app by signing up, updating your profile, and sending messages!
+---
 
-## Screenshots
-*(Add screenshots)*
+## 🌐 Live Demo
+Check out the live version of **Slick Messenger**:  
+[Live Demo](https://slick-messenger.netlify.app)
 
+Feel free to sign up, update your profile, and send messages to experience the app in action!
 
-## Contributing
+---
 
-Feel free to fork this project, open issues, or submit pull requests. Contributions are welcome!
+## 📂 Backend Repository  
+The backend repository for **Slick Messenger** can be found here:  
+[Backend Repository](https://github.com/daniel-echevarria/slick-messenger-backend)
 
-## Acknowledgements
-- Inspiration: Slack for the user interface and messaging functionality.
-- Technologies: Rails, React, Devise-JWT, PostgreSQL, Active Storage.
+---
 
+## 🙏 Acknowledgements
+- **Inspiration**: The user interface is inspired by **Slack**.  
+- **Thanks to Slack** for being a great reference in building this messaging app! Check out [Slack](https://slack.com) for more on their platform.
+
+---
+
+## 💡 Future Improvements
+- **Real-time Messaging**: Implement WebSocket-based real-time messaging.
+- **Group Chats**: Add support for multi-user group chats.
+- **File Sharing**: Allow users to send and receive attachments like images and documents.
+
+---
+
+Enjoy using **Slick Messenger**, and thanks for checking it out! 💬
