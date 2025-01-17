@@ -17,7 +17,6 @@ const ConversationHeader = ({ profiles, children }) => {
         ""
       );
       const normalizedProfileNames = names.toLowerCase();
-      console.log(normalizedProfileNames);
       return normalizedProfileNames.includes(inputValue.toLowerCase());
     });
     setProfilesList(filteredProfiles);

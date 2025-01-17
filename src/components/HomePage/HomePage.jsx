@@ -37,7 +37,6 @@ const HomePage = () => {
   }, [profileWasUpdated]);
 
   useEffect(() => {
-    console.log("updating current user profile");
     const updateCurrentUserProfile = () => {
       const profile = profiles.find((pro) => pro.id === currentUser.profile.id);
       setCurrentUserProfile(profile);
